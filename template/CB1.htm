@@ -344,180 +344,6 @@ li.mix > .quicklink {
   background-position: center;
 }
 
-/* == 'Dot' Mode == */
-.dot .thumb-inner {
-  border: 5px solid #000;
-  border-radius: 20px;
-  box-sizing: border-box;
-  height: 10px !important;
-  overflow: hidden;
-  position: relative;
-  transition: width 0.4s ease 0s, height 0.4s ease 0s, border-radius 0.4s ease 0s, border 0.4s ease 0s;
-  width: 10px;
-  margin: auto;
-}
-
-.dot .bx-pager-link.active {
-	border: none;
-}
-
-.dot .bx-pager-link {
-  display: table-cell;
-  vertical-align: middle;
-  width: 120px;
-}
-
-.dot .bx-pager-link.active .thumb-inner {
-  border: 10px solid #D95167;
-  border-radius: 20px;
-  box-sizing: border-box;
-  height: 20px !important;
-  overflow: hidden;
-  width: 20px;
-  position: relative;
-}
-
-.dot .thumb-inner > img {
-  height: 100%;
-  left: -50%;
-  position: absolute;
-}
-
-.dot .bx-pager-item:hover > .bx-pager-link > .thumb-inner {
-  border: 5px solid #D95167;
-  border-radius: 120px;
-  box-sizing: border-box;
-  height: 120px !important;
-  overflow: hidden;
-  position: relative;
-  text-align: center;
-  transition: width 0.4s ease 0s, height 0.4s ease 0s, border-radius 0.4s ease 0s, border 0.4s ease 0s;
-  -webkit-transition: width 0.4s ease 0s, height 0.4s ease 0s, border-radius 0.4s ease 0s, border 0.4s ease 0s;
-  -moz-transition: width 0.4s ease 0s, height 0.4s ease 0s, border-radius 0.4s ease 0s, border 0.4s ease 0s;
-  -o-transition: width 0.4s ease 0s, height 0.4s ease 0s, border-radius 0.4s ease 0s, border 0.4s ease 0s;
-  -ms-transition: width 0.4s ease 0s, height 0.4s ease 0s, border-radius 0.4s ease 0s, border 0.4s ease 0s;
-  width: 120px;
-}
-
-.dot .bx-pager.bx-custom-pager {
-  margin: auto;
-  overflow: hidden;
-  position: relative;
-  top: 0px;
-  white-space: nowrap;
-  width: 1000px;
-}
-
-.dot #pager-container {
-  bottom: 0;
-  display: table;
-  height: 120px;
-}
-
-.dot .bx-pager-item {
-  display: table-cell;
-  height: 130px;
-  padding: 0 23.3px;
-  vertical-align: middle;
-}
-
-.dot .thumb-img {
-  background-position: center center;
-  background-size: cover;
-  height: 100%;
-  width: 100%;
-}
-
-/* == 'box' Mode == */
-.box .thumb-inner {
-  border: 5px solid #000;
-  border-radius: 20px;
-  box-sizing: border-box;
-  height: 10px !important;
-  margin: auto;
-  overflow: visible;
-  position: relative;
-  transition: width 0.4s ease 0s, height 0.4s ease 0s, border-radius 0.4s ease 0s, border 0.4s ease 0s;
-  width: 10px;
-}
-
-.box .bx-pager-link {
-  display: table-cell;
-  margin: auto;
-  text-align: center;
-  vertical-align: middle;
-  width: 120px;
-}
-
-.box .bx-pager-link.active {
-  border: none;
-}
-
-.box .bx-pager-link.active .thumb-inner {
-  border: 10px solid #D95167;
-  border-radius: 20px;
-  box-sizing: border-box;
-  height: 20px !important;
-  overflow: visible;
-  width: 20px;
-  position: relative;
-  transition: width .4s, height .4s, border-radius .4s, border .4s;
-}
-
-.box .thumb-inner > img {
-  height: 100%;
-  left: -50%;
-  position: absolute;
-}
-
-.box .bx-pager-item:hover > .thumb-inner {
-  box-sizing: border-box;
-  position: relative;
-  text-align: center;
-}
-
-.box .bx-pager-item .thumb-inner > .thumb-img {
-  position: absolute;
-  background-size: cover;
-  background-position: center;
-}
-
-
-.box .bx-pager-item:hover .thumb-inner > .thumb-img {
-  border: 3px solid #fff;
-  display: block;
-  height: 67px;
-  left: -56px;
-  margin: 4px;
-  top: -90px;
-  width: 100px;
-  box-shadow: 0px 1px 2px 0px;
-}
-
-.box .bx-pager.bx-custom-pager {
-  display: table;
-  height: 100%;
-  margin: auto;
-  overflow: visible;
-  position: relative;
-  top: 0;
-  white-space: nowrap;
-  width: 1000px;
-}
-
-.box #pager-container {
-  bottom: -30px;
-  display: block;
-  height: 30px;
-}
-
-.box .bx-pager-item {
-  display: table-cell;
-  height: 20px;
-  padding: 0 23.3px;
-  vertical-align: middle;
-}
-
 /* ========================== */
 /* === Full screen styles === */
 /* ========================== */
@@ -669,14 +495,12 @@ li.mix > .quicklink {
   max-height: 0;
   left: 10px;
   position: absolute;
-  /*transition: max-height 400ms;*/
   width: 100%;
   width: calc(100% - 20px);
 }
 
 .fullscreen .grid-container.open {
   max-height: 210px;
-  /*transition: max-height 400ms;*/
 }
 
 .fullscreen #grid {
@@ -700,10 +524,6 @@ li.mix > .quicklink {
   right: 10px;
   top: 10px;
 }
-
-/*.fullscreen .open #toggle-grid .showHide-btn {
-  background-position: -305px 0;
-}*/
 
 .fullscreen #toggle-grid .show-hide {
   background-image: url("/images/magazine/features/ss15-carousel/showhide-sprite.png");
@@ -843,119 +663,6 @@ li.mix > .quicklink {
 .fullscreen #pager-tab span.hide {
 	display: none;
 }
-
-/* == 'Dot' Mode == */
-/*.fullscreen .dot.top .bx-pager.bx-custom-pager {
-  margin: auto;
-  overflow: hidden;
-  position: relative;
-  text-align: center;
-  top: 0;
-  white-space: nowrap;
-  width: 1000px;
-  height: 100%;
-}
-
-.fullscreen .dot.top .bx-pager-item:hover > .bx-pager-link {
-  border-radius: 120px;
-  box-sizing: border-box;
-  height: 120px !important;
-  width: 120px;
-}
-
-.fullscreen #pager-wrapper.dot.top {
-  background-color: #fff;
-  height: 120px;
-  left: 0;
-  position: fixed;
-  top: -120px;
-  width: 100%;
-}
-
-.fullscreen .dot.top .bx-pager-item {
-  display: table-cell;
-  height: 120px;
-  padding: 0 23.3px;
-  vertical-align: middle;
-  max-width: 160px;
-  width: 160px;
-}
-
-.fullscreen .dot.top .bx-pager-link {
-  box-sizing: border-box;
-  display: table-cell;
-  height: 100%;
-  line-height: 0;
-  max-width: 100%;
-  overflow: hidden;
-}*/
-
-/* == 'Box' Mode == */
-/*.fullscreen .box.top .bx-pager.bx-custom-pager {
-  height: 100%;
-  margin: auto;
-  overflow: visible;
-  position: relative;
-  text-align: center;
-  top: 0;
-  white-space: nowrap;
-  width: 1000px;
-}
-
-.fullscreen .box.top .bx-pager-link {
-  box-sizing: border-box;
-  display: table-cell;
-  height: 50px;
-  line-height: 0;
-  max-width: 100%;
-  overflow: visible;
-}
-
-.fullscreen .box.top .bx-pager-item {
-  box-sizing: border-box;
-  display: inline-block;
-  height: 67px;
-  overflow: visible;
-  padding: 0 5px;
-  width: 100px;
-}
-
-.fullscreen .box.top .bx-pager-item:hover > .bx-pager-link {
-  border-radius: 120px;
-  box-sizing: border-box;
-  width: 120px;
-}
-
-.fullscreen #pager-wrapper.box.top {
-  background-color: #fff;
-  height: 50px;
-  left: 0;
-  position: fixed;
-  top: -50px;
-  width: 100%;
-  z-index: 1;
-}
-
-.fullscreen .box.top .bx-pager-item {
-  display: table-cell;
-  height: 50px;
-  max-width: 160px;
-  padding: 0 23.3px;
-  vertical-align: middle;
-  width: 160px;
-}
-
-.fullscreen .box.top .bx-pager-item:hover .thumb-inner > .thumb-img {
-  border: 3px solid #fff;
-  display: block;
-  height: 67px;
-  left: -56px;
-  margin: 4px;
-  top: 10px;
-  width: 100px;
-  z-index: 100;
-  box-shadow: 0 1px 2px 0;
-}*/
 
 /* == 'Overlay' Mode == */
 .fullscreen #pager-wrapper.overlay {
@@ -1509,8 +1216,6 @@ and (orientation : portrait) {
 		<a href="#" id="toggle-grid">
 			<span class="show-hide" id="show-copy">Show</span>
 			<span class="show-hide" id="hide-copy">Hide</span>
-			<!--span class="open-copy">Show</span>
-			<span class="close-copy">Hide</span-->
 		</a>
 		<ul id="grid">
 			<!-- Products are dynamically created here -->
@@ -1521,7 +1226,6 @@ and (orientation : portrait) {
 
 <script type="text/javascript" src="/content/scripts/jquery.bxslider.min.js"></script>
 <script type="text/javascript" src="/content/scripts/TweenMax.min.js"></script>
-<script src="/content/scripts/imagesloaded.pkgd.min.js"></script>
 <script src="/content/scripts/jquery.mixitup-v2.js"></script>
 
 <script>
@@ -1560,7 +1264,6 @@ var Slider = {
 		fullscreenEnabled: true,
 		fullscreenButton: $('.fullscreen-btn'),
 		body: globalSettings.body,
-		viewportMeta: globalSettings.viewportMeta,
 		resizeTimerDelay: 200,
 		dynamicFontSize: true,
 		navLocation: {
@@ -1809,64 +1512,41 @@ var Pager = {
 		var load = (typeof loadDelay == 'undefined') ? false : true;
 		var dly = (load) ? $pager.animationSpeed : 0;
 		
-		switch($pager.fullscreenStyle) {
-			case 'top':
-				
-				var pagerHeight = $pager.wrapper.height();
-				if(this.img.css('display') === 'none') {
-					this.img.show();
-				}
-				this.wrapper.toggleClass('open');
-				var mod = (this.isOpen()) ? '+=' : '-=';
-				this.wrapper.delay(dly).animate({
-					top: mod + pagerHeight
-				}, $pager.animationSpeed);
-				if(this.img.is(':visible') && OPTIONS.thumbnail.hoverStyle === 'box') {
-					this.img.fadeOut($pager.animationSpeed / 2);
-				}
-				break;
-				
-			case 'overlay':
-				if(this.isOpen()) {
-					var delay = 0;
-					var len = $pager.item.length;
-					var delayMod = $pager.animationSpeed / len;
-					
-					$pager.item.each(function(){
-						$(this).delay(delay += delayMod).fadeOut(function(){
-							if($(this).index() + 1 === len) {
-								$pager.item.each(function(){
-									$(thiS).removeAttr('style');
-								});
-							}
+		if(this.isOpen()) {
+			var delay = 0;
+			var len = $pager.item.length;
+			var delayMod = $pager.animationSpeed / len;
+			
+			$pager.item.each(function(){
+				$(this).delay(delay += delayMod).fadeOut(function(){
+					if($(this).index() + 1 === len) {
+						$pager.item.each(function(){
+							$(thiS).removeAttr('style');
 						});
-						
-					});
-				}
+					}
+				});
 				
-				if(!Modernizr.csstransitions) {
-					var end = (this.isOpen()) ? '-100%' : '0%';
-					var tabEnd = (this.isOpen()) ? '-70px' : '10px';
-					this.changeText();
-					$pager.wrapper.stop(true).delay(dly).animate(
-						{'left': end}, 
-						$pager.animationSpeed, 
-						function(){	Pager.settings.wrapper.toggleClass('open')	}
-					);
-					$pager.ui.toggleBtn.delay(dly).animate(
-						{'right': tabEnd},
-						$pager.animationSpeed
-					);
-					
-				} else {
-					$pager.wrapper.toggleClass('open');
-				}
-
-				
-				
-				break;
-				
+			});
 		}
+		
+		if(!Modernizr.csstransitions) {
+			var end = (this.isOpen()) ? '-100%' : '0%';
+			var tabEnd = (this.isOpen()) ? '-70px' : '10px';
+			this.changeText();
+			$pager.wrapper.stop(true).delay(dly).animate(
+				{'left': end}, 
+				$pager.animationSpeed, 
+				function(){	Pager.settings.wrapper.toggleClass('open')	}
+			);
+			$pager.ui.toggleBtn.delay(dly).animate(
+				{'right': tabEnd},
+				$pager.animationSpeed
+			);
+			
+		} else {
+			$pager.wrapper.toggleClass('open');
+		};
+		
 	},
 	changeText: function() {
 		if(this.settings.ui.textBased) {
