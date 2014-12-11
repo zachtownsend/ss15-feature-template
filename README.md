@@ -106,4 +106,82 @@ consistent experience to the customer. It follows a modular design allowing feat
     This is in case you need a different UI style on particular slides. This is typically required if the UI element  
     colour is obscured by the slide.
     
-
+  <h4>translateEnabled</h4>
+    This enables the generic live copy on the page to be automatically translated into the appropriate language. Leave
+    this as false for English language countries.
+    
+  <h3>Pager</h3>
+  <h4>fullscreenStyle</h4>
+    This declares the style for pagination. This should probably be removed at some point as 'overlay' mode will probably be the only mode used.
+    
+  <h4>hoverStyle</h4>
+  This selects the effect that happens when the user hovers over the thumbnail. As above, this may be removed in the future if other options aren't used.
+  
+  <h4>imageType</h4>
+  This declares the type of image that is used for the thumbnails, either inline or background. Background is probably the preferable option as it is more responsive
+  
+  <h4>scrollable</h4>
+  This feature is unfinished, but the original idea is if there are a lot of slides, the pagination could be scrollable to fit more in.
+  
+  <h4>animationSpeed / imgPath</h4>
+  See globalSettings
+  
+  <h4>animationEase</h4>
+  This sets the ease mode for the CSS3 animations
+  
+  <h4>animationDelay</h4>
+  This is the delay before the animation starts
+  
+  <h4>nameFormat</h4>
+  This sets the prefix and suffix for the thumbnail images.
+  
+  <h4>wrapper/container/item/img</h4>
+  Caches useful selectors
+  
+  <h3>ProductGrid</h3>
+  <h4>defaultHidden</h4>
+  This sets whether the product grid is hidden or shown by default
+  
+  <h4>codes</h4>
+  See productCodes in Global Settings
+  
+  <h4>Open Class</h4>
+  Sets the class that is added when the product grid is open
+  
+  <h4>maxHeight</h4>
+  Set's max height for product grid in fullscreen mode
+  
+  <h4>ui</h4>
+  Selectors for UI elements
+  
+  <h3>Quicklink</h3>
+  <h4>updateBagAfterLoad</h4>
+  If true, the shopping bag will be updated after you open a quickshop
+  
+  <h4>updateBagBeforeClose</h4>
+  If true, the shopping bag will be updated just before the quickshop closes
+  
+  <h3>JpgAnimate</h3>
+  <h4>container</h4>
+  This sets the container for which the animation frames are generated
+  
+  <h4>slidePrefix</h4>
+  Just leave this as it is...
+  
+  <h4>speed</h4>
+  This is the framerate of the animation in ms
+  
+  <h4>repeat</h4>
+  This is how many times the animation repeats. -1 is continous loop.
+  
+  <h4>paused</h4>
+  If true, the animation will be paused until it is told to play when you go to that slide.
+  
+  <h4>yoyo</h4>
+  If true, the animation will go through all the frames and then reverse back through them
+  
+  <h4>repeatDelay</h4>
+  This is the delay between each repeat in ms.
+  
+  <h4>scene</h4>
+  Here you declare the number of animation frames for each slide. If no animation is required, enter null.
