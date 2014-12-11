@@ -4,27 +4,6 @@
 <p>This is the Boden feature template which is designed to improve the feature development workflow and maintain a 
 consistent experience to the customer. It follows a modular design allowing features to be switched on and off easily.</p>
 
-<h2>Modules</h2>
-  <h4>Slider</h4>
-    
-  
-  <h4>Pager</h4>
-    T
-    
-  <h4>ProductGrid</h4>
-    
-    
-  <h4>Quicklink</h4>
-    
-    
-  
-    
-  <h4>JpgAnimate</h4>
-    
-    
-  <h4>Ghosts</h4>
-    This controls the "ghost" overlay for the small screen mode
-
 <h2>Settings</h2>
 
   <h3>General</h3>
@@ -193,5 +172,10 @@ consistent experience to the customer. It follows a modular design allowing feat
   <h4>repeatDelay</h4>
   This is the delay between each repeat in ms.
   
-  <h4>scene</h4>
+  
+  <h3>scene</h3>
   Here you declare the number of animation frames for each slide. If no animation is required, enter null.
+  
+  
+  <h3>Ghosts</h3>
+    This controls the "ghost" overlay for the small screen mode
