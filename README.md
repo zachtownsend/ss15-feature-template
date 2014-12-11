@@ -3,11 +3,9 @@ ss15-feature-template
 
 Description
 ===========
-This is the Boden feature template which is designed to improve the feature development workflow and maintain a 
-consistent experience to the customer. It follows a modular design allowing features to be switched on and off easily.
+<p>This is the Boden feature template which is designed to improve the feature development workflow and maintain a 
+consistent experience to the customer. It follows a modular design allowing features to be switched on and off easily.</p>
 
-First Commit
-============
 Modules
 =======
   Slider:
