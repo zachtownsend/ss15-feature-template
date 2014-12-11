@@ -1,0 +1,1461 @@
+<script>
+	
+</script>
+<style>
+
+body{
+	background-color:#FFF;	
+}
+.mainContainer, .mainContent, .mainContentLayout2, div.magFeatureArea, #magazineFeature, .mainListGroup{
+	width:100%;	
+}
+.fullscreen .topBarContainer, .fullscreen .footerContainer {
+	display: none;
+}
+.topBarContainer{
+	width:100%;
+	overflow:hidden;
+	height:118px;
+	border-bottom:1px solid #000;	
+}
+.footerContainer {
+   	background: none repeat scroll 0 0 #f1f1f1;
+    border-top: 1px solid #ccc;
+}
+.footerContent {
+	border:0px !important;
+    margin: 0 auto;
+    width: 1000px;
+}
+
+a {
+	outline: none;
+}
+body {
+  overflow-y: scroll;
+}
+
+body.fullscreen {
+  overflow: hidden;
+}
+
+/* === Loading overlay === */
+#CB1 {
+	position: relative;
+	height:100%;
+}
+#loading-overlay {
+  background-color: #fff;
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: 10;
+}
+
+#loading-overlay .table {
+  display: table;
+  height: 100%;
+  width: 100%;
+}
+
+#loading-overlay .table-cell {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+/* ===================== */
+/* === Normal Styles === */
+/* ===================== */
+
+/* === Slider (NORMAL) === */
+.feature-wrapper {
+  position: relative;
+}
+
+.feature-wrapper .bx-viewport {
+  margin: auto;
+  overflow: visible !important;
+  width: 1000px !important;
+}
+
+#viewport-container {
+	position: relative;
+}
+
+.bx-wrapper {
+  margin-bottom: 20px;
+  max-width: 100% !important;
+  padding-left: 0;
+  padding-right: 0;
+  padding-top: 0;
+  position: relative;
+}
+
+.bxslider > li {
+	width: 1000px;
+	height: 544px;
+}
+
+.slide-container {
+	width:100%;
+	height:100%;
+	display:block;
+	background-size: cover;
+	background-position: center;
+	position: relative;
+}
+
+.fullscreen-btn {
+  background-color: green;
+  border-radius: 2px;
+  left: -100px;
+  padding: 2px 8px;
+  position: absolute;
+  top: 20px;
+}
+.fullscreen-btn > a {
+  color: #fff !important;
+}
+
+#close-products {
+	display: none;
+}
+
+.fullscreen-info {
+	display: none;
+}
+
+/* === Grid (NORMAL) === */
+#grid {
+  width: 960px;
+  margin: auto;
+}
+
+#grid > li {
+  display: none;
+  width: 20%;
+}
+
+#grid .quicklink > img {
+  width: 100%;
+}
+
+li.mix > .quicklink {
+  display: block;
+  line-height: 0 !important;
+  overflow: hidden;
+}
+
+.grid-container a {
+	font-family: BrandonGrotesque-Regular, Helvetica, Arial, sans serif;
+}
+
+#complete-look {
+  display: none;
+  font-size: 16px;
+  line-height: 30px;
+  text-transform: uppercase;
+}
+
+#toggle-grid {
+	display: none;
+}
+
+/* === Navigation (NORMAL) === */
+.bx-controls {
+  bottom: 10px;
+  position: absolute;
+  width: 100%;
+}
+
+.ghost > a, .fullscreen-nav > a {
+  position: relative;
+  z-index: 1;
+  display: block;
+  height: 31px;
+  width: 32px;
+  text-indent: -9999px;
+  background-image: url(/images/magazine/features/SS15-carousel/controls.png);
+}
+
+.ghost > a {
+	top: 250px;
+}
+
+.ghost {
+	position: absolute;
+	height:544px;
+	top:0;
+	background-image: url(/images/magazine/features/SS15-carousel/ghost-bg.png);
+}
+
+#ghost-left {
+	left:0;
+}
+
+#ghost-right {
+	right: 0;
+}
+
+.bx-prev {
+	float: right;
+	right: 10px;
+	background-position: 0 -32px;
+}
+
+.bx-next {
+	float: left;
+	left: 10px;
+	background-position: -43px -32px;
+}
+
+.bx-pager.bx-custom-pager {
+  margin: auto;
+  position: relative;
+  width: 1000px;
+  overflow:hidden;
+  white-space: nowrap;
+}
+
+.bx-pager-link.active {
+  border: 2px solid #000;
+}
+
+/* === Pagination (NORMAL) === */
+/* == Standard Mode == */
+#pager-container {
+	position: absolute;
+	bottom: 0px;
+	width: 100%;
+}
+
+#tab-container {
+	display: none;
+}
+
+.fullscreen-nav {
+  position: absolute;
+  bottom: 0;
+}
+
+#fullscreen_nav-left {
+  left: 5px;
+}
+
+#fullscreen_nav-right {
+  right: 5px;
+}
+
+.bx-pager-item {
+  display: inline-block;
+  padding: 10px;
+  position: relative;
+  width: 120px;
+}
+
+.bx-pager-link {
+  display: inline-block;
+  line-height: 0 !important;
+  height: 67px;
+  width: 100px;
+}
+
+#thumb-left, #thumb-right {
+  background-color: rgba(80, 80, 80, 0.8);
+  cursor: pointer;
+  display: block;
+  height: 100%;
+  position: absolute;
+  width: 20px;
+  z-index: 1;
+  top: 0;
+}
+
+.thumb-inner {
+  height: 100%;
+}
+
+#thumb-left {
+	left: 0;
+}
+
+#thumb-right {
+	right: 0;
+}
+
+.thumb-img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+}
+
+/* == 'Dot' Mode == */
+.dot .thumb-inner {
+  border: 5px solid #000;
+  border-radius: 20px;
+  box-sizing: border-box;
+  height: 10px !important;
+  overflow: hidden;
+  position: relative;
+  transition: width 0.4s ease 0s, height 0.4s ease 0s, border-radius 0.4s ease 0s, border 0.4s ease 0s;
+  width: 10px;
+  margin: auto;
+}
+
+.dot .bx-pager-link.active {
+	border: none;
+}
+
+.dot .bx-pager-link {
+  display: table-cell;
+  vertical-align: middle;
+  width: 120px;
+}
+
+.dot .bx-pager-link.active .thumb-inner {
+  border: 10px solid #D95167;
+  border-radius: 20px;
+  box-sizing: border-box;
+  height: 20px !important;
+  overflow: hidden;
+  width: 20px;
+  position: relative;
+}
+
+.dot .thumb-inner > img {
+  height: 100%;
+  left: -50%;
+  position: absolute;
+}
+
+.dot .bx-pager-item:hover > .bx-pager-link > .thumb-inner {
+  border: 2px solid #D95167;
+  border-radius: 120px;
+  box-sizing: border-box;
+  height: 120px !important;
+  overflow: hidden;
+  position: relative;
+  text-align: center;
+  transition: width 0.4s ease 0s, height 0.4s ease 0s, border-radius 0.4s ease 0s, border 0.4s ease 0s;
+  -webkit-transition: width 0.4s ease 0s, height 0.4s ease 0s, border-radius 0.4s ease 0s, border 0.4s ease 0s;
+  -moz-transition: width 0.4s ease 0s, height 0.4s ease 0s, border-radius 0.4s ease 0s, border 0.4s ease 0s;
+  -o-transition: width 0.4s ease 0s, height 0.4s ease 0s, border-radius 0.4s ease 0s, border 0.4s ease 0s;
+  -ms-transition: width 0.4s ease 0s, height 0.4s ease 0s, border-radius 0.4s ease 0s, border 0.4s ease 0s;
+  width: 120px;
+}
+
+.dot .bx-pager.bx-custom-pager {
+  margin: auto;
+  overflow: hidden;
+  position: relative;
+  white-space: nowrap;
+  width: 1000px;
+  top: 10px;
+}
+
+.dot #pager-container {
+  bottom: 0;
+  display: table;
+  height: 120px;
+}
+
+.dot .bx-pager-item {
+  display: table-cell;
+  height: 130px;
+  padding: 0 23.3px;
+  vertical-align: middle;
+}
+
+/* == 'box' Mode == */
+.box .thumb-inner {
+  border: 5px solid #000;
+  border-radius: 20px;
+  box-sizing: border-box;
+  height: 10px !important;
+  margin: auto;
+  overflow: visible;
+  position: relative;
+  transition: width 0.4s ease 0s, height 0.4s ease 0s, border-radius 0.4s ease 0s, border 0.4s ease 0s;
+  width: 10px;
+}
+
+.box .bx-pager-link {
+  display: table-cell;
+  margin: auto;
+  text-align: center;
+  vertical-align: middle;
+  width: 120px;
+}
+
+.box .bx-pager-link.active {
+  border: none;
+}
+
+.box .bx-pager-link.active .thumb-inner {
+  border: 10px solid #D95167;
+  border-radius: 20px;
+  box-sizing: border-box;
+  height: 20px !important;
+  overflow: visible;
+  width: 20px;
+  position: relative;
+  transition: width .4s, height .4s, border-radius .4s, border .4s;
+}
+
+.box .thumb-inner > img {
+  height: 100%;
+  left: -50%;
+  position: absolute;
+}
+
+.box .bx-pager-item:hover > .thumb-inner {
+  box-sizing: border-box;
+  position: relative;
+  text-align: center;
+}
+
+.box .bx-pager-item .thumb-inner > .thumb-img {
+	position: absolute;
+}
+
+
+.box .bx-pager-item:hover .thumb-inner > .thumb-img {
+  border: 3px solid #fff;
+  display: block;
+  height: 67px;
+  left: -56px;
+  margin: 4px;
+  top: -90px;
+  width: 100px;
+  box-shadow: 0px 1px 2px 0px;
+}
+
+.box .bx-pager.bx-custom-pager {
+  margin: auto;
+  overflow: visible;
+  position: relative;
+  top: 0px;
+  white-space: nowrap;
+  width: 1000px;
+}
+
+.box #pager-container {
+  bottom: 0;
+  display: table;
+  height: 50px;
+}
+
+.box .bx-pager-item {
+  display: table-cell;
+  height: 50px;
+  padding: 0 23.3px;
+  vertical-align: middle;
+}
+
+/* ========================== */
+/* === Full screen styles === */
+/* ========================== */
+
+/* === Slider (FULLSCREEN) === */
+.fullscreen #viewport-container {
+  height: 100%;
+  margin: 0 auto;
+  overflow: hidden;
+  width: 100%;
+}
+
+.fullscreen .feature-wrapper {
+  background-color: #fff;
+  box-sizing: border-box;
+  height: 100%;
+  left: 0;
+  padding: 0 10px 10px;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
+.fullscreen .feature-wrapper .bx-viewport {
+  margin: auto;
+  overflow: unset !important;
+  width: 100% !important;
+  height:100% !important;
+}
+
+.fullscreen .feature-wrapper .bxslider > li {
+	height: 100%;
+}
+
+.fullscreen .feature-wrapper .bxslider > li > img {
+	min-width: 100%;
+	min-height: 100%;
+}
+
+.fullscreen .bxslider > li {
+	width: 100%;
+	height: 100%;
+	background-size: cover;
+	background-position: center top;
+}
+
+.fullscreen .bx-wrapper {
+	height:100%;
+}
+
+.fullscreen .bxslider {
+	height:100%;
+}
+
+.fullscreen .fullscreen-btn {
+  display: inline-block;
+  left: initial;
+  position: static;
+  color: #fff;
+}
+
+.fullscreen .fullscreen-info {
+	position: fixed;
+	right: 30px;
+	top: 20px;
+	display: block;
+	width: 240px;
+}
+
+.fullscreen #close-products {
+	display: block;
+	position: fixed;
+	bottom:25%;
+	right: 10%;
+	background-color: green;
+}
+
+/* = Shopping bag (fullscreen) = */
+.fullscreen .bagCounter {
+  background: url("/images/site/bagbg.png") no-repeat scroll center top rgba(0, 0, 0, 0);
+  color: #fff;
+  display: inline-block;
+  height: 22px;
+  padding: 5px 0 0;
+  text-align: center;
+  width: 20px;
+  
+}
+
+.fullscreen #shopping-bag {
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 10px;
+  font: 12.8px Arial,Helvetica,sans-serif;
+  padding: 4px 10px;
+  transition: background-color 1s linear 2s;
+}
+
+.fullscreen #shopping-bag > h2 {
+  color: #000;
+  display: inline;
+  font: 14px/19px BrandonGrotesque-Regular,Verdana,Arial,sans-serif;
+}
+
+.fullscreen .sbItemText {
+  display: none;
+}
+
+.fullscreen .sbTotalPriceText {
+  display: none;
+}
+
+.fullscreen .fullscreen-btn > a {
+	text-align: right;
+}
+
+.fullscreen #shopping-bag.changed {
+	background-color: rgba(0, 128, 0, 0.8) !important;
+	transition: background-color 0.1s;
+}
+
+/* === Grid (FULLSCREEN) === */
+.fullscreen .grid-container {
+  background-color: rgba(255, 255, 255, 0.6);
+  bottom: 10px;
+  /*height: 0;*/
+  left: 0.5%;
+  overflow: hidden;
+  position: absolute;
+  width: calc(100% - 20px);
+}
+
+.fullscreen #grid {
+  margin: auto;
+  width: 100%;
+}
+
+.fullscreen #grid > li {
+  display: none;
+  max-width: 120px;
+  margin: 10px;
+}
+
+.fullscreen #toggle-grid {
+  display: block;
+  padding-right: 10px;
+  position: absolute;
+  right: 0;
+  top: 10px;
+}
+
+.fullscreen #toggle-grid.show-btn {
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 10px;
+  bottom: 14px;
+  display: block;
+  padding: 4px 8px;
+  position: fixed;
+  right: 17px;
+  text-align: center;
+  top: initial;
+}
+
+/* === Pagination (FULLSCREEN) === */
+/* == Normal mode == */
+.fullscreen #pager-wrapper {
+  background-color: #fff;
+  height: 81px;
+  left: 0;
+  position: fixed;
+  top: -81px;
+  width: 100%;
+}
+
+.fullscreen #pager-container {
+  height: 100%;
+  position: relative;
+  width: 100%;
+}
+
+.fullscreen #pager-tab {
+  background-color: #fff;
+  border-radius: 0 0 5px 5px;
+  bottom: -30px;
+  box-shadow: 0 3px 2px -2px;
+  content: "";
+  cursor: pointer;
+  display: block;
+  height: 30px;
+  left: 50%;
+  margin-left: -25px;
+  position: absolute;
+  width: 50px;
+  z-index: 10;
+}
+
+.fullscreen .bx-pager.bx-custom-pager {
+  height: 67px;
+  margin: 0 auto;
+  position: relative;
+  top: 7px;
+  white-space: nowrap;
+  width: 100%;
+}
+
+.fullscreen .bx-pager-item {
+  box-sizing: border-box;
+  display: inline-block;
+  height: 67px;
+  overflow: hidden;
+  padding: 0 5px;
+  width: 100px;
+}
+
+.fullscreen .bx-pager-link {
+  display: inline-block;
+  height: 100%;
+  line-height: 0;
+  max-width: 100%;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.fullscreen .bx-pager-link > img {
+  height: 100%;
+}
+
+/* == 'Dot' Mode == */
+.fullscreen .dot .bx-pager.bx-custom-pager {
+  margin: auto;
+  overflow: hidden;
+  position: relative;
+  text-align: center;
+  top: 0;
+  white-space: nowrap;
+  width: 1000px;
+  height: 100%;
+}
+
+.fullscreen .dot .bx-pager-item:hover > .bx-pager-link {
+  border-radius: 120px;
+  box-sizing: border-box;
+  height: 120px !important;
+  width: 120px;
+}
+
+.fullscreen #pager-wrapper.dot {
+  background-color: #fff;
+  height: 120px;
+  left: 0;
+  position: fixed;
+  top: -120px;
+  width: 100%;
+}
+
+.fullscreen .dot .bx-pager-item {
+  display: table-cell;
+  height: 120px;
+  padding: 0 23.3px;
+  vertical-align: middle;
+  max-width: 160px;
+  width: 160px;
+}
+
+.fullscreen .dot .bx-pager-link {
+  box-sizing: border-box;
+  display: table-cell;
+  height: 100%;
+  line-height: 0;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+/* == 'box' Mode == */
+.fullscreen .box .bx-pager.bx-custom-pager {
+  height: 100%;
+  margin: auto;
+  overflow: visible;
+  position: relative;
+  text-align: center;
+  top: 0;
+  white-space: nowrap;
+  width: 1000px;
+}
+
+.fullscreen .box .bx-pager-link {
+  box-sizing: border-box;
+  display: table-cell;
+  height: 50px;
+  line-height: 0;
+  max-width: 100%;
+  overflow: visible;
+}
+
+.fullscreen .box .bx-pager-item {
+  box-sizing: border-box;
+  display: inline-block;
+  height: 67px;
+  overflow: visible;
+  padding: 0 5px;
+  width: 100px;
+}
+
+.fullscreen .box .bx-pager-item:hover > .bx-pager-link {
+  border-radius: 120px;
+  box-sizing: border-box;
+  width: 120px;
+}
+
+.fullscreen #pager-wrapper.box {
+  background-color: #fff;
+  height: 50px;
+  left: 0;
+  position: fixed;
+  top: -50px;
+  width: 100%;
+  z-index: 1;
+}
+
+.fullscreen .box .bx-pager-item {
+  display: table-cell;
+  height: 50px;
+  max-width: 160px;
+  padding: 0 23.3px;
+  vertical-align: middle;
+  width: 160px;
+}
+
+.fullscreen .box .bx-pager-item:hover .thumb-inner > .thumb-img {
+  border: 3px solid #fff;
+  display: block;
+  height: 67px;
+  left: -56px;
+  margin: 4px;
+  top: 10px;
+  width: 100px;
+  z-index: 100;
+  box-shadow: 0 1px 2px 0;
+}
+
+/* === Navigation (FULLSCREEN) === */
+.fullscreen .bx-controls {
+  background-color: #fff;
+  height: 15%;
+  position: fixed;
+  top: -15%;
+  width: 100%;
+  z-index: 1;
+}
+
+.fullscreen .feature-wrapper > #fullscreen_nav-container {
+  height: 15px;
+  left: 0;
+  position: absolute;
+  top: 50%;
+  width: 100%;
+}
+
+.fullscreen-nav > a {
+	left: 0;
+}
+
+.fullscreen .ghost {
+	display: none;
+}
+
+/* ========================== */
+/* ===== Special Styles ===== */
+/* ========================== */
+/* == 'Likes' functionality ==*/
+.liked {
+	border: 3px solid green;
+	box-sizing: border-box;
+}
+
+.likes-detected {
+	background-color: green;
+	color: #fff;
+}
+
+/* ========================== */
+/* = Custom Feature Styles == */
+/* ========================== */
+/* == Font styles == */
+.feature-wrapper h1, .feature-wrapper h2, .feature-wrapper h3, .feature-wrapper h4, .feature-wrapper h5, .feature-wrapper h6 {
+	font-family: BrandonGrotesque-Medium, Helvetica, Arial, sans serif;
+	color: #D95167;
+	text-transform: uppercase;
+}
+
+.feature-wrapper p, .feature-wrapper a, .feature-wrapper a:hover {
+	font: 16px/20px BrandonGrotesque-Regular, Helvetica, Arial, sans serif;
+	color: #000;
+}
+
+.feature-wrapper a.quicklink {
+	text-transform: uppercase;
+}
+
+/* == Common containers == */
+.slide-container .copy {
+	display: block;
+	position:absolute;
+}
+
+/* == Slide styles == */
+/* = Intro = */
+.intro .slide-container {
+	background-image: url('/images/magazine/features/SS15-carousel/slide0-bg.jpg');
+}
+
+.intro .copy {
+	width: 15%;
+	left: 5%;
+	top: 2%;
+}
+
+/* = Slide 1 = */
+.slide1 .slide-container {
+	background-image: url('/images/magazine/features/SS15-carousel/slide1-bg.jpg');
+}
+
+.slide1 .copy {
+  left: 5%;
+  top: 42%;
+  width: 35%;
+}
+
+/* = Slide 2 = */
+.slide2 .slide-container {
+	background-image: url('/images/magazine/features/SS15-carousel/slide2-bg.jpg');
+}
+
+.slide2 .copy {
+	width: 15%;
+	left: 5%;
+	top: 2%;
+}
+
+
+/* = Slide 3 = */
+.slide3 .slide-container {
+	background-image: url('/images/magazine/features/SS15-carousel/slide3-bg.jpg');
+}
+
+.slide3 .copy {
+	width: 15%;
+	left: 5%;
+	top: 2%;
+}
+
+
+/* = Slide 4 = */
+.slide4 .slide-container {
+	background-image: url('/images/magazine/features/SS15-carousel/slide4-bg.jpg');
+}
+
+.slide4 .copy {
+	width: 15%;
+	left: 5%;
+	top: 2%;
+}
+
+
+/* = Slide 5 = */
+.slide5 .slide-container {
+	background-image: url('/images/magazine/features/SS15-carousel/slide5-bg.jpg');
+}
+
+.slide5 .copy {
+	width: 15%;
+	left: 5%;
+	top: 2%;
+}
+
+
+/* === Media Queries === */
+@media (max-width: 1100px) {
+	.bx-next {
+	  background-position: -43px -32px;
+	  float: left;
+	  left: -40px;
+	}
+	
+	.bx-prev {
+	  background-position: 0 -32px;
+	  float: right;
+	  right: -40px;
+	}
+}
+</style>
+<div id="loading-overlay">
+	<div class="table">
+		<div class="table-cell">
+			<img alt="loading..." src="/images/site/ajax-loader.gif" />
+		</div>
+	</div>
+</div>
+<div class="feature-wrapper">
+    <div id="viewport-container">
+		<ul class="bxslider">
+			<li class="active-slide empty intro">
+				<div class="slide-container">
+					
+				</div>
+			</li>
+			
+			<li class="slide1">
+				<div class="slide-container">
+					<div class="content-container">
+						<div class="copy">
+							<h2>Bona autem corporis huic sunt</h2>
+							<p>Egone non intellego, quid sit don Graece, Latine voluptas? Hic nihil fuit, quod quaereremus.</p>
+							<a href="~/products/outfitting.aspx?qr=" class="quicklink">Shop now</a>
+						</div>
+					</div>
+				</div>
+			</li>
+			
+			<li class="slide2">
+				<div class="slide-container">
+					<div class="content-container">
+					
+					</div>
+				</div>
+			</li>
+
+			<li class="slide3">
+				<div class="slide-container">
+					<div class="content-container">
+					
+					</div>
+				</div>
+			</li>
+			
+			<li class="slide4">
+				<div class="slide-container">
+					<div class="content-container">
+					
+					</div>
+				</div>
+			</li>
+			
+			<li class="slide5">
+				<div class="slide-container">
+					<div class="content-container">
+					
+					</div>
+				</div>
+			</li>
+									
+		</ul>
+		
+		<div id="pager-wrapper">
+			<div id="pager-container">
+				
+			</div>
+			<div id="pager-tab"></div>
+		</div>
+		
+	</div>
+	
+	<div id="ghost-left" class="ghost"></div>
+	<div id="ghost-right" class="ghost">
+		<div class="fullscreen-btn">
+			<a href="#">Full screen</a>
+		</div>
+	</div>
+		
+	<div id="fullscreen_nav-container">
+		<div id="fullscreen_nav-left" class="fullscreen-nav"></div>
+		<div id="fullscreen_nav-right" class="fullscreen-nav"></div>
+		<div class="fullscreen-info">
+			<a class="fullscreen-btn" href="#">Small screen</a>
+				
+			<a title="Bag" href="/en-GB/checkout/shopping-bag.html#nav" id="shopping-bag">
+				<h2>Bag</h2>
+				<span class="bagCounter" id="sb-qty">0</span><span class="sbItemText"> items</span>
+				<span class="sbTotalPriceText">Total </span>
+				<span id="sb-value">&pound;0.00</span>  
+			</a>
+		</div>
+		
+	</div>
+			
+	<div class="grid-container open">
+		<a href="#" class="quicklink" id="complete-look">Buy Complete Look</a>
+		<a href="#" id="toggle-grid">Hide</a>
+		<ul id="grid">
+			<!-- Products are dynamically created here -->
+		</ul>
+	</div>    
+</div>
+
+<script type="text/javascript" src="/content/scripts/jquery.bxslider.min.js"></script>
+<script src="/content/scripts/imagesloaded.pkgd.min.js"></script>
+<script src="/content/scripts/jquery.mixitup-v2.js"></script>
+
+<script>
+$(document).ready(function(){
+	
+	var options = {
+		quickshopPath: '/products/outfitting.aspx?qr=',
+		imgPath: '/images/magazine/features/SS15-carousel/',
+		cm_tag: 'SS15_CAROUSEL',
+		normalWidth: 1000,
+		pagerWidth: 1000,
+		thumbnail: {
+			hoverStyle: 'box', // normal|dot|box
+			imageType: 'background', // inline|background
+			scrollable: false
+		},
+		gridHeight: 203,
+		navLocation: {normal: '#ghost-', fullscreen: '#fullscreen_nav-'},
+		resizeTimerDelay: 200
+	};
+	
+	var helper = {
+		updateShoppingBag: function() {
+			var bag = $('#bagPreview');
+			
+			$.get('/ClientControls/Products/ShoppingBag.aspx?LanguageCode=en-GB', function(data) {
+				var $data = $(data);
+				var shopping = {qty: $data.find('#ShoppingBag1_lblCount').text(), value: $data.find('#ShoppingBag1_lblTotal').text()};
+				$('#sb-qty').text(shopping.qty);
+				$('#sb-value').text(shopping.value);
+			});
+		},
+		coreMetrics: function(newIndex) {
+			cmCreateElementTag(options.cm_tag + '_' + newIndex, 'OUTFIT');
+		}
+	};
+	
+	var grid = {
+		el: $('#grid'),
+		container: $('.grid-container'),
+		ui: {
+			completeLook: $('#complete-look'),
+			toggleGrid: $('#toggle-grid'),
+			showBtnClass: 'show-btn',
+			itemClass: 'page-nav'
+		},
+		codes:
+			[
+				null
+				,'21687NAV|22338NAV|22343NAV|29072NAV|21679NAV'
+				,'29071GRY|32495DBL|22341IND'
+				,'21683DBL|21675IND|31741BBL|31735DB'
+				,'22348IND|22340BL'
+				,'22335BLU|21683BB'
+			],
+		merged: function() {
+				return this.codes.toString().replace(/,/g , '|').slice(1);
+		},
+		generate: function() {
+			var html = '';
+			var path = options.quickshopPath + this.merged();
+			var productCodes = this.codes;
+			$.get(path, function(data) {
+				var $data = $(data);
+				var img = $data.find('.ProductMain');
+				var imgEq = -1;
+				for(i = 0; i < productCodes.length; i++) {
+					
+					if(productCodes[i] != null) {
+						
+						var current = productCodes[i];
+						var array = productCodes[i].split('|');
+						for(x = 0; x < array.length; x++) {
+							var tag = '<li class="mix slide' + i + '"><a class="quicklink" href="~/products/outfitting.aspx?qr=' + array[x] + '"><img src="' + img.eq(++imgEq).attr('src') + '" /></a></li>';
+							html += tag;
+							
+						}
+					}
+				}
+				grid.el.prepend(html);
+				bind.quicklink();
+			});
+		},
+		mixitup: function() {
+			this.el.mixItUp({
+				load: {
+					filter: 'none'
+				}
+			});
+		},
+		filterGrid: function(newIndex) {
+			var filter = (newIndex != 0) ? '.slide' + newIndex : 'none';
+			this.el.mixItUp('filter', filter);
+		},
+		outfitLink: {
+			auto: function(newIndex) {
+				if(grid.codes[newIndex] != null) {
+					if(grid.ui.completeLook.is(':visible')) {
+						return false;
+					}
+					grid.ui.completeLook.fadeIn();
+				} else {
+					grid.ui.completeLook.fadeOut();
+				}
+			},
+			update: function(newIndex) {
+				grid.ui.completeLook.attr('href', options.quickshopPath + grid.codes[newIndex]);
+			}
+		},
+		toggleGrid: function() {
+			var gridIsOpen = (this.container.hasClass('open'));
+			var text = (gridIsOpen) ? 'Show' : 'Hide';
+			if(gridIsOpen) {
+				this.container.animate({
+					height: 0
+				}, function(){
+					grid.ui.toggleGrid.addClass(grid.ui.showBtnClass).html(text);
+				});
+			} else {
+				this.ui.toggleGrid.removeClass(this.ui.showBtnClass).html(text)
+				this.container.animate({
+					height: options.gridHeight
+				}, function(){
+					$(this).removeAttr('style');
+				});
+			}
+			this.container.toggleClass('open');
+		},
+		initialiseGrid: function() {
+			if(carousel.isFullscreen()) {
+				this.container.removeClass('open').addClass('open');
+				if(this.ui.toggleGrid.hasClass(this.ui.showBtnClass)){
+					this.ui.toggleGrid.removeClass(this.ui.showBtnClass).text('Hide');
+				}
+				grid.container.removeAttr('style');
+			}
+		}
+	};
+		
+	var carousel = {
+		body: $('body'),
+		viewport: $(),
+		currentSlide: 0,
+		activeClass: 'active-slide',
+		normal: function() { return  this.getSliderAttr(options.normalWidth, this.currentSlide, options.navLocation.normal)},
+		fullscreen: function() { return this.getSliderAttr($(window).width(), this.currentSlide, options.navLocation.fullscreen)},
+		isFullscreen: function() { return this.body.hasClass('fullscreen') },
+		
+		
+		updateActive: function(newIndex) {
+			$('.' + this.activeClass).removeClass(this.activeClass);
+			$('li', '.bxslider').eq(newIndex + 1).addClass(this.activeClass);
+		},
+		getSliderAttr: function(width, currentIndex, navLocation) {
+			return {
+					slideWidth: width
+					,startSlide: currentIndex
+					,pagerSelector: pagination.container
+					,buildPager: function(slideIndex){
+						return pagination.generateThumbnail(slideIndex);
+					}
+					,onSliderLoad: function(currentIndex) {
+						grid.mixitup();
+						helper.coreMetrics(currentIndex);
+						carousel.currentSlide = currentIndex;
+						pagination.initialisePager();
+						bind.movePager();
+					}
+					,onSlideBefore: function($slideElement, oldIndex, newIndex){	
+						carousel.updateActive(newIndex);
+						if(pagination.isOpen()) {
+							pagination.togglePager();
+						}
+						
+						grid.filterGrid(newIndex);
+						grid.outfitLink.update(newIndex);
+						grid.outfitLink.auto(newIndex);
+						carousel.currentSlide = newIndex;						
+					}
+					,onSlideAfter: function($slideElement, oldIndex, newIndex) {
+						carousel.updateActive(newIndex);
+						var showBtn = $('.' + grid.ui.showBtnClass);
+						if($slideElement.hasClass('empty')) {
+							showBtn.css('visibility', 'hidden');
+						} else {
+							showBtn.css('visibility', 'visible');
+						}
+						helper.coreMetrics(currentIndex);
+					}
+					,prevSelector: navLocation + 'left'
+					,nextSelector: navLocation + 'right'
+				}
+			},
+			
+			toggleFullscreen: function(slider) {
+				var slider = slider;
+				this.body.toggleClass('fullscreen');
+				if(this.isFullscreen()) {
+					slider.reloadSlider(this.fullscreen());
+				} else {
+					slider.reloadSlider(this.normal());
+					if(pagination.isOpen()) {
+						pagination.resetPager();
+					}
+					ghosts.set();
+				}
+				pagination.initialisePager();
+				grid.initialiseGrid();
+				bind.movePager();
+			}
+	};
+	
+	var pagination = {
+		wrapper: $('#pager-wrapper'),
+		container: $('#pager-container'),
+		visibleItems: function() { return Math.floor(this.pager.el.width() / pagination.item.width()) },
+		item: {
+			el: $('.bx-pager-item'),
+			length: function() { return this.el.length },
+			width: function() { return this.el.outerWidth() }
+		},
+		pager: {
+			el: $('.bx-pager'),
+			visibleItems: function() { return Math.floor(this.el.width() / pagination.item.width()) },
+			totalWidth: function() { return pagination.item.width() * pagination.item.length() }
+		},
+		initialisePager: function() {
+			
+			var pager = this.pager.el;
+			var navClass = this.itemClass;
+			this.thumbnailHover();
+			if(options.thumbnail.scrollable) {
+				pager.append('<div class="' + navClass + '" id="thumb-left"><</div><div class="' + navClass + '" id="thumb-right">></div>');
+				return true;
+			}
+		},
+		movePagination: function(direction) {
+			var distance = this.item.width();
+			
+			var max = this.pager.visibleItems() - (this.item.width() * this.pager.visibleItems());
+			
+			if(this.item.el.filter(':animated').length === 0) {
+				
+				var pos = parseInt(this.item.el.css('right'));
+				if( (pos + distance) > max && direction === 'right' || 
+					(pos - distance) < 0 && direction === 'left') {
+						return false;
+				}
+				var mod = (direction === 'left') ? '-=' : '+=';
+				this.item.el.stop(false).animate({right: mod + distance});
+			}
+		},
+		isOpen: function() { return this.wrapper.hasClass('open') },
+		togglePager: function() {
+			var $thumbImg = $('.thumb-img');
+			var pagerHeight = this.wrapper.height();
+			if($thumbImg.css('display') === 'none') {
+				$thumbImg.show();
+			}
+			this.wrapper.toggleClass('open');
+			var mod = (this.isOpen()) ? '+=' : '-=';
+			this.wrapper.animate({
+				top: mod + pagerHeight
+			});
+			if($thumbImg.is(':visible') && options.thumbnail.hoverStyle === 'box') {
+				$thumbImg.fadeOut(200);
+			}
+		},
+		resetPager: function() {
+			this.wrapper.removeClass('open').removeAttr('style');
+		},
+		thumbnailHover: function() {
+			$('#pager-wrapper').addClass(options.thumbnail.hoverStyle);
+		},
+		generateThumbnail: function(slideIndex) {
+			var thumb;
+			switch(options.thumbnail.imageType) {
+				case 'background':
+					thumb = '<div class="thumb-inner"><div class="thumb-img" style="background-image: url(' + options.imgPath + 'thumbnail-slide'+ slideIndex +'.jpg)"></div></div>';	
+					break;
+				case 'inline':
+					thumb = '<img src="' + options.imgPath + 'thumbnail-slide'+ slideIndex +'.jpg" />';	
+					break;
+			}
+			return thumb;
+		}
+
+	};
+	
+	var win = {
+		el: $(window),
+		timer: null,
+		resize: function() {
+			ghosts.set();
+			
+			if(carousel.isFullscreen()) {
+				clearTimeout(this.timer);
+				this.timer = setTimeout(function(){
+					var currentSlide = $('.' + carousel.activeClass).index() - 1;
+					slider.reloadSlider(carousel.fullscreen());
+				}, options.resizeTimerDelay);
+			}
+		}
+	};
+	
+	var ghosts = {
+		el: $('.ghost'),
+		
+		set: function() {
+			var offset = $('.bx-viewport').offset().left + $('.bx-viewport').width();
+			this.el.each(function(){
+				var $this = $(this);
+				var side = $this.attr('id').replace('ghost-', '');
+				var css = (side === 'left') ? {right: offset} : {left: offset};
+				$this.css(css);
+			});
+		}
+	};
+	
+	var bind = {
+		pageTab: function() {
+			$('#pager-tab').click(function() {
+				pagination.togglePager();
+			});
+		},
+		movePager: function() {
+			$('.' + pagination.itemClass).click(function(){
+				var direction = $(this).attr('id').replace('thumb-', '');
+				pagination.movePagination(direction);
+			});
+		},
+		fullscreenBtn: function() {
+			$('.fullscreen-btn').click(function(){
+				carousel.toggleFullscreen(slider);
+			});
+		},
+		gridContainer: function() {
+			grid.ui.toggleGrid.click(function(){
+				if(grid.container.hasClass('open')) {
+					options.gridHeight = grid.container.height();
+				}
+				
+				grid.toggleGrid();
+			});
+		},
+		quicklink: function() {
+			$('.quicklink').each(function(){			
+				$(this).fancybox({				
+					'type':'iframe',
+					'width':420,
+					'height':190,
+					'padding':25,
+					'onComplete' : function() {
+						$('#fancybox-frame').load(function() { 
+							$('#fancybox-content').height($(this).contents().find('body').height()+15);
+							$.fancybox.center(true);
+						});
+						
+					},
+					'afterLoad' : function(){
+						if(carousel.isFullscreen()) {
+							var fancybox = $('iframe').contents();
+							var btn = $('iframe').contents().find('#addToBagBtn');
+							btn.click(function(){
+								if($(this).hasClass('enabled')) {
+									$('#shopping-bag').removeClass('changed').addClass('changed');
+									setTimeout(function() {
+										helper.updateShoppingBag();
+									}, 1500);
+									
+								}
+							});
+						}
+						
+					},
+					'beforeClose' : function() {
+						helper.updateShoppingBag();
+						$('#shopping-bag').removeClass('changed');
+					}
+				});    
+			});
+		}
+		
+	};
+	
+	
+	var slider = $('.bxslider').bxSlider(carousel.normal());
+	grid.generate();
+	pagination.initialisePager();
+	bind.fullscreenBtn();
+	bind.gridContainer();
+	bind.pageTab();
+	bind.movePager();
+	
+	win.el.resize(function() {
+		win.resize();
+	}).load(function(){
+		helper.updateShoppingBag();
+		$('#loading-overlay').fadeOut(function(){
+			$(this).remove();
+		});
+	});
+	win.el.resize();
+	
+	
+});
+</script>

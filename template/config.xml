@@ -1,0 +1,16 @@
+<Content>
+    <!--<ContentBlock Name="CB1" BlockType="Page/Slide/Still" PagerCssClass="whatever"> -->
+    <!-- Duration, BlockType and PagerCssClass are optional. If BlockType not provided default is Slide -->
+    <!--BlockType=Slide: rotates html blocks defined in file section based on duration attribute. If duration atrribute is zero it does not rotate-->
+    <!--BlockType=Still: picks one of the html blocks defined in file section randomly. Does not rotate-->
+    <!--BlockType=Page: Shows the html blocks defined in file section using a page-->
+    <ContentBlock Name="CB1" BlockType="Page">
+	  <!-- Duration, ValidFrom and ValidTo are optional-->
+	  <!-- <File Name="CB4_1.htm" Duration="61"/> -->
+        <!--1--><File Name="CB1.htm" />
+		<!--2--><File Name="CB2.htm" />
+		<!--3--><File Name="CB3.htm" />
+		<!--4--><File Name="CB4.htm" />
+		<!--5--><File Name="CB5.htm" />
+	</ContentBlock>
+</Content>

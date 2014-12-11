@@ -1,0 +1,2227 @@
+<style>
+body{
+	background-color:#FFF;	
+}
+
+.mainContainerBg {
+	overflow: hidden;
+}
+.mainContainer, .mainContent, .mainContentLayout2, div.magFeatureArea, #magazineFeature, .mainListGroup{
+	width:100%;	
+}
+.fullscreen .topBarContainer, .fullscreen .footerContainer {
+	display: none;
+}
+.topBarContainer{
+	width:100%;
+	height:118px;
+}
+.footerContainer {
+   	background: none repeat scroll 0 0 #f1f1f1;
+    border-top: 1px solid #ccc;
+}
+.footerContent {
+	border:0px !important;
+    margin: 0 auto;
+    width: 1000px;
+}
+
+.fancybox-lock .fancybox-overlay {
+  overflow: auto;
+}
+
+a {
+	outline: none;
+}
+body {
+  overflow-y: scroll;
+}
+
+body.fullscreen {
+  overflow: hidden;
+}
+
+.fullscreen .ie-fullscreen {
+    min-height: 100%;
+    min-width: 100%;
+	position: absolute;
+}
+
+.ie-fullscreen {
+    width: 100%;
+	position: absolute;
+	top:0;
+	left:0;
+}
+
+.bx-prev:hover, .bx-next:hover, .fullscreen-btn:hover {
+  opacity: 0.8;
+}
+
+/* === Loading overlay === */
+#CB1 {
+	position: relative;
+	height:100%;
+}
+#loading-overlay {
+  background-color: #fff;
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: 10;
+}
+
+#loading-overlay .table {
+  display: table;
+  height: 100%;
+  width: 100%;
+}
+
+#loading-overlay .table-cell {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+/* ===================== */
+/* === Normal Styles === */
+/* ===================== */
+
+/* === Slider (NORMAL) === */
+.feature-wrapper {
+  position: relative;
+  font-size: 16px;
+}
+
+.feature-wrapper .bx-viewport {
+  margin: auto;
+  overflow: visible !important;
+  width: 1000px !important;
+}
+
+#viewport-container {
+	position: relative;
+}
+
+.bx-wrapper {
+  max-width: 100% !important;
+  padding-left: 0;
+  padding-right: 0;
+  padding-top: 0;
+  position: relative;
+}
+
+.bxslider > li {
+	width: 1000px;
+	height: 544px;
+	overflow: hidden;
+}
+
+.slide-container {
+	width:100%;
+	height:100%;
+	display:table;
+	background-size: cover;
+	background-position: center;
+	position: relative;
+}
+
+.fullscreen-btn {
+  background-image: url("/images/magazine/features/ss15-carousel/spritesheet.png");
+  height: 30px;
+  left: -50px;
+  position: absolute;
+  top: 10px;
+  width: 39px;
+}
+
+.fullscreen-btn {
+  background-position: -154px 0;
+}
+
+.fullscreen-btn > a {
+  display: block;
+  height: 100%;
+  text-indent: -9999px !important;
+}
+
+#close-products {
+	display: none;
+}
+
+.fullscreen-info {
+	display: none;
+}
+
+#border-bottom {
+  display:none;
+}
+
+/* === Grid (NORMAL) === */
+#grid {
+  width: 960px;
+  margin: auto;
+}
+
+#grid > li {
+  display: none;
+  width: 20%;
+}
+
+#grid .quicklink > img {
+  width: 100%;
+}
+
+li.mix > .quicklink {
+	display: block;
+	line-height: 0 !important;
+	overflow: hidden;
+	border: 1px solid #ddd;
+	margin: auto;
+	padding: 10px;
+	width: 80%;
+}
+
+.grid-container a {
+	font-family: BrandonGrotesque-Regular, Helvetica, Arial, sans serif;
+}
+
+#complete-look {
+  background: none repeat scroll 0 0 rgba(0, 0, 0, 0);
+  color: #000;
+  display: inline-block;
+  font: 14px/20px BrandonGrotesque-Medium;
+  height: 20px;
+  letter-spacing: 1.9px;
+  margin: 1px 0 15px;
+  padding: 1px 11px 0 13px;
+  text-transform: uppercase;
+}
+
+#toggle-grid {
+  display: none;
+  color: #000;
+}
+
+/* === Navigation (NORMAL) === */
+.bx-controls {
+  bottom: 10px;
+  position: absolute;
+  width: 100%;
+}
+
+.ghost > a, .fullscreen-nav > a {
+  background-image: url("/images/magazine/features/SS15-carousel/spritesheet.png");
+  display: block;
+  height: 37px;
+  position: relative;
+  text-indent: -9999px;
+  width: 38px;
+  z-index: 1;
+}
+
+.ghost > a {
+	top: 250px;
+}
+
+.ghost {
+	position: absolute;
+	height:544px;
+	top:0;
+	background-image: url('/images/magazine/features/ss15-carousel/white75percent-bg.png');
+}
+
+#ghost-left {
+	left:0;
+}
+
+#ghost-right {
+	right: 0;
+}
+
+.bx-prev {
+  float: right;
+  right: 10px;
+  background-position: 0 0px;
+}
+
+.bx-next {
+  float: left;
+  left: 10px;
+  background-position: -38px 0px;
+}
+
+.bx-pager.bx-custom-pager {
+  margin: auto;
+  position: relative;
+  width: 1000px;
+  overflow:hidden;
+  white-space: nowrap;
+}
+
+.bx-pager-link.active {
+  border: 5px solid #d95167;
+}
+
+/* === Pagination (NORMAL) === */
+#pager-container {
+	width: 100%;
+}
+
+#tab-container, #pager-loadbar {
+	display: none;
+}
+
+.fullscreen-nav {
+  position: absolute;
+  bottom: 0;
+}
+
+#fullscreen_nav-left {
+  left: 5px;
+}
+
+#fullscreen_nav-right {
+  right: 5px;
+}
+
+#pager-tab {
+	display:none;
+}
+
+/* == Standard Mode == */
+.bx-pager-item {
+	box-sizing: border-box;
+	display: inline-block;
+	height: 128px;
+	padding: 10px 0;
+	position: relative;
+	width: 166.667px;
+}
+
+.bx-pager-link {
+  border: 5px solid transparent;
+  display: inline-block;
+  height: 100%;
+  line-height: 0 !important;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.bx-pager-link > img {
+    width: 100%;
+}
+
+#thumb-left, #thumb-right {
+  background-color: rgba(80, 80, 80, 0.8);
+  cursor: pointer;
+  display: block;
+  height: 100%;
+  position: absolute;
+  width: 20px;
+  z-index: 1;
+  top: 0;
+}
+
+.thumb-inner {
+  height: 100%;
+}
+
+#thumb-left {
+	left: 0;
+}
+
+#thumb-right {
+	right: 0;
+}
+
+.thumb-img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+}
+
+/* == 'Dot' Mode == */
+.dot .thumb-inner {
+  border: 5px solid #000;
+  border-radius: 20px;
+  box-sizing: border-box;
+  height: 10px !important;
+  overflow: hidden;
+  position: relative;
+  transition: width 0.4s ease 0s, height 0.4s ease 0s, border-radius 0.4s ease 0s, border 0.4s ease 0s;
+  width: 10px;
+  margin: auto;
+}
+
+.dot .bx-pager-link.active {
+	border: none;
+}
+
+.dot .bx-pager-link {
+  display: table-cell;
+  vertical-align: middle;
+  width: 120px;
+}
+
+.dot .bx-pager-link.active .thumb-inner {
+  border: 10px solid #D95167;
+  border-radius: 20px;
+  box-sizing: border-box;
+  height: 20px !important;
+  overflow: hidden;
+  width: 20px;
+  position: relative;
+}
+
+.dot .thumb-inner > img {
+  height: 100%;
+  left: -50%;
+  position: absolute;
+}
+
+.dot .bx-pager-item:hover > .bx-pager-link > .thumb-inner {
+  border: 5px solid #D95167;
+  border-radius: 120px;
+  box-sizing: border-box;
+  height: 120px !important;
+  overflow: hidden;
+  position: relative;
+  text-align: center;
+  transition: width 0.4s ease 0s, height 0.4s ease 0s, border-radius 0.4s ease 0s, border 0.4s ease 0s;
+  -webkit-transition: width 0.4s ease 0s, height 0.4s ease 0s, border-radius 0.4s ease 0s, border 0.4s ease 0s;
+  -moz-transition: width 0.4s ease 0s, height 0.4s ease 0s, border-radius 0.4s ease 0s, border 0.4s ease 0s;
+  -o-transition: width 0.4s ease 0s, height 0.4s ease 0s, border-radius 0.4s ease 0s, border 0.4s ease 0s;
+  -ms-transition: width 0.4s ease 0s, height 0.4s ease 0s, border-radius 0.4s ease 0s, border 0.4s ease 0s;
+  width: 120px;
+}
+
+.dot .bx-pager.bx-custom-pager {
+  margin: auto;
+  overflow: hidden;
+  position: relative;
+  top: 0px;
+  white-space: nowrap;
+  width: 1000px;
+}
+
+.dot #pager-container {
+  bottom: 0;
+  display: table;
+  height: 120px;
+}
+
+.dot .bx-pager-item {
+  display: table-cell;
+  height: 130px;
+  padding: 0 23.3px;
+  vertical-align: middle;
+}
+
+.dot .thumb-img {
+  background-position: center center;
+  background-size: cover;
+  height: 100%;
+  width: 100%;
+}
+
+/* == 'box' Mode == */
+.box .thumb-inner {
+  border: 5px solid #000;
+  border-radius: 20px;
+  box-sizing: border-box;
+  height: 10px !important;
+  margin: auto;
+  overflow: visible;
+  position: relative;
+  transition: width 0.4s ease 0s, height 0.4s ease 0s, border-radius 0.4s ease 0s, border 0.4s ease 0s;
+  width: 10px;
+}
+
+.box .bx-pager-link {
+  display: table-cell;
+  margin: auto;
+  text-align: center;
+  vertical-align: middle;
+  width: 120px;
+}
+
+.box .bx-pager-link.active {
+  border: none;
+}
+
+.box .bx-pager-link.active .thumb-inner {
+  border: 10px solid #D95167;
+  border-radius: 20px;
+  box-sizing: border-box;
+  height: 20px !important;
+  overflow: visible;
+  width: 20px;
+  position: relative;
+  transition: width .4s, height .4s, border-radius .4s, border .4s;
+}
+
+.box .thumb-inner > img {
+  height: 100%;
+  left: -50%;
+  position: absolute;
+}
+
+.box .bx-pager-item:hover > .thumb-inner {
+  box-sizing: border-box;
+  position: relative;
+  text-align: center;
+}
+
+.box .bx-pager-item .thumb-inner > .thumb-img {
+  position: absolute;
+  background-size: cover;
+  background-position: center;
+}
+
+
+.box .bx-pager-item:hover .thumb-inner > .thumb-img {
+  border: 3px solid #fff;
+  display: block;
+  height: 67px;
+  left: -56px;
+  margin: 4px;
+  top: -90px;
+  width: 100px;
+  box-shadow: 0px 1px 2px 0px;
+}
+
+.box .bx-pager.bx-custom-pager {
+  display: table;
+  height: 100%;
+  margin: auto;
+  overflow: visible;
+  position: relative;
+  top: 0;
+  white-space: nowrap;
+  width: 1000px;
+}
+
+.box #pager-container {
+  bottom: -30px;
+  display: block;
+  height: 30px;
+}
+
+.box .bx-pager-item {
+  display: table-cell;
+  height: 20px;
+  padding: 0 23.3px;
+  vertical-align: middle;
+}
+
+/* ========================== */
+/* === Full screen styles === */
+/* ========================== */
+
+/* === Slider (FULLSCREEN) === */
+.fullscreen #viewport-container {
+  height: 100%;
+  margin: 0 auto;
+  overflow: hidden;
+  width: 100%;
+}
+
+.fullscreen .feature-wrapper {
+  background-color: #fff;
+  box-sizing: border-box;
+  height: 100%;
+  left: 0;
+  padding: 10px;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
+.fullscreen .feature-wrapper .bx-viewport {
+  margin: auto;
+  overflow: unset !important;
+  width: 100% !important;
+  height:100% !important;
+}
+
+.fullscreen .feature-wrapper .bxslider > li {
+	height: 100%;
+}
+
+.fullscreen .feature-wrapper .bxslider > li > img {
+	min-width: 100%;
+	min-height: 100%;
+}
+
+.fullscreen .bxslider > li {
+	width: 100%;
+	height: 100%;
+	background-size: cover;
+	background-position: center top;
+}
+
+.fullscreen .bx-wrapper {
+	height:100%;
+}
+
+.fullscreen .bxslider {
+	height:100%;
+}
+
+.fullscreen .fullscreen-btn {
+  color: #fff;
+  display: inline-block;
+  left: initial;
+  margin-left: 1em;
+  position: static;
+  text-indent: -9999px;
+}
+
+.fullscreen .fullscreen-btn {
+  background-position: -193px 0;
+}
+
+
+.fullscreen .fullscreen-info {
+  display: block;
+  position: fixed;
+  right: 20px;
+  top: 18px;
+}
+
+.fullscreen #close-products {
+	display: block;
+	position: fixed;
+	bottom:25%;
+	right: 10%;
+	background-color: green;
+}
+
+.fullscreen #border-bottom {
+  background-color: #fff;
+  display: block;
+  height: 10px;
+  left: 0;
+  position: fixed;
+  width: 100%;
+}
+
+/* = Shopping bag (fullscreen) = */
+.fullscreen .bagCounter {
+  background: url("/images/site/bagbg.png") no-repeat scroll center top rgba(0, 0, 0, 0);
+  color: #fff;
+  display: inline-block;
+  height: 22px;
+  padding: 5px 0 0;
+  text-align: center;
+  width: 20px;
+  
+}
+
+.fullscreen #shopping-bag {
+  background-color: #fff;
+  border-radius: 2px;
+  color: #000;
+  font: 12.8px Arial,Helvetica,sans-serif;
+  padding: 4px 10px;
+  position: relative;
+  top: 1px;
+  transition: background-color 1s linear 2s;
+  text-decoration: none;
+}
+
+.fullscreen #shopping-bag:hover h2, .fullscreen #shopping-bag:hover #sb-value {
+	text-decoration: underline;
+}
+
+.fullscreen #shopping-bag > h2 {
+  color: #000;
+  display: inline;
+  font: 14px/19px BrandonGrotesque-Regular,Verdana,Arial,sans-serif;
+}
+
+.fullscreen .sbItemText {
+  display: none;
+}
+
+.fullscreen .sbTotalPriceText {
+  display: none;
+}
+
+.fullscreen .fullscreen-btn > a {
+	text-align: right;
+}
+
+.fullscreen #shopping-bag.changed {
+	background-color: rgba(0, 128, 0, 0.8) !important;
+	transition: background-color 0.1s;
+}
+
+/* === Grid (FULLSCREEN) === */
+.fullscreen .grid-container {
+  background-image: url('/images/magazine/features/ss15-carousel/white75percent-bg.png');
+  bottom: 10px;
+  max-height: 0;
+  left: 10px;
+  position: absolute;
+  /*transition: max-height 400ms;*/
+  width: 100%;
+  width: calc(100% - 20px);
+}
+
+.fullscreen .grid-container.open {
+  max-height: 210px;
+  /*transition: max-height 400ms;*/
+}
+
+.fullscreen #grid {
+  margin: auto;
+  width: 100%;
+}
+
+.fullscreen #grid > li {
+  display: none;
+  max-width: 120px;
+  margin: 10px;
+}
+
+.fullscreen .open #toggle-grid {
+  background-color: transparent;
+  background-image: none;
+  border-radius: 0;
+  display: block;
+  padding: 5px 6px;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
+
+/*.fullscreen .open #toggle-grid .showHide-btn {
+  background-position: -305px 0;
+}*/
+
+.fullscreen #toggle-grid .show-hide {
+  background-image: url("/images/magazine/features/ss15-carousel/showhide-sprite.png");
+  background-repeat: no-repeat;
+  padding-left: 25px;
+}
+
+.fullscreen #show-copy {
+	background-position: 0 -5px;
+}
+
+.fullscreen #hide-copy {
+  background-position: 0 -24px;
+}
+
+.fullscreen .open #show-copy, .fullscreen #hide-copy {
+	display: none;
+}
+
+.fullscreen .open #hide-copy, .fullscreen #show-copy {
+	display: inline-block;
+}
+
+.fullscreen #toggle-grid {
+  background-color: #fff;
+  border-radius: 2px;
+  display: block;
+  height: 12px;
+  padding: 5px 6px;
+  position: absolute;
+  right: 10px;
+  text-align: center;
+  top: -32px;
+}
+
+.fullscreen #toggle-grid .showHide-btn {
+  background-image: url("/images/magazine/features/five-of-the-best-floral/spritesheet.png");
+  background-position: -232px 0;
+  display: block;
+  height: 12px;
+  text-align: center;
+  text-indent: -9999px;
+  width: 27px;
+}
+
+.fullscreen #toggle-grid span {
+  float: left;
+  line-height: 12px;
+  text-transform: uppercase;
+  font-family: BrandonGrotesque-Medium;
+}
+
+.fullscreen #toggle-grid span.hide {
+	display: none;
+}
+
+.fullscreen #complete-look {
+  position: relative;
+  top: 10px;
+}
+/* === Pagination (FULLSCREEN) === */
+/* == Normal mode == */
+.fullscreen #pager-wrapper {
+  background-color: #fff;
+  height: 81px;
+  left: 0;
+  position: fixed;
+  top: -81px;
+  width: 100%;
+}
+
+.fullscreen #pager-container {
+  height: 100%;
+  position: relative;
+  width: 100%;
+}
+
+.fullscreen #pager-tab {
+  background-color: #fff;
+  border-radius: 0 0 5px 5px;
+  bottom: -30px;
+  box-shadow: 0 3px 2px -2px;
+  content: "";
+  cursor: pointer;
+  display: block;
+  height: 30px;
+  left: 50%;
+  margin-left: -25px;
+  position: absolute;
+  width: 50px;
+  z-index: 10;
+}
+
+.fullscreen .bx-pager.bx-custom-pager {
+  height: 67px;
+  margin: 0 auto;
+  position: relative;
+  top: 7px;
+  white-space: nowrap;
+  width: 100%;
+}
+
+.fullscreen .bx-pager-item {
+  box-sizing: border-box;
+  display: inline-block;
+  height: 67px;
+  overflow: hidden;
+  padding: 0 5px;
+  width: 100px;
+}
+
+.fullscreen .bx-pager-link {
+  display: inline-block;
+  height: 100%;
+  line-height: 0;
+  max-width: 100%;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.fullscreen .bx-pager-link > img {
+  height: 100%;
+  width: auto;
+}
+
+.fullscreen #pager-tab {
+	position: relative;
+}
+
+.fullscreen #pager-tab span {
+	width:100%;
+	position: absolute;
+	left: 0;
+	display: block;
+}
+
+.fullscreen #pager-tab span.hide {
+	display: none;
+}
+
+/* == 'Dot' Mode == */
+/*.fullscreen .dot.top .bx-pager.bx-custom-pager {
+  margin: auto;
+  overflow: hidden;
+  position: relative;
+  text-align: center;
+  top: 0;
+  white-space: nowrap;
+  width: 1000px;
+  height: 100%;
+}
+
+.fullscreen .dot.top .bx-pager-item:hover > .bx-pager-link {
+  border-radius: 120px;
+  box-sizing: border-box;
+  height: 120px !important;
+  width: 120px;
+}
+
+.fullscreen #pager-wrapper.dot.top {
+  background-color: #fff;
+  height: 120px;
+  left: 0;
+  position: fixed;
+  top: -120px;
+  width: 100%;
+}
+
+.fullscreen .dot.top .bx-pager-item {
+  display: table-cell;
+  height: 120px;
+  padding: 0 23.3px;
+  vertical-align: middle;
+  max-width: 160px;
+  width: 160px;
+}
+
+.fullscreen .dot.top .bx-pager-link {
+  box-sizing: border-box;
+  display: table-cell;
+  height: 100%;
+  line-height: 0;
+  max-width: 100%;
+  overflow: hidden;
+}*/
+
+/* == 'Box' Mode == */
+/*.fullscreen .box.top .bx-pager.bx-custom-pager {
+  height: 100%;
+  margin: auto;
+  overflow: visible;
+  position: relative;
+  text-align: center;
+  top: 0;
+  white-space: nowrap;
+  width: 1000px;
+}
+
+.fullscreen .box.top .bx-pager-link {
+  box-sizing: border-box;
+  display: table-cell;
+  height: 50px;
+  line-height: 0;
+  max-width: 100%;
+  overflow: visible;
+}
+
+.fullscreen .box.top .bx-pager-item {
+  box-sizing: border-box;
+  display: inline-block;
+  height: 67px;
+  overflow: visible;
+  padding: 0 5px;
+  width: 100px;
+}
+
+.fullscreen .box.top .bx-pager-item:hover > .bx-pager-link {
+  border-radius: 120px;
+  box-sizing: border-box;
+  width: 120px;
+}
+
+.fullscreen #pager-wrapper.box.top {
+  background-color: #fff;
+  height: 50px;
+  left: 0;
+  position: fixed;
+  top: -50px;
+  width: 100%;
+  z-index: 1;
+}
+
+.fullscreen .box.top .bx-pager-item {
+  display: table-cell;
+  height: 50px;
+  max-width: 160px;
+  padding: 0 23.3px;
+  vertical-align: middle;
+  width: 160px;
+}
+
+.fullscreen .box.top .bx-pager-item:hover .thumb-inner > .thumb-img {
+  border: 3px solid #fff;
+  display: block;
+  height: 67px;
+  left: -56px;
+  margin: 4px;
+  top: 10px;
+  width: 100px;
+  z-index: 100;
+  box-shadow: 0 1px 2px 0;
+}*/
+
+/* == 'Overlay' Mode == */
+.fullscreen #pager-wrapper.overlay {
+  background-color: #fff;
+  height: 100%;
+  left: -100%;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 2;
+}
+
+.fullscreen #pager-wrapper.overlay.open {
+	left: 0;
+}
+
+.fullscreen .overlay #pager-container {
+  display: block;
+  height: 100%;
+  position: relative;
+  width: 100%;
+}
+
+.fullscreen .overlay .bx-pager.bx-custom-pager {
+  display: block;
+  height: 70%;
+  margin: 0 auto;
+  position: relative;
+  top: auto;
+  white-space: initial;
+  width: 80%;
+  padding-top: 7%;
+}
+
+.fullscreen .overlay .bx-pager-item {
+  box-sizing: border-box;
+  display: inline-block;
+  float:left;
+  height: 50%;
+  padding: 1%;
+  width: 33.3333%;
+}
+
+.fullscreen .overlay .bx-pager-link, .fullscreen .overlay .bx-pager-link:active {
+  box-sizing: border-box;
+  display: inline-block;
+  height: 100%;
+  line-height: 0;
+  max-width: 100%;
+  overflow: hidden;
+  width: 100%;
+}
+
+.fullscreen .box.overlay .bx-pager-link .thumb-inner, .fullscreen .box.overlay .bx-pager-link.active .thumb-inner {
+  border: medium none;
+  border-radius: initial;
+  box-sizing: border-box;
+  display: block;
+  height: 100% !important;
+  margin: auto;
+  overflow: hidden;
+  position: relative;
+  transition: width 0.4s ease 0s, height 0.4s ease 0s, border-radius 0.4s ease 0s, border 0.4s ease 0s;
+  width: 100%;
+}
+
+.fullscreen .box.overlay .bx-pager-item .thumb-inner > .thumb-img {
+  background-position: center top;
+  background-size: cover;
+  border: 3px solid #fff;
+  box-sizing: border-box;
+  display: block;
+  height: 100%;
+  position: static;
+  width: 100%;
+}
+
+.fullscreen .box.overlay .bx-pager-item .bx-pager-link:hover .thumb-inner > .thumb-img, .fullscreen .box.overlay .bx-pager-item .bx-pager-link.active .thumb-inner > .thumb-img {
+  border: 5px solid #d95167;
+  box-shadow: none;
+  box-sizing: border-box;
+  display: block;
+  height: 100%;
+  left: initial;
+  margin: 0;
+  top: initial;
+  width: 100%;
+}
+
+.fullscreen .box.overlay .bx-pager-item:hover .thumb-inner > .thumb-img {
+  border: 3px solid #fff;
+  display: block;
+  height: 100%;
+  left: initial;
+  margin: 0;
+  top: initial;
+  width: 100%;
+}
+
+.fullscreen .overlay #pager-tab {
+  background-color: transparent;
+  background-image: url("/images/magazine/features/ss15-carousel/spritesheet.png");
+  background-position: -115px 0;
+  border-radius: 3px;
+  box-shadow: none;
+  cursor: pointer;
+  display: block;
+  height: 37px;
+  left: auto;
+  position: absolute;
+  right: -60px;
+  top: 13px;
+  width: 39px;
+  z-index: 10;
+}
+
+.fullscreen .overlay.open #pager-tab {
+  background-position: -76px center;
+  height: 37px;
+  right: 10px;
+}
+
+.fullscreen .overlay.open #pager-loadbar {
+  background-color: red;
+  bottom: 0;
+  display: block;
+  height: 10px;
+  left: 0;
+  position: absolute;
+  width: 0;
+}
+
+/* === Navigation (FULLSCREEN) === */
+.fullscreen .bx-controls {
+  background-color: #fff;
+  height: 15%;
+  position: fixed;
+  top: -15%;
+  width: 100%;
+  z-index: 1;
+}
+
+.fullscreen .feature-wrapper > #fullscreen_nav-container {
+  height: 15px;
+  left: 0;
+  position: absolute;
+  top: 50%;
+  width: 100%;
+}
+
+.fullscreen-nav > a {
+	left: 0;
+}
+
+.fullscreen .ghost {
+	display: none;
+}
+
+/* ========================== */
+/* ===== Special Styles ===== */
+/* ========================== */
+/* == 'Likes' functionality ==*/
+.liked {
+	border: 3px solid green;
+	box-sizing: border-box;
+}
+
+.likes-detected {
+	background-color: green;
+	color: #fff;
+}
+
+/* == Animated Jpeg functionality == */
+.bg-container {
+  display: block;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: 1;
+}
+
+.animation-frame {
+  height: 100%;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  background-size: cover;
+}
+
+.animation-frame.first {
+  z-index: 1 !important;
+}
+
+.copy {
+  z-index: 1;
+  position: relative;
+}
+
+.ie-bg {
+	min-width: 100%;
+	min-height: 100%;
+}
+
+/* == UI Switch == */
+.ui-switch .fullscreen-btn {
+  background-position: -154px -37px;
+}
+
+
+/* ===================== Background position classes ===================== */
+/* Add these to .slide-container tags to position the bg image accordingly */
+/*               No class will keep the background centered                */
+/* ======================================================================= */
+.bg-top {background-position: center top !important;}
+.bg-top-left {background-position: left top !important;}
+.bg-top-right {background-position: right top !important;}
+
+.bg-bottom {background-position: center bottom !important;}
+.bg-bottom-left {background-position: center bottom !important;}
+.bg-bottom-right {background-position: center bottom !important;}
+
+.bg-left {background-position: left center !important;}
+
+.bg-right {background-position: right center !important;}
+
+/* ========================== */
+/* = Custom Feature Styles == */
+/* ========================== */
+/* == Font styles == */
+.feature-wrapper {
+	font-size: 16px;
+}
+.feature-wrapper h1, .feature-wrapper h2, .feature-wrapper h3, .feature-wrapper h4, .feature-wrapper h5, .feature-wrapper h6 {
+	font-family: BrandonGrotesque-Medium, Helvetica, Arial, sans serif;
+	color: #D95167;
+	text-transform: uppercase;
+}
+
+.feature-wrapper p, .feature-wrapper a, .feature-wrapper a:hover {
+  color: #fff;
+  font: 0.9em/1.8em BrandonGrotesque-Regular,Helvetica,Arial,sans serif;
+  letter-spacing: 0.05em;
+}
+
+.feature-wrapper a.quicklink {
+	text-transform: uppercase;
+}
+
+/* == Grid == */
+.bx-pager-link.active {
+  border: 3px solid #d95167;
+}
+
+/* == Common containers == */
+
+.content-container {
+  display: table-cell;
+  vertical-align: middle;
+  position: relative;
+}
+
+.slide-container .copy {
+	display: block;
+}
+
+.copy h2 > img {
+	width: 100%;
+}
+
+.r-arw {
+  border-bottom: 0.4em solid transparent;
+  border-left: 0.4em solid #fff;
+  border-top: 0.4em solid transparent;
+  display: inline-block;
+  height: 0;
+  margin-left: 0.4em;
+}
+
+/* == Slide styles == */
+/* = Intro = */
+.intro .slide-container {
+	background-image: url('/images/magazine/features/SS15-carousel/slide0-bg.jpg');
+}
+
+.intro .copy {
+  margin-left: 49.70997679814385%;
+  width: 28.5963%;
+}
+
+.intro .copy h2 {
+	width: 100%;
+}
+
+.intro .copy p {
+	margin-top: 2em;
+}
+
+.copy a.next {
+
+}
+
+
+/* = Slide 1 = */
+.slide1 .slide-container {
+	background-image: url('/images/magazine/features/SS15-carousel/slide1-bg.jpg');
+}
+
+.slide1 .copy {
+
+}
+
+.slide1 .copy > p {
+
+}
+
+.slide1 a.quicklink, .slide1 a.quicklink:hover {
+
+}
+
+/* = Slide 2 = */
+.slide2 .slide-container {
+	background-image: url('/images/magazine/features/SS15-carousel/slide2-bg.jpg');
+}
+
+.slide2 .copy {
+
+}
+
+.slide2 a.quicklink, .slide2 a.quicklink:hover {
+
+}
+
+
+/* = Slide 3 = */
+.slide3 .slide-container {
+	background-image: url('/images/magazine/features/SS15-carousel/slide3-bg.jpg');
+}
+
+.slide3 .copy {
+
+}
+
+.slide3 .copy p {
+
+}
+
+.slide3 .copy h2 {
+
+}
+
+.slide3 .copy a.quicklink {
+
+}
+
+
+/* = Slide 4 = */
+.slide4 .slide-container {
+	background-image: url('/images/magazine/features/SS15-carousel/slide4-bg.jpg');
+}
+
+.slide4 .copy {
+
+}
+
+.slide4 .copy p {
+
+  }
+
+.slide4 .copy a.quicklink {
+
+}
+
+.slide4 .copy a.quicklink .r-arw {
+
+}
+
+
+/* = Slide 5 = */
+.slide5 .slide-container {
+	background-image: url('/images/magazine/features/SS15-carousel/slide5-bg.jpg');
+}
+
+.slide5 .copy {
+
+}
+
+.slide5 .copy h2 {
+
+}
+
+.slide5 .copy p {
+
+}
+
+.slide5 .copy a.quicklink {
+
+}
+
+/* === Media Queries === */
+@media (max-width: 1200px) {
+	.bx-next {
+	  float: left;
+	  left: -60px;
+	}
+	
+	.bx-prev {
+	  float: right;
+	  right: -60px;
+	}
+	
+	.fullscreen-btn {
+		left: -70px;
+	}
+	
+}
+
+@media only screen 
+and (orientation : portrait) { 
+	.fullscreen .overlay .bx-pager-item {
+	  width: 50%;
+	  height:33.333%;
+	}
+}
+</style>
+
+<div id="loading-overlay">
+	<div class="table">
+		<div class="table-cell">
+			<img alt="loading..." src="/images/site/ajax-loader.gif" />
+		</div>
+	</div>
+</div>
+<div class="feature-wrapper ui-style1">
+    <div id="viewport-container">
+		<ul class="bxslider">
+			<li class="active-slide empty intro">
+				<div class="slide-container bg-top-left">
+					<div class="content-container">
+						<div class="copy">
+							<h2>Lorem Ipsum</h2>
+							<p>Lorem Ipsum</p>
+							<a href="~/products/outfitting.aspx?qr=" class="quicklink">Lorem Ipsum <span class="r-arw"></span></a>
+						</div>
+					</div>
+					
+				</div>
+			</li>
+			
+			<li class="slide1">
+				<div class="slide-container bg-top">
+					<div class="content-container">
+						<div class="copy">
+							<h2>Lorem Ipsum</h2>
+							<p>Lorem Ipsum</p>
+							<a href="~/products/outfitting.aspx?qr=" class="quicklink">Lorem Ipsum <span class="r-arw"></span></a>
+						</div>
+					</div>
+				</div>
+			</li>
+			
+			<li class="slide2">
+				<div class="slide-container bg-bottom">
+					<div class="content-container">
+						<div class="copy">
+							<h2>Lorem Ipsum</h2>
+							<p>Lorem Ipsum</p>
+							<a href="~/products/outfitting.aspx?qr=" class="quicklink">Lorem Ipsum <span class="r-arw"></span></a>
+						</div>
+					</div>
+				</div>
+			</li>
+
+			<li class="slide3">
+				<div class="slide-container bg-top">
+					<div class="content-container">
+						<div class="copy">
+							<h2>Lorem Ipsum</h2>
+							<p>Lorem Ipsum</p>
+							<a href="~/products/outfitting.aspx?qr=" class="quicklink">Lorem Ipsum <span class="r-arw"></span></a>
+						</div>
+					</div>
+				</div>
+			</li>
+			
+			<li class="slide4">
+				<div class="slide-container bg-right">
+					<div class="content-container">
+						<div class="copy">
+							<h2>Lorem Ipsum</h2>
+							<p>Lorem Ipsum</p>
+							<a href="~/products/outfitting.aspx?qr=" class="quicklink">Lorem Ipsum <span class="r-arw"></span></a>
+						</div>
+					</div>
+				</div>
+			</li>
+			
+			<li class="slide5">
+				<div class="slide-container bg-top">
+					<div class="content-container">
+						<div class="copy">
+							<h2>Lorem Ipsum</h2>
+							<p>Lorem Ipsum</p>
+							<a href="~/products/outfitting.aspx?qr=" class="quicklink">Lorem Ipsum <span class="r-arw"></span></a>
+						</div>
+					</div>
+				</div>
+			</li>
+									
+		</ul>
+		
+		<div id="pager-wrapper">
+			<div id="pager-container">
+				
+			</div>
+			<div id="pager-tab">
+				<p>
+					<span class="open-copy">Nav</span>
+					<span class="close-copy">Close</span>
+				</p>
+			</div>
+			<div id="pager-loadbar"></div>
+		</div>
+		
+	</div>
+	
+	<div id="ghost-left" class="ghost"></div>
+	<div id="ghost-right" class="ghost">
+		<div class="fullscreen-btn">
+			<a href="#">Full screen</a>
+		</div>
+	</div>
+		
+	<div id="fullscreen_nav-container">
+		<div id="fullscreen_nav-left" class="fullscreen-nav"></div>
+		<div id="fullscreen_nav-right" class="fullscreen-nav"></div>
+		<div class="fullscreen-info">
+			<a title="Bag" href="~/checkout/shopping-bag.html#nav" id="shopping-bag">
+				<h2 id="bag-copy">Bag</h2>
+				<span class="bagCounter" id="sb-qty">0</span><span class="sbItemText">items</span>
+				<span class="sbTotalPriceText">Total</span>
+				<span id="sb-value">&pound;0.00</span>  
+			</a>
+			<a class="fullscreen-btn" href="#">Small screen</a>
+		</div>
+		
+	</div>
+			
+	<div class="grid-container">
+		<a href="#" class="quicklink" id="complete-look">Buy Complete Look</a>
+		<a href="#" id="toggle-grid">
+			<span class="show-hide" id="show-copy">Show</span>
+			<span class="show-hide" id="hide-copy">Hide</span>
+			<!--span class="open-copy">Show</span>
+			<span class="close-copy">Hide</span-->
+		</a>
+		<ul id="grid">
+			<!-- Products are dynamically created here -->
+		</ul>
+	</div>
+	<span id="border-bottom"></span>    
+</div>
+
+<script type="text/javascript" src="/content/scripts/jquery.bxslider.min.js"></script>
+<script type="text/javascript" src="/content/scripts/TweenMax.min.js"></script>
+<script src="/content/scripts/imagesloaded.pkgd.min.js"></script>
+<script src="/content/scripts/jquery.mixitup-v2.js"></script>
+
+<script>
+/* Modernizr 2.8.3 (Custom Build) | MIT & BSD
+ * Build: http://modernizr.com/download/#-backgroundsize-csstransforms-csstransitions-testprop-testallprops-domprefixes
+ */
+;window.Modernizr=function(a,b,c){function w(a){i.cssText=a}function x(a,b){return w(prefixes.join(a+";")+(b||""))}function y(a,b){return typeof a===b}function z(a,b){return!!~(""+a).indexOf(b)}function A(a,b){for(var d in a){var e=a[d];if(!z(e,"-")&&i[e]!==c)return b=="pfx"?e:!0}return!1}function B(a,b,d){for(var e in a){var f=b[a[e]];if(f!==c)return d===!1?a[e]:y(f,"function")?f.bind(d||b):f}return!1}function C(a,b,c){var d=a.charAt(0).toUpperCase()+a.slice(1),e=(a+" "+m.join(d+" ")+d).split(" ");return y(b,"string")||y(b,"undefined")?A(e,b):(e=(a+" "+n.join(d+" ")+d).split(" "),B(e,b,c))}var d="2.8.3",e={},f=b.documentElement,g="modernizr",h=b.createElement(g),i=h.style,j,k={}.toString,l="Webkit Moz O ms",m=l.split(" "),n=l.toLowerCase().split(" "),o={},p={},q={},r=[],s=r.slice,t,u={}.hasOwnProperty,v;!y(u,"undefined")&&!y(u.call,"undefined")?v=function(a,b){return u.call(a,b)}:v=function(a,b){return b in a&&y(a.constructor.prototype[b],"undefined")},Function.prototype.bind||(Function.prototype.bind=function(b){var c=this;if(typeof c!="function")throw new TypeError;var d=s.call(arguments,1),e=function(){if(this instanceof e){var a=function(){};a.prototype=c.prototype;var f=new a,g=c.apply(f,d.concat(s.call(arguments)));return Object(g)===g?g:f}return c.apply(b,d.concat(s.call(arguments)))};return e}),o.backgroundsize=function(){return C("backgroundSize")},o.csstransforms=function(){return!!C("transform")},o.csstransitions=function(){return C("transition")};for(var D in o)v(o,D)&&(t=D.toLowerCase(),e[t]=o[D](),r.push((e[t]?"":"no-")+t));return e.addTest=function(a,b){if(typeof a=="object")for(var d in a)v(a,d)&&e.addTest(d,a[d]);else{a=a.toLowerCase();if(e[a]!==c)return e;b=typeof b=="function"?b():b,typeof enableClasses!="undefined"&&enableClasses&&(f.className+=" "+(b?"":"no-")+a),e[a]=b}return e},w(""),h=j=null,e._version=d,e._domPrefixes=n,e._cssomPrefixes=m,e.testProp=function(a){return A([a])},e.testAllProps=C,e}(this,this.document);
+
+var globalSettings = {
+	cm_tag: 'SS15-TEMPLATE',
+	imgPath: '/images/magazine/features/SS15-carousel/',
+	quickshopPath: '/products/outfitting.aspx?qr=',
+	animationSpeed: 400, //in ms
+	body: $('body'),
+	fontSize: 25,
+	PSDWidth: 1724,
+	fontParent: '#viewport-container',
+	productCodes: 
+		[
+			null
+			,'WH700DPR|WH700NVY|WH700GLD|WH700RED|WH700TEL'
+			,'WH700DPR|WH700NVY|WH700GLD|WH700RED|WH700TEL'
+			,'WH700DPR|WH700NVY|WH700GLD|WH700RED|WH700TEL'
+			,'22348IND|22340BL'
+			,'22335BLU|21683BB'
+		],
+	market: $('html').attr('lang')
+}
+
+// SLIDER
+var Slider = {
+	settings: {
+		initialSlide: 0,
+		activeClass: 'active-slide',
+		normalWidth: 1000,
+		fullscreenEnabled: true,
+		fullscreenButton: $('.fullscreen-btn'),
+		body: globalSettings.body,
+		viewportMeta: globalSettings.viewportMeta,
+		resizeTimerDelay: 200,
+		dynamicFontSize: true,
+		navLocation: {
+			normal: '#ghost-', 
+			fullscreen: '#fullscreen_nav-'
+		},
+		timer: null,
+		uiSwitchSliders: false, //integer or array, depending on the index of slide that requires switching. false if not necessary
+		translateEnabled: false //if true, all default live copy will be translated
+	},
+	slider: null,
+	bindUIactions: function() {
+		
+		Slider.settings.fullscreenButton.click(function() {
+			Slider.toggleFullscreen();
+		});
+		
+		$('.next').click(function(e) {
+			e.preventDefault();
+			Slider.slider.goToNextSlide();
+		});
+		
+	},
+	bindWindowResize: function() {
+		$(window).resize(function(){
+			if(Slider.isFullscreen()) {
+				clearTimeout(Slider.settings.timer);
+				Slider.settings.timer = setTimeout(function(){
+					var currentSlide = $('.' + Slider.settings.activeClass).index() - 1;
+					Slider.slider.reloadSlider(Slider.mode.fullscreen());
+					
+				}, Slider.settings.resizeTimerDelay);
+				Slider.setFontSize(globalSettings.fontSize, globalSettings.PSDWidth, $(this).width(), globalSettings.fontParent, Slider.isFullscreen());
+			}
+			
+			Ghosts.set();
+		});
+	},
+	moveToTop: function() {
+		var height = $('.topBarContainer').height();
+		$('html').scrollTop(height);
+	},
+	ie8Fullscreen: function(array){
+		if(Modernizr.backgroundsize) {
+			return false;
+		}
+		var target = (array instanceof jQuery) ? array : $(array);
+		target.each(function(){
+			var $this = $(this);
+			var bg = $this.css('background-image').split('"');
+			$this.prepend('<img class="ie-fullscreen" src="' + bg[1] + '" />');
+		});
+	},
+	setFontSize: function(fontSize, origWidth, newWidth, target, fullscreen){
+		if(this.settings.dynamicFontSize) {
+			if(!fullscreen) {
+				$(target).removeAttr('style');
+				return false;
+			}
+			var pc = fontSize / origWidth;
+			var size = newWidth * pc;
+			$(target).css({'font-size': size});
+		}
+		return false;
+	},
+	translate: function(market) {
+		if(!this.settings.translateEnabled) return false;
+		var bag =['Bag', 'Warenkorb', 'Panier' ];
+		var show = ['Show','Anzeigen', 'Montrer' ];
+		var hide = ['Hide', 'Verbergen', 'Cacher' ];
+		var buylook = ['Buy complete look', 'Den kompletten Look shoppen', 'Acheter la tenue compl&#232;te'];
+		var mkt = market.slice(0,2);
+		var lang = (mkt === 'en') ? 0 : (mkt === 'de') ? 1 : (mkt === 'fr') ? 2 : 0;
+		$('#bag-copy').text(bag[lang]);
+		$('#show-copy').text(show[lang]);
+		$('#hide-copy').text(hide[lang]);
+		$('#complete-look').text(buylook[lang]);
+	},
+	initialise: function(slider) {
+		if(this.settings.fullscreenEnabled) {
+			this.bindUIactions();
+		} else {
+			this.settings.fullscreenButton.remove();
+		}
+		
+		this.ie8Fullscreen($('.slide-container'));
+		$('#Head1').find('meta[name=viewport]').remove();
+		ProductGrid.initialise();
+		Pager.initialise();
+		Ghosts.initialise();
+		this.bindWindowResize();
+		Quicklink.apply();
+		this.moveToTop();
+		JpgAnimate.initialise();
+		this.translate(globalSettings.market);
+		ShoppingBag.update();
+	},
+	mode: {
+		normal: function() { return  Slider.getSliderAttr(Slider.settings.normalWidth, Slider.settings.initialSlide, Slider.settings.navLocation.normal)},
+		fullscreen: function() { return Slider.getSliderAttr($(window).width(), Slider.settings.initialSlide, Slider.settings.navLocation.fullscreen)},
+		
+	},
+	uiSwitch: function(newIndex, slideNumber) {
+		if(!slideNumber) return false;
+		var switchClass = 'ui-switch';
+		var array = (slideNumber.constructor === Array) ? slideNumber : [slideNumber];
+		var $featureWrapper = $('.feature-wrapper');
+		$.each(array, function(index, value) {
+			if(value == newIndex) {
+				$featureWrapper.addClass('ui-switch');
+				return false;
+			} 
+			if ($featureWrapper.hasClass('ui-switch')) {
+				$featureWrapper.removeClass('ui-switch');
+				return false;
+			}
+		});
+	},
+	isFullscreen: function() { return this.settings.body.hasClass('fullscreen') },
+	toggleFullscreen: function() {
+		this.settings.body.toggleClass('fullscreen');
+		if(this.isFullscreen()) {
+			Slider.slider.reloadSlider(this.mode.fullscreen());
+		} else {
+			Slider.slider.reloadSlider(this.mode.normal());
+			Ghosts.set();
+		}
+	},
+	
+	updateActive: function(newIndex) {
+		$('.' + this.settings.activeClass).removeClass(this.settings.activeClass);
+		$('li', '.bxslider').eq(newIndex + 1).addClass(this.settings.activeClass);
+	},
+	
+	autoHide: function(currentIndex, fade) {
+		var gridUI = ProductGrid.settings.ui;
+		if(Slider.isFullscreen()) {
+			ProductGrid.autoHide([gridUI.completeLook, gridUI.toggleBtn], currentIndex, fade);
+		} else {
+			gridUI.toggleBtn.hide();
+			ProductGrid.autoHide([gridUI.completeLook], currentIndex, fade);
+		}
+	},
+	
+	// Dynamically create bxSlider attributes
+	getSliderAttr: function(width, currentIndex, navLocation) {
+		return {
+				slideWidth: width
+				,startSlide: currentIndex
+				,pager: Pager.settings.enabled
+				,pagerSelector: Pager.settings.container
+				,buildPager: function(slideIndex){
+					return Pager.generateThumbnail(slideIndex);
+				}
+				,onSliderLoad: function(currentIndex) {
+					
+					cmCreateElementTag(globalSettings.cm_tag + '_' + currentIndex, 'OUTFIT');
+					Slider.settings.initialSlide = currentIndex;
+					Slider.autoHide(currentIndex, false);	
+					Slider.setFontSize(globalSettings.fontSize, globalSettings.PSDWidth, $(window).width(), globalSettings.fontParent, Slider.isFullscreen());
+					JpgAnimate.playFrames(currentIndex);
+				}
+				,onSlideBefore: function($slideElement, oldIndex, newIndex){	
+					Slider.updateActive(newIndex);
+					Slider.autoHide(newIndex, true);
+					if(Pager.isOpen()) {
+						Pager.togglePager(true);
+					}
+					
+					ProductGrid.applyMix(newIndex);
+					ProductGrid.updateOutfit(newIndex);
+					Slider.settings.initialSlide = newIndex;
+					Slider.uiSwitch(newIndex, Slider.settings.uiSwitchSliders);
+				}
+				,onSlideAfter: function($slideElement, oldIndex, newIndex) {
+					Slider.updateActive(newIndex);
+					JpgAnimate.playFrames(newIndex, oldIndex);
+					
+					cmCreateElementTag(globalSettings.cm_tag + '_' + newIndex, 'OUTFIT');
+				}
+				,prevSelector: navLocation + 'left'
+				,nextSelector: navLocation + 'right'
+			}
+		}
+};
+
+// PAGER
+// This is the module that controls the pagination
+var Pager = {
+	settings: {
+		enabled: true,
+		fullscreenStyle: 'overlay', 						// overlay|top
+		hoverStyle: 'normal', 								// normal|dot|box
+		imageType: (Modernizr.backgroundsize) ? 'background' : 'inline', // inline|background
+		scrollable: false,									// Boolean
+		animationSpeed: globalSettings.animationSpeed, 		// integer (in ms)
+		animationEase: 'ease',
+		animationDelay: 0,
+		imgPath: globalSettings.imgPath,
+		nameFormat: {prefix: 'slide', suffix: '-thumbnail.jpg'},
+		wrapper: $('#pager-wrapper'),						// jQuery selector
+		container: $('#pager-container'),					// jQuery selector
+		item: $('.bx-pager-item'),							// jQuery selector
+		img: $('.thumb-img'),								// jQuery selector
+		ui: {
+			toggleBtn: $('#pager-tab'),						// jQuery selector
+			textBased: false									// Boolean
+		},
+	},
+	bindUIactions: function() {
+		this.settings.ui.toggleBtn.click(function(){
+			Pager.togglePager();
+		});
+	},
+	initialise: function() {
+		if(this.settings.enabled) {
+			this.bindUIactions();
+			
+			this.settings.wrapper
+				.addClass(this.settings.fullscreenStyle)
+				.addClass(this.settings.hoverStyle);
+			
+			if(Modernizr.csstransitions) {
+				this.settings.ui.toggleBtn.css({
+					'transition': 'all ' + this.settings.animationSpeed + 'ms ' + this.settings.animationEase + ' ' + this.settings.animationDelay + 'ms'
+				});
+				this.settings.wrapper.css({
+					'transition': 'left ' + this.settings.animationSpeed + 'ms ' + this.settings.animationEase + ' ' + this.settings.animationDelay + 'ms'
+				});
+			}
+			
+			if(this.settings.ui.textBased) {
+				this.settings.ui.toggleBtn.find('.close-copy').addClass('hide');
+			} else {
+				this.settings.ui.toggleBtn.find('span').hide();
+			}
+		} else {
+			this.settings.wrapper.remove();
+		}
+		return false;
+		
+	},
+	isOpen: function() { return this.settings.wrapper.hasClass('open') },
+	togglePager: function(loadDelay) {
+		var $pager = this.settings;
+		var load = (typeof loadDelay == 'undefined') ? false : true;
+		var dly = (load) ? $pager.animationSpeed : 0;
+		
+		switch($pager.fullscreenStyle) {
+			case 'top':
+				
+				var pagerHeight = $pager.wrapper.height();
+				if(this.img.css('display') === 'none') {
+					this.img.show();
+				}
+				this.wrapper.toggleClass('open');
+				var mod = (this.isOpen()) ? '+=' : '-=';
+				this.wrapper.delay(dly).animate({
+					top: mod + pagerHeight
+				}, $pager.animationSpeed);
+				if(this.img.is(':visible') && OPTIONS.thumbnail.hoverStyle === 'box') {
+					this.img.fadeOut($pager.animationSpeed / 2);
+				}
+				break;
+				
+			case 'overlay':
+				if(this.isOpen()) {
+					var delay = 0;
+					var len = $pager.item.length;
+					var delayMod = $pager.animationSpeed / len;
+					
+					$pager.item.each(function(){
+						$(this).delay(delay += delayMod).fadeOut(function(){
+							if($(this).index() + 1 === len) {
+								$pager.item.each(function(){
+									$(thiS).removeAttr('style');
+								});
+							}
+						});
+						
+					});
+				}
+				
+				if(!Modernizr.csstransitions) {
+					var end = (this.isOpen()) ? '-100%' : '0%';
+					var tabEnd = (this.isOpen()) ? '-70px' : '10px';
+					this.changeText();
+					$pager.wrapper.stop(true).delay(dly).animate(
+						{'left': end}, 
+						$pager.animationSpeed, 
+						function(){	Pager.settings.wrapper.toggleClass('open')	}
+					);
+					$pager.ui.toggleBtn.delay(dly).animate(
+						{'right': tabEnd},
+						$pager.animationSpeed
+					);
+					
+				} else {
+					$pager.wrapper.toggleClass('open');
+				}
+
+				
+				
+				break;
+				
+		}
+	},
+	changeText: function() {
+		if(this.settings.ui.textBased) {
+			var tab = this.settings.ui.toggleBtn;
+			tab.find('.open-copy').toggleClass('hide');
+			tab.find('.close-copy').toggleClass('hide');
+		}
+		return false;
+	},
+	resetPager: function() {
+		this.wrapper.removeClass('open').removeAttr('style');
+	},
+	generateThumbnail: function(slideIndex) {
+			var thumb;
+			var image = this.settings.imgPath + this.settings.nameFormat.prefix + slideIndex + this.settings.nameFormat.suffix;
+			switch(this.settings.imageType) {
+				case 'background':
+					thumb = 
+					'<div class="thumb-inner"><div class="thumb-img" style="background-image: url(' + image + ')"></div></div>';
+					break;
+				case 'inline':
+					thumb = '<img src="' + image + '" />';	
+					break;
+			}
+			return thumb;
+		return false;
+	}
+}
+
+// PRODUCT GRID
+// This module controls the product grid functionality
+var ProductGrid = {
+	settings: {
+		enabled: true,				// Boolean
+		defaultHidden: true,		// Boolean
+		container: $('.grid-container'), // jQuery selector
+		listContainer: $('#grid'),	// jQuery selector
+		codes: globalSettings.productCodes, // Array
+		quickshopPath: globalSettings.quickshopPath, // String
+		animationSpeed: globalSettings.animationSpeed, // Integer (in ms)
+		animationEasing: 'ease', 	// String, options: ease|linear|ease-in|ease-out|ease-in-out|cubic-bezier()|initial|inherit;
+		animationDelay: 0, 			// integer (in ms)
+		openClass: 'open',			// String
+		maxHeight: 210,				// Integer
+		ui: {
+			completeLook: $('#complete-look'),
+			toggleBtn: $('#toggle-grid'),
+			showBtnClass: 'show-btn',
+			itemClass: 'page-nav',
+			textBased: true
+		},
+	},
+	initialise: function() {
+		if(this.settings.enabled) {
+			this.generate();
+			this.applyMix();
+			this.bindUIactions();
+			
+			if(Modernizr.csstransitions) {
+				this.settings.container.css({'transition': 'max-height ' + this.settings.animationSpeed + 'ms ' + this.settings.animationEasing + ' ' + this.settings.animationDelay + 'ms'});
+				this.settings.ui.toggleBtn.css({'transition': 'top ' + this.settings.animationSpeed + 'ms ' + this.settings.animationEasing + ' ' + this.settings.animationDelay + 'ms'});
+			}
+			
+			if(this.settings.ui.textBased) {
+				this.settings.ui.toggleBtn.find('.close-copy').addClass('hide');
+			} else {
+				this.settings.ui.toggleBtn.find('span').hide();
+			}
+		} else {
+			this.settings.container.remove();
+		}
+		return false;
+
+		
+	},
+	bindUIactions: function() {
+		this.settings.ui.toggleBtn.click(function(){
+			ProductGrid.toggleGrid();
+		});
+	},
+	applyMix: function(newIndex) {
+		if(this.settings.enabled) {
+			if(!this.settings.listContainer.mixItUp('isLoaded')) {
+				this.createMix();
+			} else {
+				this.filterGrid(newIndex);
+			}
+		}
+	},
+	mergedCodes: function() {
+		return this.settings.codes.toString().replace(/,/g , '|').slice(1);
+	},
+	generate: function() {
+		var html = '';
+		var path = this.settings.quickshopPath + this.mergedCodes();
+		var productCodes = this.settings.codes;
+		$.get(path, function(data) {
+			var $data = $(data);
+			var img = $data.find('.ProductMain');
+			var imgEq = -1;
+			for(i = 0; i < productCodes.length; i++) {
+				
+				if(productCodes[i] != null) {
+					
+					var current = productCodes[i];
+					var array = productCodes[i].split('|');
+					for(x = 0; x < array.length; x++) {
+						var tag = '<li class="mix slide' + i + '"><a class="quicklink" href="~/products/outfitting.aspx?qr=' + array[x] + '"><img src="' + img.eq(++imgEq).attr('src') + '" /></a></li>';
+						html += tag;
+						
+					}
+				}
+			}
+			ProductGrid.settings.listContainer.prepend(html);
+			Quicklink.apply();
+		});
+	},
+	toggleGrid: function() {
+		var $grid = ProductGrid.settings;
+		var gridIsOpen = ($grid.listContainer.hasClass($grid.openClass));
+		this.changeText();
+		
+		if(!Modernizr.csstransitions) { 
+			var end = (gridIsOpen) ? 0 : $grid.maxHeight;
+			$grid.listContainer.animate(
+				{ maxHeight: end },
+				$grid.animationSpeed,
+				function(){
+					if(gridIsOpen) {
+						ProductPanel.settings.ui.toggleBtn.text(text);
+					} else {
+						$grid.listContainer.removeAttr('style');
+					}
+				}
+			);
+			
+		}
+		$grid.container.toggleClass('open');
+
+	},
+	changeText: function() {
+		if(this.settings.ui.textBased) {
+			var tab = this.settings.ui.toggleBtn;
+			tab.find('.open-copy').toggleClass('hide');
+			tab.find('.close-copy').toggleClass('hide');
+		}
+		return false;
+	},
+	autoHide: function(target, index, fade) {
+		var fadeFx = (typeof fade == 'undefined') ? false : true;
+		
+		for(i = (target.length - 1); i >= 0; i--) {
+			var current = target[i];
+			
+			if(this.settings.codes[index] === null) {
+				(fadeFx) ? current.fadeOut(this.settings.animationSpeed) : current.hide();
+			} else {
+				if(current.is(':visible')) { return false; }
+				(fadeFx) ? current.fadeIn(this.settings.animationSpeed) : current.show();
+			}
+		}
+	},
+	createMix: function() {
+		this.settings.listContainer.mixItUp({
+			load: {
+				filter: 'none'
+			}
+		});	
+	},
+	filterGrid: function(newIndex) {
+		var filter = (newIndex != 0) ? '.slide' + newIndex : 'none';
+		this.settings.listContainer.mixItUp('filter', filter);
+	},
+	updateOutfit: function(newIndex) {
+		var $grid = this.settings;
+		$grid.ui.completeLook.attr('href', $grid.quickshopPath + $grid.codes[newIndex]);
+	}
+	
+	
+};
+
+// QUICKLINK
+// This module controls the quicklink functionality
+var Quicklink = {
+	settings: {
+		updateBagAfterLoad: true,
+		updateBagBeforeClose: true
+	},
+	apply: function() {
+		$('.quicklink').each(function(){			
+			$(this).fancybox({				
+				'type':'iframe',
+				'width':420,
+				'height':190,
+				'padding':25,
+				'onComplete' : function() {
+					$('#fancybox-frame').load(function() { 
+						$('#fancybox-content').height($(this).contents().find('body').height()+15);
+						$.fancybox.center(true);
+					});
+					
+				},
+				'afterLoad' : function() {
+					if (Quicklink.settings.updateBagAfterLoad) {
+						ShoppingBag.afterLoad() 
+					} else {
+						return false;
+					}
+					
+				},
+				'beforeClose' : function() {
+					if (Quicklink.settings.updateBagBeforeClose) {
+						ShoppingBag.beforeClose() 
+					} else {
+						return false;
+					}
+				}
+
+			});    
+		});
+	}
+};
+
+// SHOPPING BAG
+// This module controls the shopping bag functionality
+var ShoppingBag = {
+	market: globalSettings.market,
+	afterLoad: function() {
+		if(Slider.isFullscreen()) {
+			var fancybox = $('iframe').contents();
+			var btn = $('iframe').contents().find('#addToBagBtn');
+			btn.click(function(){
+				if($(this).hasClass('enabled')) {
+					$('#shopping-bag').removeClass('changed').addClass('changed');
+					setTimeout(function() {
+						ShoppingBag.update();
+					}, 1500);
+					
+				}
+			});
+			
+		}
+	},
+	beforeClose: function() {
+		this.update();
+		$('#shopping-bag').removeClass('changed');
+	},
+	update: function() {
+		var bag = $('#bagPreview');
+		$.get('/ClientControls/Products/ShoppingBag.aspx?LanguageCode=' + this.market, function(data) {
+			var $data = $(data);
+			var shopping = {qty: $data.find('#ShoppingBag1_lblCount').text(), value: $data.find('#ShoppingBag1_lblTotal').text()};
+			$('#sb-qty').text(shopping.qty);
+			$('#sb-value').text(shopping.value);
+		});
+	}
+};
+
+// ANIMATED JPEG
+var JpgAnimate = {
+	settings: {
+		enabled: false,
+		container: '.bg-container',
+		slidePrefix: '.slide',
+		imgPath: globalSettings.imgPath,
+		speed: 300, //in ms
+		repeat: -1,
+		paused: true,
+		yoyo: true,
+		repeatDelay: 0, //in ms
+		scene: [null, 8, 8, 10, 8, 10],
+		css3: Modernizr.backgroundsize,
+		ctl: null
+	},
+	addFrames: function(target, frames, index) {
+		var settings = this.settings;
+		var target = $(target);
+		var container = target.find(settings.container);
+		//var slide = target.index();
+		var imgVar = '';
+		var css3 = true;
+		for(i = 1; i <= frames; i++) {
+			var first = (i === 1) ? ' first' : '';
+			var div = (settings.css3) ? 
+				'<div class="animation-frame' + first + '" style="background-image: url(' + settings.imgPath + 'slide' + index + '/slide' + i + '.jpg);"></div>' :
+				'<div class="animation-frame' + first + '"><img class="ie-bg" src="' + settings.imgPath + 'slide' + index + '/slide' + i + '.jpg" /></div>';
+			imgVar += div;
+		}
+		container.append(imgVar);
+	},
+	control: function(target, frames) {
+		var settings = this.settings;
+		var framesArray = $(target).find(settings.container).children();
+		var duration = settings.speed / 1000;
+		var animate = 
+			new TimelineMax({repeat: settings.repeat, paused: settings.paused, yoyo: settings.yoyo, repeatDelay: (settings.repeatDelay / 1000)})
+				.staggerFromTo(framesArray, duration, {zIndex: 0}, {zIndex: 1}, (settings.speed / 1000));
+		return animate;
+	},
+	initialise: function() {
+		if(!this.settings.enabled) return false;
+		var settings = this.settings;
+		var scenes = Array();
+		$.each(settings.scene, function(index, value) {
+			var target = settings.slidePrefix + index;
+			if(value != null) {
+				JpgAnimate.addFrames(target, value, index);
+				scenes[index] = JpgAnimate.control('.slide' + index, settings.scene[index]);
+			}
+		});
+		settings.ctl = scenes;
+	},
+	playFrames: function(newIndex, oldIndex) {
+		if(!this.settings.enabled) return false;
+		if(this.settings.ctl == null) return false;
+		var settings = this.settings;
+		var newScene = settings.ctl[newIndex];
+		var oldScene = settings.ctl[oldIndex];
+		if(newScene != undefined) newScene.play();
+		if(oldScene != undefined) oldScene.pause();
+	}
+}	
+
+
+// GHOSTS
+// This module controls the navigation "ghost" overlay
+var Ghosts = {
+	settings: {
+		enabled: true,
+		selector: $('.ghost')
+	},
+	initialise: function() {
+		if(this.settings.enabled) {
+			Ghosts.set();
+		}
+		return false;
+	},
+	set: function() {
+		var offset = $('.bx-viewport').offset().left + $('.bx-viewport').width();
+		this.settings.selector.each(function(){
+			var $this = $(this);
+			var side = $this.attr('id').replace('ghost-', '');
+			var css = (side === 'left') ? {right: offset} : {left: offset};
+			$this.css(css);
+		});
+	}
+}
+
+$(document).ready(function(){
+	Slider.slider = $('.bxslider').bxSlider(Slider.mode.normal());
+	Slider.initialise();
+});
+
+$(window).load(function() {
+	$('#loading-overlay').fadeOut();
+	$(this).scrollTop(118);
+});
+</script>
