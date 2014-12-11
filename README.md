@@ -6,34 +6,31 @@ consistent experience to the customer. It follows a modular design allowing feat
 
 <h2>Modules</h2>
   <h4>Slider</h4>
-    This is the core module where all the settings are initialised. This is the only module that is dependent on other
-    modules, and it's purpose is to pull all the modules together and run them correctly.
+    
   
   <h4>Pager</h4>
-    TThis handles all the settings and methods for the pagination of the feature.
+    T
     
   <h4>ProductGrid</h4>
-    This handles all the settings and methods for the dynamic product grid.
+    
     
   <h4>Quicklink</h4>
-    This handles the quicklink functionality
     
-  <h4>ShoppingBag</h4>
-    This handles the shopping bag functionality for full screen mode
+    
+  
     
   <h4>JpgAnimate</h4>
-    This handles the Jpeg animation functionality.
+    
     
   <h4>Ghosts</h4>
     This controls the "ghost" overlay for the small screen mode
-  
-  
+
 <h2>Settings</h2>
 
   <h3>General</h3>
   Most modules have an option called "enabled". If you wish to turn off that particular functionality set this to 
   false.
-    
+  
   <h3>Global Settings</h3>
   <h4>cm_tag</h4>
     This sets the string you provide for the Coremetrics tracking.
@@ -72,7 +69,9 @@ consistent experience to the customer. It follows a modular design allowing feat
     This automatically gets the market code (eg. en-GB, en-US, de-AT etc.).
     
   
-  <h2>Slider</h2>
+  
+  <h3>Slider</h3>
+  This is the core module where all the settings are initialised. This is the only module that is dependent on other modules, and it's purpose is to pull all the modules together and run them correctly.
   <h4>initialSlide</h4>
     Index of starting slide.
     
@@ -109,8 +108,10 @@ consistent experience to the customer. It follows a modular design allowing feat
   <h4>translateEnabled</h4>
     This enables the generic live copy on the page to be automatically translated into the appropriate language. Leave
     this as false for English language countries.
-    
+  
+  
   <h3>Pager</h3>
+  This handles all the settings and methods for the pagination of the feature.
   <h4>fullscreenStyle</h4>
     This declares the style for pagination. This should probably be removed at some point as 'overlay' mode will probably be the only mode used.
     
@@ -138,7 +139,10 @@ consistent experience to the customer. It follows a modular design allowing feat
   <h4>wrapper/container/item/img</h4>
   Caches useful selectors
   
+  
   <h3>ProductGrid</h3>
+  This handles all the settings and methods for the dynamic product grid.
+  
   <h4>defaultHidden</h4>
   This sets whether the product grid is hidden or shown by default
   
@@ -154,14 +158,20 @@ consistent experience to the customer. It follows a modular design allowing feat
   <h4>ui</h4>
   Selectors for UI elements
   
+  
   <h3>Quicklink</h3>
+  This handles the quicklink functionality
+  
   <h4>updateBagAfterLoad</h4>
   If true, the shopping bag will be updated after you open a quickshop
   
   <h4>updateBagBeforeClose</h4>
   If true, the shopping bag will be updated just before the quickshop closes
   
+  
   <h3>JpgAnimate</h3>
+  This handles the Jpeg animation functionality.
+  
   <h4>container</h4>
   This sets the container for which the animation frames are generated
   
