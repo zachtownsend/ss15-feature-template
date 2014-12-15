@@ -1118,7 +1118,7 @@ and (orientation : portrait) {
 						<div class="copy">
 							<h2>Lorem Ipsum</h2>
 							<p>Lorem Ipsum</p>
-							<a href="~/products/outfitting.aspx?qr=WH793LAV|WU003PPK|AR660NUD|AV090YEL" class="quicklink">Lorem Ipsum <span class="r-arw"></span></a>
+							<a href="~/products/outfitting.aspx?qr=WH793LAV|WU003PPK|AR660NUD|AV090YEL" class="retrieve quicklink">Lorem Ipsum <span class="r-arw"></span></a>
 						</div>
 					</div>
 				</div>
@@ -1130,7 +1130,7 @@ and (orientation : portrait) {
 						<div class="copy">
 							<h2>Lorem Ipsum</h2>
 							<p>Lorem Ipsum</p>
-							<a href="~/products/outfitting.aspx?qr=WH793LAV|WU003PPK|AR660NUD|AV090YEL" class="quicklink">Lorem Ipsum <span class="r-arw"></span></a>
+							<a href="~/products/outfitting.aspx?qr=WH793LAV|WU003PPK|AR660NUD|AV090YEL" class="retrieve quicklink">Lorem Ipsum <span class="r-arw"></span></a>
 						</div>
 					</div>
 				</div>
@@ -1142,7 +1142,7 @@ and (orientation : portrait) {
 						<div class="copy">
 							<h2>Lorem Ipsum</h2>
 							<p>Lorem Ipsum</p>
-							<a href="~/products/outfitting.aspx?qr=WH793LAV|WU003PPK|AR660NUD|AV090YEL" class="quicklink">Lorem Ipsum <span class="r-arw"></span></a>
+							<a href="~/products/outfitting.aspx?qr=WH793LAV|WU993PPK|AR660NUD|AV090YEL" class="retrieve quicklink">Lorem Ipsum <span class="r-arw"></span></a>
 						</div>
 					</div>
 				</div>
@@ -1154,7 +1154,7 @@ and (orientation : portrait) {
 						<div class="copy">
 							<h2>Lorem Ipsum</h2>
 							<p>Lorem Ipsum</p>
-							<a href="~/products/outfitting.aspx?qr=WH793LAV|WU003PPK|AR660NUD|AV090YEL" class="quicklink">Lorem Ipsum <span class="r-arw"></span></a>
+							<a href="~/products/outfitting.aspx?qr=WH793LAV|WU003PPK|AR660NUD|AV090YEL" class="retrieve quicklink">Lorem Ipsum <span class="r-arw"></span></a>
 						</div>
 					</div>
 				</div>
@@ -1166,7 +1166,7 @@ and (orientation : portrait) {
 						<div class="copy">
 							<h2>Lorem Ipsum</h2>
 							<p>Lorem Ipsum</p>
-							<a href="~/products/outfitting.aspx?qr=WH793LAV|WU003PPK|AR660NUD|AV090YEL" class="quicklink">Lorem Ipsum <span class="r-arw"></span></a>
+							<a href="~/products/outfitting.aspx?qr=WH793LAV|WU003PPK|AR660NUD|AV090YEL" class="retrieve quicklink">Lorem Ipsum <span class="r-arw"></span></a>
 						</div>
 					</div>
 				</div>
@@ -1584,7 +1584,7 @@ var ProductGrid = {
 		defaultHidden: true,		// Boolean
 		container: $('.grid-container'), // jQuery selector
 		listContainer: $('#grid'),	// jQuery selector
-		codes: 'auto', // Array or 'auto'
+		codes: 'auto',//globalSettings.productCodes, // Array or 'auto'
 		quickshopPath: globalSettings.quickshopPath, // String
 		animationSpeed: globalSettings.animationSpeed, // Integer (in ms)
 		animationEasing: 'ease', 	// String, options: ease|linear|ease-in|ease-out|ease-in-out|cubic-bezier()|initial|inherit;
@@ -1602,6 +1602,7 @@ var ProductGrid = {
 	},
 	initialise: function() {
 		if(this.settings.enabled) {
+			this.autoCodes();
 			this.generate();
 			this.applyMix();
 			this.bindUIactions();
@@ -1616,12 +1617,20 @@ var ProductGrid = {
 			} else {
 				this.settings.ui.toggleBtn.find('span').hide();
 			}
+			
+			
 		} else {
 			this.settings.container.remove();
 		}
 		return false;
 
 		
+	},
+	autoCodes: function() {
+		var array = (this.settings.codes === 'auto') ?
+			this.retrieveCodes() :
+			this.settings.codes;
+		this.settings.codes = array;
 	},
 	bindUIactions: function() {
 		this.settings.ui.toggleBtn.click(function(){
@@ -1642,7 +1651,6 @@ var ProductGrid = {
 		var $retrieve = $('.quicklink.retrieve');
 		var array = Array();
 		var exclStr = ProductGrid.settings.market + ProductGrid.settings.quickshopPath;
-		console.log(exclStr);
 		li.each(function() {
 			var $retrieve = $('.quicklink.retrieve',this);
 			console.log($retrieve);
@@ -1658,10 +1666,7 @@ var ProductGrid = {
 		return array;
 	},
 	mergedCodes: function() {
-		var array = (this.settings.codes === 'auto') ?
-			this.retrieveCodes() :
-			this.settings.codes;
-		return array.toString().replace(/,/g , '|');
+		return this.settings.codes.toString().replace(/,/g , '|');
 	},
 	generate: function() {
 		var html = '';
@@ -1683,6 +1688,8 @@ var ProductGrid = {
 							var tag = '<li class="mix slide' + i + '"><a class="quicklink" href="~/products/outfitting.aspx?qr=' + array[x] + '"><img src="' + img.eq(imgEq).attr('src') + '" /></a></li>';
 							imgEq++;
 							html += tag;
+						} else {
+							console.log('The product code does not exist: ' + array[x]);
 						}
 					}
 				}
@@ -1724,14 +1731,14 @@ var ProductGrid = {
 	},
 	autoHide: function(target, index, fade) {
 		var fadeFx = (typeof fade == 'undefined') ? false : true;
-		
+		var codes = this.settings.codes;
 		for(i = (target.length - 1); i >= 0; i--) {
 			var current = target[i];
 			
-			if(this.settings.codes[index] === null) {
+			if(codes[index] === null) {
 				(fadeFx) ? current.fadeOut(this.settings.animationSpeed) : current.hide();
 			} else {
-				if(current.is(':visible')) { return false; }
+				if(current.is(':visible')) return false;
 				(fadeFx) ? current.fadeIn(this.settings.animationSpeed) : current.show();
 			}
 		}
@@ -1744,7 +1751,8 @@ var ProductGrid = {
 		});	
 	},
 	filterGrid: function(newIndex) {
-		var filter = (this.settings.codes[newIndex] != null) ? '.slide' + newIndex : 'none';
+		var code = this.settings.codes;
+		var filter = (code[newIndex] != null) ? '.slide' + newIndex : 'none';
 		this.settings.listContainer.mixItUp('filter', filter);
 	},
 	updateOutfit: function(newIndex) {
