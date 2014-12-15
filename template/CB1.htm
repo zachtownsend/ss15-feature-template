@@ -944,20 +944,20 @@ li.mix > .quicklink {
 
 /* == Slide styles == */
 /* = Intro = */
-.intro .slide-container {
+.slide0 .slide-container {
 	background-image: url('/images/magazine/features/SS15-carousel/slide0-bg.jpg');
 }
 
-.intro .copy {
+.slide0 .copy {
   margin-left: 49.70997679814385%;
   width: 28.5963%;
 }
 
-.intro .copy h2 {
+.slide0 .copy h2 {
 	width: 100%;
 }
 
-.intro .copy p {
+.slide0 .copy p {
 	margin-top: 2em;
 }
 
@@ -1099,13 +1099,13 @@ and (orientation : portrait) {
 <div class="feature-wrapper ui-style1">
     <div id="viewport-container">
 		<ul class="bxslider">
-			<li class="active-slide empty intro">
+			<li class="active-slide slide0">
 				<div class="slide-container bg-top-left">
 					<div class="content-container">
 						<div class="copy">
 							<h2>Lorem Ipsum</h2>
 							<p>Lorem Ipsum</p>
-							<a href="~/products/outfitting.aspx?qr=" class="quicklink">Lorem Ipsum <span class="r-arw"></span></a>
+							<a href="#" class="next">Lorem Ipsum <span class="r-arw"></span></a>
 						</div>
 					</div>
 					
@@ -1118,7 +1118,7 @@ and (orientation : portrait) {
 						<div class="copy">
 							<h2>Lorem Ipsum</h2>
 							<p>Lorem Ipsum</p>
-							<a href="~/products/outfitting.aspx?qr=" class="quicklink">Lorem Ipsum <span class="r-arw"></span></a>
+							<a href="~/products/outfitting.aspx?qr=WH793LAV|WU003PPK|AR660NUD|AV090YEL" class="quicklink">Lorem Ipsum <span class="r-arw"></span></a>
 						</div>
 					</div>
 				</div>
@@ -1130,7 +1130,7 @@ and (orientation : portrait) {
 						<div class="copy">
 							<h2>Lorem Ipsum</h2>
 							<p>Lorem Ipsum</p>
-							<a href="~/products/outfitting.aspx?qr=" class="quicklink">Lorem Ipsum <span class="r-arw"></span></a>
+							<a href="~/products/outfitting.aspx?qr=WH793LAV|WU003PPK|AR660NUD|AV090YEL" class="quicklink">Lorem Ipsum <span class="r-arw"></span></a>
 						</div>
 					</div>
 				</div>
@@ -1142,7 +1142,7 @@ and (orientation : portrait) {
 						<div class="copy">
 							<h2>Lorem Ipsum</h2>
 							<p>Lorem Ipsum</p>
-							<a href="~/products/outfitting.aspx?qr=" class="quicklink">Lorem Ipsum <span class="r-arw"></span></a>
+							<a href="~/products/outfitting.aspx?qr=WH793LAV|WU003PPK|AR660NUD|AV090YEL" class="quicklink">Lorem Ipsum <span class="r-arw"></span></a>
 						</div>
 					</div>
 				</div>
@@ -1154,7 +1154,7 @@ and (orientation : portrait) {
 						<div class="copy">
 							<h2>Lorem Ipsum</h2>
 							<p>Lorem Ipsum</p>
-							<a href="~/products/outfitting.aspx?qr=" class="quicklink">Lorem Ipsum <span class="r-arw"></span></a>
+							<a href="~/products/outfitting.aspx?qr=WH793LAV|WU003PPK|AR660NUD|AV090YEL" class="quicklink">Lorem Ipsum <span class="r-arw"></span></a>
 						</div>
 					</div>
 				</div>
@@ -1166,7 +1166,7 @@ and (orientation : portrait) {
 						<div class="copy">
 							<h2>Lorem Ipsum</h2>
 							<p>Lorem Ipsum</p>
-							<a href="~/products/outfitting.aspx?qr=" class="quicklink">Lorem Ipsum <span class="r-arw"></span></a>
+							<a href="~/products/outfitting.aspx?qr=WH793LAV|WU003PPK|AR660NUD|AV090YEL" class="quicklink">Lorem Ipsum <span class="r-arw"></span></a>
 						</div>
 					</div>
 				</div>
@@ -1245,12 +1245,12 @@ var globalSettings = {
 	fontParent: '#viewport-container',
 	productCodes: 
 		[
-			null
-			,'WH700DPR|WH700NVY|WH700GLD|WH700RED|WH700TEL'
-			,'WH700DPR|WH700NVY|WH700GLD|WH700RED|WH700TEL'
-			,'WH700DPR|WH700NVY|WH700GLD|WH700RED|WH700TEL'
-			,'22348IND|22340BL'
-			,'22335BLU|21683BB'
+			null,
+			'WH793LAV|WU003PPK|AR660NUD|AV090YEL',
+			'WK959SPK|WH779BLU|AR654PPK',
+			'WG590RED|AR662BLK',
+			'WC114OAT|WV020GRY|WE479OYS|AR662BLK',
+			'WE465NAV|WH787PPK|AR654BLK|AM224YEL'
 		],
 	market: $('html').attr('lang')
 }
@@ -1584,13 +1584,14 @@ var ProductGrid = {
 		defaultHidden: true,		// Boolean
 		container: $('.grid-container'), // jQuery selector
 		listContainer: $('#grid'),	// jQuery selector
-		codes: globalSettings.productCodes, // Array
+		codes: 'auto', // Array or 'auto'
 		quickshopPath: globalSettings.quickshopPath, // String
 		animationSpeed: globalSettings.animationSpeed, // Integer (in ms)
 		animationEasing: 'ease', 	// String, options: ease|linear|ease-in|ease-out|ease-in-out|cubic-bezier()|initial|inherit;
 		animationDelay: 0, 			// integer (in ms)
 		openClass: 'open',			// String
 		maxHeight: 210,				// Integer
+		market: globalSettings.market,
 		ui: {
 			completeLook: $('#complete-look'),
 			toggleBtn: $('#toggle-grid'),
@@ -1636,8 +1637,31 @@ var ProductGrid = {
 			}
 		}
 	},
+	retrieveCodes: function() {
+		var li = $('.bxslider').children('li').not('.bx-clone');
+		var $retrieve = $('.quicklink.retrieve');
+		var array = Array();
+		var exclStr = ProductGrid.settings.market + ProductGrid.settings.quickshopPath;
+		console.log(exclStr);
+		li.each(function() {
+			var $retrieve = $('.quicklink.retrieve',this);
+			console.log($retrieve);
+			if($retrieve.length == 0) {
+				array.push(null);
+			} else {
+				var href = $retrieve.attr('href');
+				var codes = href.replace('/' + ProductGrid.settings.market + ProductGrid.settings.quickshopPath, '');
+				array.push(codes);
+			}
+			
+		});
+		return array;
+	},
 	mergedCodes: function() {
-		return this.settings.codes.toString().replace(/,/g , '|').slice(1);
+		var array = (this.settings.codes === 'auto') ?
+			this.retrieveCodes() :
+			this.settings.codes;
+		return array.toString().replace(/,/g , '|');
 	},
 	generate: function() {
 		var html = '';
@@ -1646,7 +1670,7 @@ var ProductGrid = {
 		$.get(path, function(data) {
 			var $data = $(data);
 			var img = $data.find('.ProductMain');
-			var imgEq = -1;
+			var imgEq = 0;
 			for(i = 0; i < productCodes.length; i++) {
 				
 				if(productCodes[i] != null) {
@@ -1654,9 +1678,12 @@ var ProductGrid = {
 					var current = productCodes[i];
 					var array = productCodes[i].split('|');
 					for(x = 0; x < array.length; x++) {
-						var tag = '<li class="mix slide' + i + '"><a class="quicklink" href="~/products/outfitting.aspx?qr=' + array[x] + '"><img src="' + img.eq(++imgEq).attr('src') + '" /></a></li>';
-						html += tag;
-						
+						var baseCode = array[x].slice(0,5);
+						if($('[data-productcode=' + baseCode + ']', $data).data('productcode') != null) {
+							var tag = '<li class="mix slide' + i + '"><a class="quicklink" href="~/products/outfitting.aspx?qr=' + array[x] + '"><img src="' + img.eq(imgEq).attr('src') + '" /></a></li>';
+							imgEq++;
+							html += tag;
+						}
 					}
 				}
 			}
@@ -1717,7 +1744,7 @@ var ProductGrid = {
 		});	
 	},
 	filterGrid: function(newIndex) {
-		var filter = (newIndex != 0) ? '.slide' + newIndex : 'none';
+		var filter = (this.settings.codes[newIndex] != null) ? '.slide' + newIndex : 'none';
 		this.settings.listContainer.mixItUp('filter', filter);
 	},
 	updateOutfit: function(newIndex) {
@@ -1903,5 +1930,6 @@ $(document).ready(function(){
 $(window).load(function() {
 	$('#loading-overlay').fadeOut();
 	$(this).scrollTop(118);
+	ProductGrid.applyMix(0);
 });
 </script>

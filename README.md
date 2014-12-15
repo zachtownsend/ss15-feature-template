@@ -126,7 +126,7 @@ consistent experience to the customer. It follows a modular design allowing feat
   This sets whether the product grid is hidden or shown by default
   
   <h4>codes</h4>
-  See productCodes in Global Settings
+  Here you can either enter an array of product codes (see productCodes in Global Settings), or you can set this to retrieve the codes from your HTML if you enter 'auto'. Add 'retrieve' to each 'quicklink' class that you want to retrieve the codes from. There can only be 1 retrieve class per slide for this to work.
   
   <h4>Open Class</h4>
   Sets the class that is added when the product grid is open
