@@ -174,13 +174,14 @@ body.fullscreen {
 }
 
 li.mix > .quicklink {
-	display: block;
-	line-height: 0 !important;
-	overflow: hidden;
-	border: 1px solid #ddd;
-	margin: auto;
-	padding: 10px;
-	width: 80%;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  display: block;
+  line-height: 0 !important;
+  margin: auto;
+  overflow: hidden;
+  padding: 10px;
+  width: 80%;
 }
 
 .grid-container a {
@@ -1584,7 +1585,7 @@ var ProductGrid = {
 		defaultHidden: true,		// Boolean
 		container: $('.grid-container'), // jQuery selector
 		listContainer: $('#grid'),	// jQuery selector
-		codes: 'auto',//globalSettings.productCodes, // Array or 'auto'
+		codes: globalSettings.productCodes, // Array or 'auto'
 		quickshopPath: globalSettings.quickshopPath, // String
 		animationSpeed: globalSettings.animationSpeed, // Integer (in ms)
 		animationEasing: 'ease', 	// String, options: ease|linear|ease-in|ease-out|ease-in-out|cubic-bezier()|initial|inherit;
@@ -1653,7 +1654,6 @@ var ProductGrid = {
 		var exclStr = ProductGrid.settings.market + ProductGrid.settings.quickshopPath;
 		li.each(function() {
 			var $retrieve = $('.quicklink.retrieve',this);
-			console.log($retrieve);
 			if($retrieve.length == 0) {
 				array.push(null);
 			} else {
