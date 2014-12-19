@@ -174,14 +174,13 @@ body.fullscreen {
 }
 
 li.mix > .quicklink {
-  background-color: #fff;
-  border: 1px solid #ddd;
-  display: block;
-  line-height: 0 !important;
-  margin: auto;
-  overflow: hidden;
-  padding: 10px;
-  width: 80%;
+	display: block;
+	line-height: 0 !important;
+	overflow: hidden;
+	border: 1px solid #ddd;
+	margin: auto;
+	padding: 10px;
+	width: 80%;
 }
 
 .grid-container a {
@@ -191,7 +190,7 @@ li.mix > .quicklink {
 #complete-look {
   background: none repeat scroll 0 0 rgba(0, 0, 0, 0);
   color: #000;
-  display: inline-block;
+  display: block;
   font: 14px/20px BrandonGrotesque-Medium;
   height: 20px;
   letter-spacing: 1.9px;
@@ -345,6 +344,180 @@ li.mix > .quicklink {
   background-position: center;
 }
 
+/* == 'Dot' Mode == */
+.dot .thumb-inner {
+  border: 5px solid #000;
+  border-radius: 20px;
+  box-sizing: border-box;
+  height: 10px !important;
+  overflow: hidden;
+  position: relative;
+  transition: width 0.4s ease 0s, height 0.4s ease 0s, border-radius 0.4s ease 0s, border 0.4s ease 0s;
+  width: 10px;
+  margin: auto;
+}
+
+.dot .bx-pager-link.active {
+	border: none;
+}
+
+.dot .bx-pager-link {
+  display: table-cell;
+  vertical-align: middle;
+  width: 120px;
+}
+
+.dot .bx-pager-link.active .thumb-inner {
+  border: 10px solid #D95167;
+  border-radius: 20px;
+  box-sizing: border-box;
+  height: 20px !important;
+  overflow: hidden;
+  width: 20px;
+  position: relative;
+}
+
+.dot .thumb-inner > img {
+  height: 100%;
+  left: -50%;
+  position: absolute;
+}
+
+.dot .bx-pager-item:hover > .bx-pager-link > .thumb-inner {
+  border: 5px solid #D95167;
+  border-radius: 120px;
+  box-sizing: border-box;
+  height: 120px !important;
+  overflow: hidden;
+  position: relative;
+  text-align: center;
+  transition: width 0.4s ease 0s, height 0.4s ease 0s, border-radius 0.4s ease 0s, border 0.4s ease 0s;
+  -webkit-transition: width 0.4s ease 0s, height 0.4s ease 0s, border-radius 0.4s ease 0s, border 0.4s ease 0s;
+  -moz-transition: width 0.4s ease 0s, height 0.4s ease 0s, border-radius 0.4s ease 0s, border 0.4s ease 0s;
+  -o-transition: width 0.4s ease 0s, height 0.4s ease 0s, border-radius 0.4s ease 0s, border 0.4s ease 0s;
+  -ms-transition: width 0.4s ease 0s, height 0.4s ease 0s, border-radius 0.4s ease 0s, border 0.4s ease 0s;
+  width: 120px;
+}
+
+.dot .bx-pager.bx-custom-pager {
+  margin: auto;
+  overflow: hidden;
+  position: relative;
+  top: 0px;
+  white-space: nowrap;
+  width: 1000px;
+}
+
+.dot #pager-container {
+  bottom: 0;
+  display: table;
+  height: 120px;
+}
+
+.dot .bx-pager-item {
+  display: table-cell;
+  height: 130px;
+  padding: 0 23.3px;
+  vertical-align: middle;
+}
+
+.dot .thumb-img {
+  background-position: center center;
+  background-size: cover;
+  height: 100%;
+  width: 100%;
+}
+
+/* == 'box' Mode == */
+.box .thumb-inner {
+  border: 5px solid #000;
+  border-radius: 20px;
+  box-sizing: border-box;
+  height: 10px !important;
+  margin: auto;
+  overflow: visible;
+  position: relative;
+  transition: width 0.4s ease 0s, height 0.4s ease 0s, border-radius 0.4s ease 0s, border 0.4s ease 0s;
+  width: 10px;
+}
+
+.box .bx-pager-link {
+  display: table-cell;
+  margin: auto;
+  text-align: center;
+  vertical-align: middle;
+  width: 120px;
+}
+
+.box .bx-pager-link.active {
+  border: none;
+}
+
+.box .bx-pager-link.active .thumb-inner {
+  border: 10px solid #D95167;
+  border-radius: 20px;
+  box-sizing: border-box;
+  height: 20px !important;
+  overflow: visible;
+  width: 20px;
+  position: relative;
+  transition: width .4s, height .4s, border-radius .4s, border .4s;
+}
+
+.box .thumb-inner > img {
+  height: 100%;
+  left: -50%;
+  position: absolute;
+}
+
+.box .bx-pager-item:hover > .thumb-inner {
+  box-sizing: border-box;
+  position: relative;
+  text-align: center;
+}
+
+.box .bx-pager-item .thumb-inner > .thumb-img {
+  position: absolute;
+  background-size: cover;
+  background-position: center;
+}
+
+
+.box .bx-pager-item:hover .thumb-inner > .thumb-img {
+  border: 3px solid #fff;
+  display: block;
+  height: 67px;
+  left: -56px;
+  margin: 4px;
+  top: -90px;
+  width: 100px;
+  box-shadow: 0px 1px 2px 0px;
+}
+
+.box .bx-pager.bx-custom-pager {
+  display: table;
+  height: 100%;
+  margin: auto;
+  overflow: visible;
+  position: relative;
+  top: 0;
+  white-space: nowrap;
+  width: 1000px;
+}
+
+.box #pager-container {
+  bottom: -30px;
+  display: block;
+  height: 30px;
+}
+
+.box .bx-pager-item {
+  display: table-cell;
+  height: 20px;
+  padding: 0 23.3px;
+  vertical-align: middle;
+}
+
 /* ========================== */
 /* === Full screen styles === */
 /* ========================== */
@@ -419,6 +592,7 @@ li.mix > .quicklink {
   position: fixed;
   right: 20px;
   top: 18px;
+  width: 183px;
 }
 
 .fullscreen #close-products {
@@ -496,12 +670,14 @@ li.mix > .quicklink {
   max-height: 0;
   left: 10px;
   position: absolute;
+  /*transition: max-height 400ms;*/
   width: 100%;
   width: calc(100% - 20px);
 }
 
 .fullscreen .grid-container.open {
   max-height: 210px;
+  /*transition: max-height 400ms;*/
 }
 
 .fullscreen #grid {
@@ -526,55 +702,36 @@ li.mix > .quicklink {
   top: 10px;
 }
 
-.fullscreen #toggle-grid .show-hide {
-  background-image: url("/images/magazine/features/ss15-carousel/showhide-sprite.png");
-  background-repeat: no-repeat;
-  padding-left: 25px;
-}
-
-.fullscreen #show-copy {
-	background-position: 0 -5px;
-}
-
-.fullscreen #hide-copy {
-  background-position: 0 -24px;
-}
-
-.fullscreen .open #show-copy, .fullscreen #hide-copy {
-	display: none;
-}
-
-.fullscreen .open #hide-copy, .fullscreen #show-copy {
-	display: inline-block;
+.fullscreen .open #toggle-grid .showHide-btn {
+  background-position: -305px 0;
 }
 
 .fullscreen #toggle-grid {
   background-color: #fff;
   border-radius: 2px;
   display: block;
-  height: 12px;
+  height: 11px;
   padding: 5px 6px;
   position: absolute;
   right: 10px;
   text-align: center;
+  text-indent: -9999px;
   top: -32px;
+  width: 80px;
 }
 
 .fullscreen #toggle-grid .showHide-btn {
-  background-image: url("/images/magazine/features/five-of-the-best-floral/spritesheet.png");
+  background-image: url("/images/magazine/features/ss15-carousel/spritesheet.png");
   background-position: -232px 0;
   display: block;
-  height: 12px;
+  height: 11px;
   text-align: center;
   text-indent: -9999px;
-  width: 27px;
+  width: 74px;
 }
 
 .fullscreen #toggle-grid span {
-  float: left;
-  line-height: 12px;
-  text-transform: uppercase;
-  font-family: BrandonGrotesque-Medium;
+  display: block;
 }
 
 .fullscreen #toggle-grid span.hide {
@@ -585,6 +742,7 @@ li.mix > .quicklink {
   position: relative;
   top: 10px;
 }
+
 /* === Pagination (FULLSCREEN) === */
 /* == Normal mode == */
 .fullscreen #pager-wrapper {
@@ -664,6 +822,119 @@ li.mix > .quicklink {
 .fullscreen #pager-tab span.hide {
 	display: none;
 }
+
+/* == 'Dot' Mode == */
+/*.fullscreen .dot.top .bx-pager.bx-custom-pager {
+  margin: auto;
+  overflow: hidden;
+  position: relative;
+  text-align: center;
+  top: 0;
+  white-space: nowrap;
+  width: 1000px;
+  height: 100%;
+}
+
+.fullscreen .dot.top .bx-pager-item:hover > .bx-pager-link {
+  border-radius: 120px;
+  box-sizing: border-box;
+  height: 120px !important;
+  width: 120px;
+}
+
+.fullscreen #pager-wrapper.dot.top {
+  background-color: #fff;
+  height: 120px;
+  left: 0;
+  position: fixed;
+  top: -120px;
+  width: 100%;
+}
+
+.fullscreen .dot.top .bx-pager-item {
+  display: table-cell;
+  height: 120px;
+  padding: 0 23.3px;
+  vertical-align: middle;
+  max-width: 160px;
+  width: 160px;
+}
+
+.fullscreen .dot.top .bx-pager-link {
+  box-sizing: border-box;
+  display: table-cell;
+  height: 100%;
+  line-height: 0;
+  max-width: 100%;
+  overflow: hidden;
+}*/
+
+/* == 'Box' Mode == */
+/*.fullscreen .box.top .bx-pager.bx-custom-pager {
+  height: 100%;
+  margin: auto;
+  overflow: visible;
+  position: relative;
+  text-align: center;
+  top: 0;
+  white-space: nowrap;
+  width: 1000px;
+}
+
+.fullscreen .box.top .bx-pager-link {
+  box-sizing: border-box;
+  display: table-cell;
+  height: 50px;
+  line-height: 0;
+  max-width: 100%;
+  overflow: visible;
+}
+
+.fullscreen .box.top .bx-pager-item {
+  box-sizing: border-box;
+  display: inline-block;
+  height: 67px;
+  overflow: visible;
+  padding: 0 5px;
+  width: 100px;
+}
+
+.fullscreen .box.top .bx-pager-item:hover > .bx-pager-link {
+  border-radius: 120px;
+  box-sizing: border-box;
+  width: 120px;
+}
+
+.fullscreen #pager-wrapper.box.top {
+  background-color: #fff;
+  height: 50px;
+  left: 0;
+  position: fixed;
+  top: -50px;
+  width: 100%;
+  z-index: 1;
+}
+
+.fullscreen .box.top .bx-pager-item {
+  display: table-cell;
+  height: 50px;
+  max-width: 160px;
+  padding: 0 23.3px;
+  vertical-align: middle;
+  width: 160px;
+}
+
+.fullscreen .box.top .bx-pager-item:hover .thumb-inner > .thumb-img {
+  border: 3px solid #fff;
+  display: block;
+  height: 67px;
+  left: -56px;
+  margin: 4px;
+  top: 10px;
+  width: 100px;
+  z-index: 100;
+  box-shadow: 0 1px 2px 0;
+}*/
 
 /* == 'Overlay' Mode == */
 .fullscreen #pager-wrapper.overlay {
@@ -945,20 +1216,20 @@ li.mix > .quicklink {
 
 /* == Slide styles == */
 /* = Intro = */
-.slide0 .slide-container {
+.intro .slide-container {
 	background-image: url('/images/magazine/features/SS15-carousel/slide0-bg.jpg');
 }
 
-.slide0 .copy {
+.intro .copy {
   margin-left: 49.70997679814385%;
   width: 28.5963%;
 }
 
-.slide0 .copy h2 {
+.intro .copy h2 {
 	width: 100%;
 }
 
-.slide0 .copy p {
+.intro .copy p {
 	margin-top: 2em;
 }
 
@@ -1100,13 +1371,13 @@ and (orientation : portrait) {
 <div class="feature-wrapper ui-style1">
     <div id="viewport-container">
 		<ul class="bxslider">
-			<li class="active-slide slide0">
+			<li class="active-slide empty intro">
 				<div class="slide-container bg-top-left">
 					<div class="content-container">
 						<div class="copy">
 							<h2>Lorem Ipsum</h2>
 							<p>Lorem Ipsum</p>
-							<a href="#" class="next">Lorem Ipsum <span class="r-arw"></span></a>
+							<a href="~/products/outfitting.aspx?qr=" class="quicklink">Lorem Ipsum <span class="r-arw"></span></a>
 						</div>
 					</div>
 					
@@ -1119,7 +1390,7 @@ and (orientation : portrait) {
 						<div class="copy">
 							<h2>Lorem Ipsum</h2>
 							<p>Lorem Ipsum</p>
-							<a href="~/products/outfitting.aspx?qr=WH793LAV|WU003PPK|AR660NUD|AV090YEL" class="retrieve quicklink">Lorem Ipsum <span class="r-arw"></span></a>
+							<a href="~/products/outfitting.aspx?qr=" class="quicklink">Lorem Ipsum <span class="r-arw"></span></a>
 						</div>
 					</div>
 				</div>
@@ -1131,7 +1402,7 @@ and (orientation : portrait) {
 						<div class="copy">
 							<h2>Lorem Ipsum</h2>
 							<p>Lorem Ipsum</p>
-							<a href="~/products/outfitting.aspx?qr=WH793LAV|WU003PPK|AR660NUD|AV090YEL" class="retrieve quicklink">Lorem Ipsum <span class="r-arw"></span></a>
+							<a href="~/products/outfitting.aspx?qr=" class="quicklink">Lorem Ipsum <span class="r-arw"></span></a>
 						</div>
 					</div>
 				</div>
@@ -1143,7 +1414,7 @@ and (orientation : portrait) {
 						<div class="copy">
 							<h2>Lorem Ipsum</h2>
 							<p>Lorem Ipsum</p>
-							<a href="~/products/outfitting.aspx?qr=WH793LAV|WU993PPK|AR660NUD|AV090YEL" class="retrieve quicklink">Lorem Ipsum <span class="r-arw"></span></a>
+							<a href="~/products/outfitting.aspx?qr=" class="quicklink">Lorem Ipsum <span class="r-arw"></span></a>
 						</div>
 					</div>
 				</div>
@@ -1155,7 +1426,7 @@ and (orientation : portrait) {
 						<div class="copy">
 							<h2>Lorem Ipsum</h2>
 							<p>Lorem Ipsum</p>
-							<a href="~/products/outfitting.aspx?qr=WH793LAV|WU003PPK|AR660NUD|AV090YEL" class="retrieve quicklink">Lorem Ipsum <span class="r-arw"></span></a>
+							<a href="~/products/outfitting.aspx?qr=" class="quicklink">Lorem Ipsum <span class="r-arw"></span></a>
 						</div>
 					</div>
 				</div>
@@ -1167,7 +1438,7 @@ and (orientation : portrait) {
 						<div class="copy">
 							<h2>Lorem Ipsum</h2>
 							<p>Lorem Ipsum</p>
-							<a href="~/products/outfitting.aspx?qr=WH793LAV|WU003PPK|AR660NUD|AV090YEL" class="retrieve quicklink">Lorem Ipsum <span class="r-arw"></span></a>
+							<a href="~/products/outfitting.aspx?qr=" class="quicklink">Lorem Ipsum <span class="r-arw"></span></a>
 						</div>
 					</div>
 				</div>
@@ -1202,7 +1473,7 @@ and (orientation : portrait) {
 		<div id="fullscreen_nav-right" class="fullscreen-nav"></div>
 		<div class="fullscreen-info">
 			<a title="Bag" href="~/checkout/shopping-bag.html#nav" id="shopping-bag">
-				<h2 id="bag-copy">Bag</h2>
+				<h2>Bag</h2>
 				<span class="bagCounter" id="sb-qty">0</span><span class="sbItemText">items</span>
 				<span class="sbTotalPriceText">Total</span>
 				<span id="sb-value">&pound;0.00</span>  
@@ -1215,8 +1486,9 @@ and (orientation : portrait) {
 	<div class="grid-container">
 		<a href="#" class="quicklink" id="complete-look">Buy Complete Look</a>
 		<a href="#" id="toggle-grid">
-			<span class="show-hide" id="show-copy">Show</span>
-			<span class="show-hide" id="hide-copy">Hide</span>
+			<span class="showHide-btn"></span>
+			<!--span class="open-copy">Show</span>
+			<span class="close-copy">Hide</span-->
 		</a>
 		<ul id="grid">
 			<!-- Products are dynamically created here -->
@@ -1227,6 +1499,7 @@ and (orientation : portrait) {
 
 <script type="text/javascript" src="/content/scripts/jquery.bxslider.min.js"></script>
 <script type="text/javascript" src="/content/scripts/TweenMax.min.js"></script>
+<script src="/content/scripts/imagesloaded.pkgd.min.js"></script>
 <script src="/content/scripts/jquery.mixitup-v2.js"></script>
 
 <script>
@@ -1246,14 +1519,13 @@ var globalSettings = {
 	fontParent: '#viewport-container',
 	productCodes: 
 		[
-			null,
-			'WH793LAV|WU003PPK|AR660NUD|AV090YEL',
-			'WK959SPK|WH779BLU|AR654PPK',
-			'WG590RED|AR662BLK',
-			'WC114OAT|WV020GRY|WE479OYS|AR662BLK',
-			'WE465NAV|WH787PPK|AR654BLK|AM224YEL'
-		],
-	market: $('html').attr('lang')
+			null
+			,'WH700DPR|WH700NVY|WH700GLD|WH700RED|WH700TEL'
+			,'WH700DPR|WH700NVY|WH700GLD|WH700RED|WH700TEL'
+			,'WH700DPR|WH700NVY|WH700GLD|WH700RED|WH700TEL'
+			,'22348IND|22340BL'
+			,'22335BLU|21683BB'
+		]
 }
 
 // SLIDER
@@ -1265,6 +1537,7 @@ var Slider = {
 		fullscreenEnabled: true,
 		fullscreenButton: $('.fullscreen-btn'),
 		body: globalSettings.body,
+		viewportMeta: globalSettings.viewportMeta,
 		resizeTimerDelay: 200,
 		dynamicFontSize: true,
 		navLocation: {
@@ -1272,8 +1545,7 @@ var Slider = {
 			fullscreen: '#fullscreen_nav-'
 		},
 		timer: null,
-		uiSwitchSliders: false, //integer or array, depending on the index of slide that requires switching. false if not necessary
-		translateEnabled: false //if true, all default live copy will be translated
+		uiSwitchSliders: false //integer or array, depending on the index of slide that requires switching. false if not necessary
 	},
 	slider: null,
 	bindUIactions: function() {
@@ -1330,19 +1602,6 @@ var Slider = {
 		}
 		return false;
 	},
-	translate: function(market) {
-		if(!this.settings.translateEnabled) return false;
-		var bag =['Bag', 'Warenkorb', 'Panier' ];
-		var show = ['Show','Anzeigen', 'Montrer' ];
-		var hide = ['Hide', 'Verbergen', 'Cacher' ];
-		var buylook = ['Buy complete look', 'Den kompletten Look shoppen', 'Acheter la tenue compl&#232;te'];
-		var mkt = market.slice(0,2);
-		var lang = (mkt === 'en') ? 0 : (mkt === 'de') ? 1 : (mkt === 'fr') ? 2 : 0;
-		$('#bag-copy').text(bag[lang]);
-		$('#show-copy').text(show[lang]);
-		$('#hide-copy').text(hide[lang]);
-		$('#complete-look').text(buylook[lang]);
-	},
 	initialise: function(slider) {
 		if(this.settings.fullscreenEnabled) {
 			this.bindUIactions();
@@ -1359,8 +1618,6 @@ var Slider = {
 		Quicklink.apply();
 		this.moveToTop();
 		JpgAnimate.initialise();
-		this.translate(globalSettings.market);
-		ShoppingBag.update();
 	},
 	mode: {
 		normal: function() { return  Slider.getSliderAttr(Slider.settings.normalWidth, Slider.settings.initialSlide, Slider.settings.navLocation.normal)},
@@ -1513,41 +1770,64 @@ var Pager = {
 		var load = (typeof loadDelay == 'undefined') ? false : true;
 		var dly = (load) ? $pager.animationSpeed : 0;
 		
-		if(this.isOpen()) {
-			var delay = 0;
-			var len = $pager.item.length;
-			var delayMod = $pager.animationSpeed / len;
-			
-			$pager.item.each(function(){
-				$(this).delay(delay += delayMod).fadeOut(function(){
-					if($(this).index() + 1 === len) {
-						$pager.item.each(function(){
-							$(thiS).removeAttr('style');
-						});
-					}
-				});
+		switch($pager.fullscreenStyle) {
+			case 'top':
 				
-			});
+				var pagerHeight = $pager.wrapper.height();
+				if(this.img.css('display') === 'none') {
+					this.img.show();
+				}
+				this.wrapper.toggleClass('open');
+				var mod = (this.isOpen()) ? '+=' : '-=';
+				this.wrapper.delay(dly).animate({
+					top: mod + pagerHeight
+				}, $pager.animationSpeed);
+				if(this.img.is(':visible') && OPTIONS.thumbnail.hoverStyle === 'box') {
+					this.img.fadeOut($pager.animationSpeed / 2);
+				}
+				break;
+				
+			case 'overlay':
+				if(this.isOpen()) {
+					var delay = 0;
+					var len = $pager.item.length;
+					var delayMod = $pager.animationSpeed / len;
+					
+					$pager.item.each(function(){
+						$(this).delay(delay += delayMod).fadeOut(function(){
+							if($(this).index() + 1 === len) {
+								$pager.item.each(function(){
+									$(thiS).removeAttr('style');
+								});
+							}
+						});
+						
+					});
+				}
+				
+				if(!Modernizr.csstransitions) {
+					var end = (this.isOpen()) ? '-100%' : '0%';
+					var tabEnd = (this.isOpen()) ? '-70px' : '10px';
+					this.changeText();
+					$pager.wrapper.stop(true).delay(dly).animate(
+						{'left': end}, 
+						$pager.animationSpeed, 
+						function(){	Pager.settings.wrapper.toggleClass('open')	}
+					);
+					$pager.ui.toggleBtn.delay(dly).animate(
+						{'right': tabEnd},
+						$pager.animationSpeed
+					);
+					
+				} else {
+					$pager.wrapper.toggleClass('open');
+				}
+
+				
+				
+				break;
+				
 		}
-		
-		if(!Modernizr.csstransitions) {
-			var end = (this.isOpen()) ? '-100%' : '0%';
-			var tabEnd = (this.isOpen()) ? '-70px' : '10px';
-			this.changeText();
-			$pager.wrapper.stop(true).delay(dly).animate(
-				{'left': end}, 
-				$pager.animationSpeed, 
-				function(){	Pager.settings.wrapper.toggleClass('open')	}
-			);
-			$pager.ui.toggleBtn.delay(dly).animate(
-				{'right': tabEnd},
-				$pager.animationSpeed
-			);
-			
-		} else {
-			$pager.wrapper.toggleClass('open');
-		};
-		
 	},
 	changeText: function() {
 		if(this.settings.ui.textBased) {
@@ -1585,14 +1865,13 @@ var ProductGrid = {
 		defaultHidden: true,		// Boolean
 		container: $('.grid-container'), // jQuery selector
 		listContainer: $('#grid'),	// jQuery selector
-		codes: globalSettings.productCodes, // Array or 'auto'
+		codes: globalSettings.productCodes, // Array
 		quickshopPath: globalSettings.quickshopPath, // String
 		animationSpeed: globalSettings.animationSpeed, // Integer (in ms)
 		animationEasing: 'ease', 	// String, options: ease|linear|ease-in|ease-out|ease-in-out|cubic-bezier()|initial|inherit;
 		animationDelay: 0, 			// integer (in ms)
 		openClass: 'open',			// String
 		maxHeight: 210,				// Integer
-		market: globalSettings.market,
 		ui: {
 			completeLook: $('#complete-look'),
 			toggleBtn: $('#toggle-grid'),
@@ -1603,7 +1882,6 @@ var ProductGrid = {
 	},
 	initialise: function() {
 		if(this.settings.enabled) {
-			this.autoCodes();
 			this.generate();
 			this.applyMix();
 			this.bindUIactions();
@@ -1618,20 +1896,12 @@ var ProductGrid = {
 			} else {
 				this.settings.ui.toggleBtn.find('span').hide();
 			}
-			
-			
 		} else {
 			this.settings.container.remove();
 		}
 		return false;
 
 		
-	},
-	autoCodes: function() {
-		var array = (this.settings.codes === 'auto') ?
-			this.retrieveCodes() :
-			this.settings.codes;
-		this.settings.codes = array;
 	},
 	bindUIactions: function() {
 		this.settings.ui.toggleBtn.click(function(){
@@ -1647,26 +1917,8 @@ var ProductGrid = {
 			}
 		}
 	},
-	retrieveCodes: function() {
-		var li = $('.bxslider').children('li').not('.bx-clone');
-		var $retrieve = $('.quicklink.retrieve');
-		var array = Array();
-		var exclStr = ProductGrid.settings.market + ProductGrid.settings.quickshopPath;
-		li.each(function() {
-			var $retrieve = $('.quicklink.retrieve',this);
-			if($retrieve.length == 0) {
-				array.push(null);
-			} else {
-				var href = $retrieve.attr('href');
-				var codes = href.replace('/' + ProductGrid.settings.market + ProductGrid.settings.quickshopPath, '');
-				array.push(codes);
-			}
-			
-		});
-		return array;
-	},
 	mergedCodes: function() {
-		return this.settings.codes.toString().replace(/,/g , '|');
+		return this.settings.codes.toString().replace(/,/g , '|').slice(1);
 	},
 	generate: function() {
 		var html = '';
@@ -1675,7 +1927,7 @@ var ProductGrid = {
 		$.get(path, function(data) {
 			var $data = $(data);
 			var img = $data.find('.ProductMain');
-			var imgEq = 0;
+			var imgEq = -1;
 			for(i = 0; i < productCodes.length; i++) {
 				
 				if(productCodes[i] != null) {
@@ -1683,14 +1935,9 @@ var ProductGrid = {
 					var current = productCodes[i];
 					var array = productCodes[i].split('|');
 					for(x = 0; x < array.length; x++) {
-						var baseCode = array[x].slice(0,5);
-						if($('[data-productcode=' + baseCode + ']', $data).data('productcode') != null) {
-							var tag = '<li class="mix slide' + i + '"><a class="quicklink" href="~/products/outfitting.aspx?qr=' + array[x] + '"><img src="' + img.eq(imgEq).attr('src') + '" /></a></li>';
-							imgEq++;
-							html += tag;
-						} else {
-							console.log('The product code does not exist: ' + array[x]);
-						}
+						var tag = '<li class="mix slide' + i + '"><a class="quicklink" href="~/products/outfitting.aspx?qr=' + array[x] + '"><img src="' + img.eq(++imgEq).attr('src') + '" /></a></li>';
+						html += tag;
+						
 					}
 				}
 			}
@@ -1731,14 +1978,14 @@ var ProductGrid = {
 	},
 	autoHide: function(target, index, fade) {
 		var fadeFx = (typeof fade == 'undefined') ? false : true;
-		var codes = this.settings.codes;
+		
 		for(i = (target.length - 1); i >= 0; i--) {
 			var current = target[i];
 			
-			if(codes[index] === null) {
+			if(this.settings.codes[index] === null) {
 				(fadeFx) ? current.fadeOut(this.settings.animationSpeed) : current.hide();
 			} else {
-				if(current.is(':visible')) return false;
+				if(current.is(':visible')) { return false; }
 				(fadeFx) ? current.fadeIn(this.settings.animationSpeed) : current.show();
 			}
 		}
@@ -1751,8 +1998,7 @@ var ProductGrid = {
 		});	
 	},
 	filterGrid: function(newIndex) {
-		var code = this.settings.codes;
-		var filter = (code[newIndex] != null) ? '.slide' + newIndex : 'none';
+		var filter = (newIndex != 0) ? '.slide' + newIndex : 'none';
 		this.settings.listContainer.mixItUp('filter', filter);
 	},
 	updateOutfit: function(newIndex) {
@@ -1808,7 +2054,7 @@ var Quicklink = {
 // SHOPPING BAG
 // This module controls the shopping bag functionality
 var ShoppingBag = {
-	market: globalSettings.market,
+	market: $('html').attr('lang'),
 	afterLoad: function() {
 		if(Slider.isFullscreen()) {
 			var fancybox = $('iframe').contents();
@@ -1831,6 +2077,7 @@ var ShoppingBag = {
 	},
 	update: function() {
 		var bag = $('#bagPreview');
+		console.log(this.market);
 		$.get('/ClientControls/Products/ShoppingBag.aspx?LanguageCode=' + this.market, function(data) {
 			var $data = $(data);
 			var shopping = {qty: $data.find('#ShoppingBag1_lblCount').text(), value: $data.find('#ShoppingBag1_lblTotal').text()};
@@ -1938,6 +2185,5 @@ $(document).ready(function(){
 $(window).load(function() {
 	$('#loading-overlay').fadeOut();
 	$(this).scrollTop(118);
-	ProductGrid.applyMix(0);
 });
 </script>
