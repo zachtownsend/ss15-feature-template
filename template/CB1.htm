@@ -1,62 +1,17 @@
 <style>
-body{
-	background-color:#FFF;	
-}
-
-.mainContainerBg {
-	overflow: hidden;
-}
-.mainContainer, .mainContent, .mainContentLayout2, div.magFeatureArea, #magazineFeature, .mainListGroup{
-	width:100%;	
-}
-.fullscreen .topBarContainer, .fullscreen .footerContainer {
-	display: none;
-}
-.topBarContainer{
-	width:100%;
-	height:118px;
-}
-.footerContainer {
-   	background: none repeat scroll 0 0 #f1f1f1;
-    border-top: 1px solid #ccc;
-}
-.footerContent {
-	border:0px !important;
-    margin: 0 auto;
-    width: 1000px;
-}
-
-.fancybox-lock .fancybox-overlay {
-  overflow: auto;
-}
-
-a {
-	outline: none;
-}
-body {
-  overflow-y: scroll;
-}
-
-body.fullscreen {
-  overflow: hidden;
-}
-
-.fullscreen .ie-fullscreen {
-    min-height: 100%;
-    min-width: 100%;
-	position: absolute;
-}
-
-.ie-fullscreen {
-    width: 100%;
-	position: absolute;
-	top:0;
-	left:0;
-}
-
-.bx-prev:hover, .bx-next:hover, .fullscreen-btn:hover {
-  opacity: 0.8;
-}
+body{background-color:#FFF; overflow-y: scroll;}
+.mainContainerBg {overflow: hidden;}
+.mainContainer, .mainContent, .mainContentLayout2, div.magFeatureArea, #magazineFeature, .mainListGroup{width:100%;}
+.fullscreen .topBarContainer, .fullscreen .footerContainer {display: none;}
+.topBarContainer{width:100%;height:118px;}
+.footerContainer {background: none repeat scroll 0 0 #f1f1f1; border-top: 1px solid #ccc;}
+.footerContent {border:0px !important; margin: 0 auto; width: 1000px;}
+.fancybox-lock .fancybox-overlay {overflow: auto;}
+a {outline: none;}
+body.fullscreen {overflow: hidden;}
+.fullscreen .ie-fullscreen {min-height: 100%; min-width: 100%; position: absolute; }
+.ie-fullscreen {width: 100%; position: absolute; top:0;	left:0;}
+.bx-prev:hover, .bx-next:hover, .fullscreen-btn:hover {opacity: 0.8;}
 
 /* === Loading overlay === */
 #CB1 {
@@ -88,6 +43,15 @@ body.fullscreen {
 /* === Normal Styles === */
 /* ===================== */
 
+/* == General == */
+.bxslider > li, .bx-pager.bx-custom-pager {
+	width: 1000px;
+}
+
+.bxslider > li, .ghost {
+	height: 544px;
+}
+
 /* === Slider (NORMAL) === */
 .feature-wrapper {
   position: relative;
@@ -113,8 +77,6 @@ body.fullscreen {
 }
 
 .bxslider > li {
-	width: 1000px;
-	height: 544px;
 	overflow: hidden;
 }
 
@@ -174,13 +136,14 @@ body.fullscreen {
 }
 
 li.mix > .quicklink {
-	display: block;
-	line-height: 0 !important;
-	overflow: hidden;
-	border: 1px solid #ddd;
-	margin: auto;
-	padding: 10px;
-	width: 80%;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  display: block;
+  line-height: 0 !important;
+  margin: auto;
+  overflow: hidden;
+  padding: 10px;
+  width: 80%;
 }
 
 .grid-container a {
@@ -190,7 +153,7 @@ li.mix > .quicklink {
 #complete-look {
   background: none repeat scroll 0 0 rgba(0, 0, 0, 0);
   color: #000;
-  display: block;
+  display: inline-block;
   font: 14px/20px BrandonGrotesque-Medium;
   height: 20px;
   letter-spacing: 1.9px;
@@ -227,7 +190,6 @@ li.mix > .quicklink {
 
 .ghost {
 	position: absolute;
-	height:544px;
 	top:0;
 	background-image: url('/images/magazine/features/ss15-carousel/white75percent-bg.png');
 }
@@ -255,13 +217,12 @@ li.mix > .quicklink {
 .bx-pager.bx-custom-pager {
   margin: auto;
   position: relative;
-  width: 1000px;
   overflow:hidden;
   white-space: nowrap;
 }
 
-.bx-pager-link.active {
-  border: 5px solid #d95167;
+.bx-pager-link.active, .fullpage .bx-pager-link:hover {
+  border: 3px solid #d95167;
 }
 
 /* === Pagination (NORMAL) === */
@@ -302,11 +263,18 @@ li.mix > .quicklink {
 
 .bx-pager-link {
   border: 5px solid transparent;
+  box-sizing: border-box;
   display: inline-block;
   height: 100%;
   line-height: 0 !important;
   width: 100%;
-  box-sizing: border-box;
+  opacity: 1;
+  transition: opacity 400ms ease 0s;
+}
+
+.bx-pager-link:hover {
+  opacity: 0.75;
+  transition: opacity 400ms ease 0s;
 }
 
 .bx-pager-link > img {
@@ -342,180 +310,6 @@ li.mix > .quicklink {
   height: 100%;
   background-size: cover;
   background-position: center;
-}
-
-/* == 'Dot' Mode == */
-.dot .thumb-inner {
-  border: 5px solid #000;
-  border-radius: 20px;
-  box-sizing: border-box;
-  height: 10px !important;
-  overflow: hidden;
-  position: relative;
-  transition: width 0.4s ease 0s, height 0.4s ease 0s, border-radius 0.4s ease 0s, border 0.4s ease 0s;
-  width: 10px;
-  margin: auto;
-}
-
-.dot .bx-pager-link.active {
-	border: none;
-}
-
-.dot .bx-pager-link {
-  display: table-cell;
-  vertical-align: middle;
-  width: 120px;
-}
-
-.dot .bx-pager-link.active .thumb-inner {
-  border: 10px solid #D95167;
-  border-radius: 20px;
-  box-sizing: border-box;
-  height: 20px !important;
-  overflow: hidden;
-  width: 20px;
-  position: relative;
-}
-
-.dot .thumb-inner > img {
-  height: 100%;
-  left: -50%;
-  position: absolute;
-}
-
-.dot .bx-pager-item:hover > .bx-pager-link > .thumb-inner {
-  border: 5px solid #D95167;
-  border-radius: 120px;
-  box-sizing: border-box;
-  height: 120px !important;
-  overflow: hidden;
-  position: relative;
-  text-align: center;
-  transition: width 0.4s ease 0s, height 0.4s ease 0s, border-radius 0.4s ease 0s, border 0.4s ease 0s;
-  -webkit-transition: width 0.4s ease 0s, height 0.4s ease 0s, border-radius 0.4s ease 0s, border 0.4s ease 0s;
-  -moz-transition: width 0.4s ease 0s, height 0.4s ease 0s, border-radius 0.4s ease 0s, border 0.4s ease 0s;
-  -o-transition: width 0.4s ease 0s, height 0.4s ease 0s, border-radius 0.4s ease 0s, border 0.4s ease 0s;
-  -ms-transition: width 0.4s ease 0s, height 0.4s ease 0s, border-radius 0.4s ease 0s, border 0.4s ease 0s;
-  width: 120px;
-}
-
-.dot .bx-pager.bx-custom-pager {
-  margin: auto;
-  overflow: hidden;
-  position: relative;
-  top: 0px;
-  white-space: nowrap;
-  width: 1000px;
-}
-
-.dot #pager-container {
-  bottom: 0;
-  display: table;
-  height: 120px;
-}
-
-.dot .bx-pager-item {
-  display: table-cell;
-  height: 130px;
-  padding: 0 23.3px;
-  vertical-align: middle;
-}
-
-.dot .thumb-img {
-  background-position: center center;
-  background-size: cover;
-  height: 100%;
-  width: 100%;
-}
-
-/* == 'box' Mode == */
-.box .thumb-inner {
-  border: 5px solid #000;
-  border-radius: 20px;
-  box-sizing: border-box;
-  height: 10px !important;
-  margin: auto;
-  overflow: visible;
-  position: relative;
-  transition: width 0.4s ease 0s, height 0.4s ease 0s, border-radius 0.4s ease 0s, border 0.4s ease 0s;
-  width: 10px;
-}
-
-.box .bx-pager-link {
-  display: table-cell;
-  margin: auto;
-  text-align: center;
-  vertical-align: middle;
-  width: 120px;
-}
-
-.box .bx-pager-link.active {
-  border: none;
-}
-
-.box .bx-pager-link.active .thumb-inner {
-  border: 10px solid #D95167;
-  border-radius: 20px;
-  box-sizing: border-box;
-  height: 20px !important;
-  overflow: visible;
-  width: 20px;
-  position: relative;
-  transition: width .4s, height .4s, border-radius .4s, border .4s;
-}
-
-.box .thumb-inner > img {
-  height: 100%;
-  left: -50%;
-  position: absolute;
-}
-
-.box .bx-pager-item:hover > .thumb-inner {
-  box-sizing: border-box;
-  position: relative;
-  text-align: center;
-}
-
-.box .bx-pager-item .thumb-inner > .thumb-img {
-  position: absolute;
-  background-size: cover;
-  background-position: center;
-}
-
-
-.box .bx-pager-item:hover .thumb-inner > .thumb-img {
-  border: 3px solid #fff;
-  display: block;
-  height: 67px;
-  left: -56px;
-  margin: 4px;
-  top: -90px;
-  width: 100px;
-  box-shadow: 0px 1px 2px 0px;
-}
-
-.box .bx-pager.bx-custom-pager {
-  display: table;
-  height: 100%;
-  margin: auto;
-  overflow: visible;
-  position: relative;
-  top: 0;
-  white-space: nowrap;
-  width: 1000px;
-}
-
-.box #pager-container {
-  bottom: -30px;
-  display: block;
-  height: 30px;
-}
-
-.box .bx-pager-item {
-  display: table-cell;
-  height: 20px;
-  padding: 0 23.3px;
-  vertical-align: middle;
 }
 
 /* ========================== */
@@ -592,7 +386,6 @@ li.mix > .quicklink {
   position: fixed;
   right: 20px;
   top: 18px;
-  width: 183px;
 }
 
 .fullscreen #close-products {
@@ -670,14 +463,12 @@ li.mix > .quicklink {
   max-height: 0;
   left: 10px;
   position: absolute;
-  /*transition: max-height 400ms;*/
   width: 100%;
   width: calc(100% - 20px);
 }
 
 .fullscreen .grid-container.open {
   max-height: 210px;
-  /*transition: max-height 400ms;*/
 }
 
 .fullscreen #grid {
@@ -702,36 +493,55 @@ li.mix > .quicklink {
   top: 10px;
 }
 
-.fullscreen .open #toggle-grid .showHide-btn {
-  background-position: -305px 0;
+.fullscreen #toggle-grid .show-hide {
+  background-image: url("/images/magazine/features/ss15-carousel/showhide-sprite.png");
+  background-repeat: no-repeat;
+  padding-left: 25px;
+}
+
+.fullscreen #show-copy {
+	background-position: 0 -5px;
+}
+
+.fullscreen #hide-copy {
+  background-position: 0 -24px;
+}
+
+.fullscreen .open #show-copy, .fullscreen #hide-copy {
+	display: none;
+}
+
+.fullscreen .open #hide-copy, .fullscreen #show-copy {
+	display: inline-block;
 }
 
 .fullscreen #toggle-grid {
   background-color: #fff;
   border-radius: 2px;
   display: block;
-  height: 11px;
+  height: 12px;
   padding: 5px 6px;
   position: absolute;
   right: 10px;
   text-align: center;
-  text-indent: -9999px;
   top: -32px;
-  width: 80px;
 }
 
 .fullscreen #toggle-grid .showHide-btn {
-  background-image: url("/images/magazine/features/ss15-carousel/spritesheet.png");
+  background-image: url("/images/magazine/features/five-of-the-best-floral/spritesheet.png");
   background-position: -232px 0;
   display: block;
-  height: 11px;
+  height: 12px;
   text-align: center;
   text-indent: -9999px;
-  width: 74px;
+  width: 27px;
 }
 
 .fullscreen #toggle-grid span {
-  display: block;
+  float: left;
+  line-height: 12px;
+  text-transform: uppercase;
+  font-family: BrandonGrotesque-Medium;
 }
 
 .fullscreen #toggle-grid span.hide {
@@ -742,7 +552,6 @@ li.mix > .quicklink {
   position: relative;
   top: 10px;
 }
-
 /* === Pagination (FULLSCREEN) === */
 /* == Normal mode == */
 .fullscreen #pager-wrapper {
@@ -795,12 +604,13 @@ li.mix > .quicklink {
 }
 
 .fullscreen .bx-pager-link {
+  box-sizing: border-box;
   display: inline-block;
   height: 100%;
   line-height: 0;
   max-width: 100%;
   overflow: hidden;
-  box-sizing: border-box;
+  border: 3px solid transparent;
 }
 
 .fullscreen .bx-pager-link > img {
@@ -822,119 +632,6 @@ li.mix > .quicklink {
 .fullscreen #pager-tab span.hide {
 	display: none;
 }
-
-/* == 'Dot' Mode == */
-/*.fullscreen .dot.top .bx-pager.bx-custom-pager {
-  margin: auto;
-  overflow: hidden;
-  position: relative;
-  text-align: center;
-  top: 0;
-  white-space: nowrap;
-  width: 1000px;
-  height: 100%;
-}
-
-.fullscreen .dot.top .bx-pager-item:hover > .bx-pager-link {
-  border-radius: 120px;
-  box-sizing: border-box;
-  height: 120px !important;
-  width: 120px;
-}
-
-.fullscreen #pager-wrapper.dot.top {
-  background-color: #fff;
-  height: 120px;
-  left: 0;
-  position: fixed;
-  top: -120px;
-  width: 100%;
-}
-
-.fullscreen .dot.top .bx-pager-item {
-  display: table-cell;
-  height: 120px;
-  padding: 0 23.3px;
-  vertical-align: middle;
-  max-width: 160px;
-  width: 160px;
-}
-
-.fullscreen .dot.top .bx-pager-link {
-  box-sizing: border-box;
-  display: table-cell;
-  height: 100%;
-  line-height: 0;
-  max-width: 100%;
-  overflow: hidden;
-}*/
-
-/* == 'Box' Mode == */
-/*.fullscreen .box.top .bx-pager.bx-custom-pager {
-  height: 100%;
-  margin: auto;
-  overflow: visible;
-  position: relative;
-  text-align: center;
-  top: 0;
-  white-space: nowrap;
-  width: 1000px;
-}
-
-.fullscreen .box.top .bx-pager-link {
-  box-sizing: border-box;
-  display: table-cell;
-  height: 50px;
-  line-height: 0;
-  max-width: 100%;
-  overflow: visible;
-}
-
-.fullscreen .box.top .bx-pager-item {
-  box-sizing: border-box;
-  display: inline-block;
-  height: 67px;
-  overflow: visible;
-  padding: 0 5px;
-  width: 100px;
-}
-
-.fullscreen .box.top .bx-pager-item:hover > .bx-pager-link {
-  border-radius: 120px;
-  box-sizing: border-box;
-  width: 120px;
-}
-
-.fullscreen #pager-wrapper.box.top {
-  background-color: #fff;
-  height: 50px;
-  left: 0;
-  position: fixed;
-  top: -50px;
-  width: 100%;
-  z-index: 1;
-}
-
-.fullscreen .box.top .bx-pager-item {
-  display: table-cell;
-  height: 50px;
-  max-width: 160px;
-  padding: 0 23.3px;
-  vertical-align: middle;
-  width: 160px;
-}
-
-.fullscreen .box.top .bx-pager-item:hover .thumb-inner > .thumb-img {
-  border: 3px solid #fff;
-  display: block;
-  height: 67px;
-  left: -56px;
-  margin: 4px;
-  top: 10px;
-  width: 100px;
-  z-index: 100;
-  box-shadow: 0 1px 2px 0;
-}*/
 
 /* == 'Overlay' Mode == */
 .fullscreen #pager-wrapper.overlay {
@@ -1013,7 +710,6 @@ li.mix > .quicklink {
 }
 
 .fullscreen .box.overlay .bx-pager-item .bx-pager-link:hover .thumb-inner > .thumb-img, .fullscreen .box.overlay .bx-pager-item .bx-pager-link.active .thumb-inner > .thumb-img {
-  border: 5px solid #d95167;
   box-shadow: none;
   box-sizing: border-box;
   display: block;
@@ -1057,7 +753,7 @@ li.mix > .quicklink {
   right: 10px;
 }
 
-.fullscreen .overlay.open #pager-loadbar {
+/*.fullscreen .overlay.open #pager-loadbar {
   background-color: red;
   bottom: 0;
   display: block;
@@ -1065,7 +761,7 @@ li.mix > .quicklink {
   left: 0;
   position: absolute;
   width: 0;
-}
+}*/
 
 /* === Navigation (FULLSCREEN) === */
 .fullscreen .bx-controls {
@@ -1144,6 +840,11 @@ li.mix > .quicklink {
   background-position: -154px -37px;
 }
 
+/* == Parallax Layers == */
+.layer {
+	position: relative;
+}
+
 
 /* ===================== Background position classes ===================== */
 /* Add these to .slide-container tags to position the bg image accordingly */
@@ -1216,20 +917,20 @@ li.mix > .quicklink {
 
 /* == Slide styles == */
 /* = Intro = */
-.intro .slide-container {
+#intro .slide-container {
 	background-image: url('/images/magazine/features/SS15-carousel/slide0-bg.jpg');
 }
 
-.intro .copy {
+#intro .copy {
   margin-left: 49.70997679814385%;
   width: 28.5963%;
 }
 
-.intro .copy h2 {
+#intro .copy h2 {
 	width: 100%;
 }
 
-.intro .copy p {
+#intro .copy p {
 	margin-top: 2em;
 }
 
@@ -1239,98 +940,98 @@ li.mix > .quicklink {
 
 
 /* = Slide 1 = */
-.slide1 .slide-container {
+#slide1 .slide-container {
 	background-image: url('/images/magazine/features/SS15-carousel/slide1-bg.jpg');
 }
 
-.slide1 .copy {
+#slide1 .copy {
 
 }
 
-.slide1 .copy > p {
+#slide1 .copy > p {
 
 }
 
-.slide1 a.quicklink, .slide1 a.quicklink:hover {
+#slide1 a.quicklink, #slide1 a.quicklink:hover {
 
 }
 
 /* = Slide 2 = */
-.slide2 .slide-container {
+#slide2 .slide-container {
 	background-image: url('/images/magazine/features/SS15-carousel/slide2-bg.jpg');
 }
 
-.slide2 .copy {
+#slide2 .copy {
 
 }
 
-.slide2 a.quicklink, .slide2 a.quicklink:hover {
+#slide2 a.quicklink, #slide2 a.quicklink:hover {
 
 }
 
 
 /* = Slide 3 = */
-.slide3 .slide-container {
+#slide3 .slide-container {
 	background-image: url('/images/magazine/features/SS15-carousel/slide3-bg.jpg');
 }
 
-.slide3 .copy {
+#slide3 .copy {
 
 }
 
-.slide3 .copy p {
+#slide3 .copy p {
 
 }
 
-.slide3 .copy h2 {
+#slide3 .copy h2 {
 
 }
 
-.slide3 .copy a.quicklink {
+#slide3 .copy a.quicklink {
 
 }
 
 
 /* = Slide 4 = */
-.slide4 .slide-container {
+#slide4 .slide-container {
 	background-image: url('/images/magazine/features/SS15-carousel/slide4-bg.jpg');
 }
 
-.slide4 .copy {
+#slide4 .copy {
 
 }
 
-.slide4 .copy p {
+#slide4 .copy p {
 
   }
 
-.slide4 .copy a.quicklink {
+#slide4 .copy a.quicklink {
 
 }
 
-.slide4 .copy a.quicklink .r-arw {
+#slide4 .copy a.quicklink .r-arw {
 
 }
 
 
 /* = Slide 5 = */
-.slide5 .slide-container {
+#slide5 .slide-container {
 	background-image: url('/images/magazine/features/SS15-carousel/slide5-bg.jpg');
 }
 
-.slide5 .copy {
+#slide5 .copy {
 
 }
 
-.slide5 .copy h2 {
+#slide5 .copy h2 {
 
 }
 
-.slide5 .copy p {
+#slide5 .copy p {
 
 }
 
-.slide5 .copy a.quicklink {
+#slide5 .copy a.quicklink {
 
 }
 
@@ -1368,77 +1069,77 @@ and (orientation : portrait) {
 		</div>
 	</div>
 </div>
-<div class="feature-wrapper ui-style1">
+<div class="feature-wrapper">
     <div id="viewport-container">
 		<ul class="bxslider">
-			<li class="active-slide empty intro">
+			<li id="intro" class="active-slide slide0">
 				<div class="slide-container bg-top-left">
 					<div class="content-container">
 						<div class="copy">
 							<h2>Lorem Ipsum</h2>
 							<p>Lorem Ipsum</p>
-							<a href="~/products/outfitting.aspx?qr=" class="quicklink">Lorem Ipsum <span class="r-arw"></span></a>
+							<a href="#" class="next">Lorem Ipsum <span class="r-arw"></span></a>
 						</div>
 					</div>
 					
 				</div>
 			</li>
 			
-			<li class="slide1">
+			<li id="slide1" class="slide1">
 				<div class="slide-container bg-top">
 					<div class="content-container">
 						<div class="copy">
 							<h2>Lorem Ipsum</h2>
 							<p>Lorem Ipsum</p>
-							<a href="~/products/outfitting.aspx?qr=" class="quicklink">Lorem Ipsum <span class="r-arw"></span></a>
+							<a href="~/products/outfitting.aspx?qr=WH793LAV|WU003PPK|AR660NUD|AV090YEL" class="retrieve quicklink">Lorem Ipsum <span class="r-arw"></span></a>
 						</div>
 					</div>
 				</div>
 			</li>
 			
-			<li class="slide2">
+			<li id="slide2" class="slide2">
 				<div class="slide-container bg-bottom">
 					<div class="content-container">
 						<div class="copy">
 							<h2>Lorem Ipsum</h2>
 							<p>Lorem Ipsum</p>
-							<a href="~/products/outfitting.aspx?qr=" class="quicklink">Lorem Ipsum <span class="r-arw"></span></a>
+							<a href="~/products/outfitting.aspx?qr=WH793LAV|WU003PPK|AR660NUD|AV090YEL" class="retrieve quicklink">Lorem Ipsum <span class="r-arw"></span></a>
 						</div>
 					</div>
 				</div>
 			</li>
 
-			<li class="slide3">
+			<li id="slide3" class="slide3">
 				<div class="slide-container bg-top">
 					<div class="content-container">
 						<div class="copy">
 							<h2>Lorem Ipsum</h2>
 							<p>Lorem Ipsum</p>
-							<a href="~/products/outfitting.aspx?qr=" class="quicklink">Lorem Ipsum <span class="r-arw"></span></a>
+							<a href="~/products/outfitting.aspx?qr=WH793LAV|WU993PPK|AR660NUD|AV090YEL" class="retrieve quicklink">Lorem Ipsum <span class="r-arw"></span></a>
 						</div>
 					</div>
 				</div>
 			</li>
 			
-			<li class="slide4">
+			<li id="slide4" class="slide4">
 				<div class="slide-container bg-right">
 					<div class="content-container">
 						<div class="copy">
 							<h2>Lorem Ipsum</h2>
 							<p>Lorem Ipsum</p>
-							<a href="~/products/outfitting.aspx?qr=" class="quicklink">Lorem Ipsum <span class="r-arw"></span></a>
+							<a href="~/products/outfitting.aspx?qr=WH793LAV|WU003PPK|AR660NUD|AV090YEL" class="retrieve quicklink">Lorem Ipsum <span class="r-arw"></span></a>
 						</div>
 					</div>
 				</div>
 			</li>
 			
-			<li class="slide5">
+			<li id="slide5" class="slide5">
 				<div class="slide-container bg-top">
 					<div class="content-container">
 						<div class="copy">
 							<h2>Lorem Ipsum</h2>
 							<p>Lorem Ipsum</p>
-							<a href="~/products/outfitting.aspx?qr=" class="quicklink">Lorem Ipsum <span class="r-arw"></span></a>
+							<a href="~/products/outfitting.aspx?qr=WH793LAV|WU003PPK|AR660NUD|AV090YEL" class="retrieve quicklink">Lorem Ipsum <span class="r-arw"></span></a>
 						</div>
 					</div>
 				</div>
@@ -1450,12 +1151,7 @@ and (orientation : portrait) {
 			<div id="pager-container">
 				
 			</div>
-			<div id="pager-tab">
-				<p>
-					<span class="open-copy">Nav</span>
-					<span class="close-copy">Close</span>
-				</p>
-			</div>
+			<div id="pager-tab"></div>
 			<div id="pager-loadbar"></div>
 		</div>
 		
@@ -1473,7 +1169,7 @@ and (orientation : portrait) {
 		<div id="fullscreen_nav-right" class="fullscreen-nav"></div>
 		<div class="fullscreen-info">
 			<a title="Bag" href="~/checkout/shopping-bag.html#nav" id="shopping-bag">
-				<h2>Bag</h2>
+				<h2 id="bag-copy">Bag</h2>
 				<span class="bagCounter" id="sb-qty">0</span><span class="sbItemText">items</span>
 				<span class="sbTotalPriceText">Total</span>
 				<span id="sb-value">&pound;0.00</span>  
@@ -1486,9 +1182,8 @@ and (orientation : portrait) {
 	<div class="grid-container">
 		<a href="#" class="quicklink" id="complete-look">Buy Complete Look</a>
 		<a href="#" id="toggle-grid">
-			<span class="showHide-btn"></span>
-			<!--span class="open-copy">Show</span>
-			<span class="close-copy">Hide</span-->
+			<span class="show-hide" id="show-copy">Show</span>
+			<span class="show-hide" id="hide-copy">Hide</span>
 		</a>
 		<ul id="grid">
 			<!-- Products are dynamically created here -->
@@ -1499,7 +1194,6 @@ and (orientation : portrait) {
 
 <script type="text/javascript" src="/content/scripts/jquery.bxslider.min.js"></script>
 <script type="text/javascript" src="/content/scripts/TweenMax.min.js"></script>
-<script src="/content/scripts/imagesloaded.pkgd.min.js"></script>
 <script src="/content/scripts/jquery.mixitup-v2.js"></script>
 
 <script>
@@ -1519,13 +1213,14 @@ var globalSettings = {
 	fontParent: '#viewport-container',
 	productCodes: 
 		[
-			null
-			,'WH700DPR|WH700NVY|WH700GLD|WH700RED|WH700TEL'
-			,'WH700DPR|WH700NVY|WH700GLD|WH700RED|WH700TEL'
-			,'WH700DPR|WH700NVY|WH700GLD|WH700RED|WH700TEL'
-			,'22348IND|22340BL'
-			,'22335BLU|21683BB'
-		]
+			null,
+			'WH793LAV|WU003PPK|AR660NUD|AV090YEL',
+			'WK959SPK|WH779BLU|AR654PPK',
+			'WG590RED|AR662BLK',
+			'WC114OAT|WV020GRY|WE479OYS|AR662BLK',
+			'WE465NAV|WH787PPK|AR654BLK|AM224YEL'
+		],
+	market: $('html').attr('lang')
 }
 
 // SLIDER
@@ -1537,7 +1232,6 @@ var Slider = {
 		fullscreenEnabled: true,
 		fullscreenButton: $('.fullscreen-btn'),
 		body: globalSettings.body,
-		viewportMeta: globalSettings.viewportMeta,
 		resizeTimerDelay: 200,
 		dynamicFontSize: true,
 		navLocation: {
@@ -1545,7 +1239,8 @@ var Slider = {
 			fullscreen: '#fullscreen_nav-'
 		},
 		timer: null,
-		uiSwitchSliders: false //integer or array, depending on the index of slide that requires switching. false if not necessary
+		uiSwitchSliders: false, //integer or array, depending on the index of slide that requires switching. false if not necessary
+		translateEnabled: false //if true, all default live copy will be translated
 	},
 	slider: null,
 	bindUIactions: function() {
@@ -1602,6 +1297,19 @@ var Slider = {
 		}
 		return false;
 	},
+	translate: function(market) {
+		if(!this.settings.translateEnabled) return false;
+		var bag = ['Bag', 'Warenkorb', 'Panier' ];
+		var show = ['Show','Anzeigen', 'Montrer' ];
+		var hide = ['Hide', 'Verbergen', 'Cacher' ];
+		var buylook = ['Buy complete look', 'Den kompletten Look shoppen', 'Acheter la tenue compl&#232;te'];
+		var mkt = market.slice(0,2);
+		var lang = (mkt === 'en') ? 0 : (mkt === 'de') ? 1 : (mkt === 'fr') ? 2 : 0;
+		$('#bag-copy').text(bag[lang]);
+		$('#show-copy').text(show[lang]);
+		$('#hide-copy').text(hide[lang]);
+		$('#complete-look').text(buylook[lang]);
+	},
 	initialise: function(slider) {
 		if(this.settings.fullscreenEnabled) {
 			this.bindUIactions();
@@ -1615,9 +1323,11 @@ var Slider = {
 		Pager.initialise();
 		Ghosts.initialise();
 		this.bindWindowResize();
-		Quicklink.apply();
+		
 		this.moveToTop();
 		JpgAnimate.initialise();
+		this.translate(globalSettings.market);
+		ShoppingBag.update();
 	},
 	mode: {
 		normal: function() { return  Slider.getSliderAttr(Slider.settings.normalWidth, Slider.settings.initialSlide, Slider.settings.navLocation.normal)},
@@ -1665,7 +1375,10 @@ var Slider = {
 			ProductGrid.autoHide([gridUI.completeLook], currentIndex, fade);
 		}
 	},
-	
+	vpWidth: function() {
+		var vpWidth = (this.isFullscreen()) ? $(window).width() : this.settings.normalWidth;
+		return vpWidth;
+	},
 	// Dynamically create bxSlider attributes
 	getSliderAttr: function(width, currentIndex, navLocation) {
 		return {
@@ -1679,6 +1392,7 @@ var Slider = {
 				,onSliderLoad: function(currentIndex) {
 					
 					cmCreateElementTag(globalSettings.cm_tag + '_' + currentIndex, 'OUTFIT');
+					Quicklink.apply();
 					Slider.settings.initialSlide = currentIndex;
 					Slider.autoHide(currentIndex, false);	
 					Slider.setFontSize(globalSettings.fontSize, globalSettings.PSDWidth, $(window).width(), globalSettings.fontParent, Slider.isFullscreen());
@@ -1690,7 +1404,7 @@ var Slider = {
 					if(Pager.isOpen()) {
 						Pager.togglePager(true);
 					}
-					
+					Layers.slide($slideElement, Slider.vpWidth(), oldIndex, newIndex);
 					ProductGrid.applyMix(newIndex);
 					ProductGrid.updateOutfit(newIndex);
 					Slider.settings.initialSlide = newIndex;
@@ -1762,7 +1476,7 @@ var Pager = {
 			this.settings.wrapper.remove();
 		}
 		return false;
-		
+
 	},
 	isOpen: function() { return this.settings.wrapper.hasClass('open') },
 	togglePager: function(loadDelay) {
@@ -1770,64 +1484,40 @@ var Pager = {
 		var load = (typeof loadDelay == 'undefined') ? false : true;
 		var dly = (load) ? $pager.animationSpeed : 0;
 		
-		switch($pager.fullscreenStyle) {
-			case 'top':
-				
-				var pagerHeight = $pager.wrapper.height();
-				if(this.img.css('display') === 'none') {
-					this.img.show();
-				}
-				this.wrapper.toggleClass('open');
-				var mod = (this.isOpen()) ? '+=' : '-=';
-				this.wrapper.delay(dly).animate({
-					top: mod + pagerHeight
-				}, $pager.animationSpeed);
-				if(this.img.is(':visible') && OPTIONS.thumbnail.hoverStyle === 'box') {
-					this.img.fadeOut($pager.animationSpeed / 2);
-				}
-				break;
-				
-			case 'overlay':
-				if(this.isOpen()) {
-					var delay = 0;
-					var len = $pager.item.length;
-					var delayMod = $pager.animationSpeed / len;
-					
-					$pager.item.each(function(){
-						$(this).delay(delay += delayMod).fadeOut(function(){
-							if($(this).index() + 1 === len) {
-								$pager.item.each(function(){
-									$(thiS).removeAttr('style');
-								});
-							}
+		if(this.isOpen()) {
+			var delay = 0;
+			var len = $pager.item.length;
+			var delayMod = $pager.animationSpeed / len;
+			
+			$pager.item.each(function(){
+				$(this).delay(delay += delayMod).fadeOut(function(){
+					if($(this).index() + 1 === len) {
+						$pager.item.each(function(){
+							$(thiS).removeAttr('style');
 						});
-						
-					});
-				}
+					}
+				});
 				
-				if(!Modernizr.csstransitions) {
-					var end = (this.isOpen()) ? '-100%' : '0%';
-					var tabEnd = (this.isOpen()) ? '-70px' : '10px';
-					this.changeText();
-					$pager.wrapper.stop(true).delay(dly).animate(
-						{'left': end}, 
-						$pager.animationSpeed, 
-						function(){	Pager.settings.wrapper.toggleClass('open')	}
-					);
-					$pager.ui.toggleBtn.delay(dly).animate(
-						{'right': tabEnd},
-						$pager.animationSpeed
-					);
-					
-				} else {
-					$pager.wrapper.toggleClass('open');
-				}
-
-				
-				
-				break;
-				
+			});
 		}
+		
+		if(!Modernizr.csstransitions) {
+			var end = (this.isOpen()) ? '-100%' : '0%';
+			var tabEnd = (this.isOpen()) ? '-70px' : '10px';
+			this.changeText();
+			$pager.wrapper.stop(true).delay(dly).animate(
+				{'left': end}, 
+				$pager.animationSpeed, 
+				function(){	Pager.settings.wrapper.toggleClass('open')	}
+			);
+			$pager.ui.toggleBtn.delay(dly).animate(
+				{'right': tabEnd},
+				$pager.animationSpeed
+			);
+			
+		} else {
+			$pager.wrapper.toggleClass('open');
+		};
 	},
 	changeText: function() {
 		if(this.settings.ui.textBased) {
@@ -1865,13 +1555,14 @@ var ProductGrid = {
 		defaultHidden: true,		// Boolean
 		container: $('.grid-container'), // jQuery selector
 		listContainer: $('#grid'),	// jQuery selector
-		codes: globalSettings.productCodes, // Array
+		codes: globalSettings.productCodes, // Array or 'auto'
 		quickshopPath: globalSettings.quickshopPath, // String
 		animationSpeed: globalSettings.animationSpeed, // Integer (in ms)
 		animationEasing: 'ease', 	// String, options: ease|linear|ease-in|ease-out|ease-in-out|cubic-bezier()|initial|inherit;
 		animationDelay: 0, 			// integer (in ms)
 		openClass: 'open',			// String
 		maxHeight: 210,				// Integer
+		market: globalSettings.market,
 		ui: {
 			completeLook: $('#complete-look'),
 			toggleBtn: $('#toggle-grid'),
@@ -1882,6 +1573,7 @@ var ProductGrid = {
 	},
 	initialise: function() {
 		if(this.settings.enabled) {
+			this.autoCodes();
 			this.generate();
 			this.applyMix();
 			this.bindUIactions();
@@ -1896,12 +1588,19 @@ var ProductGrid = {
 			} else {
 				this.settings.ui.toggleBtn.find('span').hide();
 			}
+			
+			
 		} else {
 			this.settings.container.remove();
 		}
 		return false;
 
-		
+	},
+	autoCodes: function() {
+		var array = (this.settings.codes === 'auto') ?
+			this.retrieveCodes() :
+			this.settings.codes;
+		this.settings.codes = array;
 	},
 	bindUIactions: function() {
 		this.settings.ui.toggleBtn.click(function(){
@@ -1917,27 +1616,49 @@ var ProductGrid = {
 			}
 		}
 	},
+	retrieveCodes: function() {
+		var li = $('.bxslider').children('li').not('.bx-clone');
+		var $retrieve = $('.quicklink.retrieve');
+		var array = Array();
+		var exclStr = ProductGrid.settings.market + ProductGrid.settings.quickshopPath;
+		li.each(function() {
+			var $retrieve = $('.quicklink.retrieve',this);
+			if($retrieve.length == 0) {
+				array.push(null);
+			} else {
+				var href = $retrieve.attr('href');
+				var codes = href.replace('/' + ProductGrid.settings.market + ProductGrid.settings.quickshopPath, '');
+				array.push(codes);
+			}
+		});
+		return array;
+	},
 	mergedCodes: function() {
-		return this.settings.codes.toString().replace(/,/g , '|').slice(1);
+		return this.settings.codes.toString().replace(/,/g , '|');
 	},
 	generate: function() {
 		var html = '';
 		var path = this.settings.quickshopPath + this.mergedCodes();
 		var productCodes = this.settings.codes;
+		
 		$.get(path, function(data) {
 			var $data = $(data);
 			var img = $data.find('.ProductMain');
-			var imgEq = -1;
+			var imgEq = 0;
 			for(i = 0; i < productCodes.length; i++) {
 				
 				if(productCodes[i] != null) {
-					
 					var current = productCodes[i];
 					var array = productCodes[i].split('|');
 					for(x = 0; x < array.length; x++) {
-						var tag = '<li class="mix slide' + i + '"><a class="quicklink" href="~/products/outfitting.aspx?qr=' + array[x] + '"><img src="' + img.eq(++imgEq).attr('src') + '" /></a></li>';
-						html += tag;
-						
+						var baseCode = array[x].slice(0,5);
+						if($('[data-productcode=' + baseCode + ']', $data).data('productcode') != null) {
+							var tag = '<li class="mix slide' + i + '"><a class="quicklink" href="~/products/outfitting.aspx?qr=' + array[x] + '"><img src="' + img.eq(imgEq).attr('src') + '" /></a></li>';
+							imgEq++;
+							html += tag;
+						} else {
+							console.log('The product code does not exist: ' + array[x]);
+						}
 					}
 				}
 			}
@@ -1966,7 +1687,6 @@ var ProductGrid = {
 			
 		}
 		$grid.container.toggleClass('open');
-
 	},
 	changeText: function() {
 		if(this.settings.ui.textBased) {
@@ -1978,14 +1698,14 @@ var ProductGrid = {
 	},
 	autoHide: function(target, index, fade) {
 		var fadeFx = (typeof fade == 'undefined') ? false : true;
-		
+		var codes = this.settings.codes;
 		for(i = (target.length - 1); i >= 0; i--) {
 			var current = target[i];
 			
-			if(this.settings.codes[index] === null) {
+			if(codes[index] === null) {
 				(fadeFx) ? current.fadeOut(this.settings.animationSpeed) : current.hide();
 			} else {
-				if(current.is(':visible')) { return false; }
+				if(current.is(':visible')) return false;
 				(fadeFx) ? current.fadeIn(this.settings.animationSpeed) : current.show();
 			}
 		}
@@ -1998,7 +1718,8 @@ var ProductGrid = {
 		});	
 	},
 	filterGrid: function(newIndex) {
-		var filter = (newIndex != 0) ? '.slide' + newIndex : 'none';
+		var code = this.settings.codes;
+		var filter = (code[newIndex] != null) ? '.slide' + newIndex : 'none';
 		this.settings.listContainer.mixItUp('filter', filter);
 	},
 	updateOutfit: function(newIndex) {
@@ -2028,24 +1749,13 @@ var Quicklink = {
 						$('#fancybox-content').height($(this).contents().find('body').height()+15);
 						$.fancybox.center(true);
 					});
-					
 				},
 				'afterLoad' : function() {
-					if (Quicklink.settings.updateBagAfterLoad) {
-						ShoppingBag.afterLoad() 
-					} else {
-						return false;
-					}
-					
+					if (Quicklink.settings.updateBagAfterLoad) ShoppingBag.afterLoad();
 				},
 				'beforeClose' : function() {
-					if (Quicklink.settings.updateBagBeforeClose) {
-						ShoppingBag.beforeClose() 
-					} else {
-						return false;
-					}
+					if (Quicklink.settings.updateBagBeforeClose) ShoppingBag.beforeClose();
 				}
-
 			});    
 		});
 	}
@@ -2054,11 +1764,10 @@ var Quicklink = {
 // SHOPPING BAG
 // This module controls the shopping bag functionality
 var ShoppingBag = {
-	market: $('html').attr('lang'),
+	market: globalSettings.market,
 	afterLoad: function() {
 		if(Slider.isFullscreen()) {
-			var fancybox = $('iframe').contents();
-			var btn = $('iframe').contents().find('#addToBagBtn');
+			var btn = $('.fancybox-iframe').contents().find('#addToBagBtn');
 			btn.click(function(){
 				if($(this).hasClass('enabled')) {
 					$('#shopping-bag').removeClass('changed').addClass('changed');
@@ -2077,7 +1786,6 @@ var ShoppingBag = {
 	},
 	update: function() {
 		var bag = $('#bagPreview');
-		console.log(this.market);
 		$.get('/ClientControls/Products/ShoppingBag.aspx?LanguageCode=' + this.market, function(data) {
 			var $data = $(data);
 			var shopping = {qty: $data.find('#ShoppingBag1_lblCount').text(), value: $data.find('#ShoppingBag1_lblTotal').text()};
@@ -2150,8 +1858,26 @@ var JpgAnimate = {
 		if(newScene != undefined) newScene.play();
 		if(oldScene != undefined) oldScene.pause();
 	}
-}	
+}
 
+//Parallax layers
+var Layers = {
+	settings: {
+		enabled: false,
+		layerClass: 'layer',
+		duration: 1,
+		delay: 0.4
+	},
+	slide: function(parent, vpWidth, oldIndex, newIndex) {
+		var settings = this.settings;
+		if(!settings.enabled) return false;
+		var layers = parent.find('.' + settings.layerClass);
+		var forward = (oldIndex - newIndex) ? true : false;
+		var startPoint = vpWidth;
+		var attr = (forward) ? {left: startPoint, right: 'auto'} : {right: startPoint, left: 'auto'};
+		TweenMax.staggerFrom(layers, settings.duration, attr, settings.delay);
+	}
+}
 
 // GHOSTS
 // This module controls the navigation "ghost" overlay
@@ -2185,5 +1911,6 @@ $(document).ready(function(){
 $(window).load(function() {
 	$('#loading-overlay').fadeOut();
 	$(this).scrollTop(118);
+	ProductGrid.applyMix(0);
 });
 </script>
