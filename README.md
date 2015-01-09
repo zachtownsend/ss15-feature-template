@@ -79,36 +79,36 @@ slider_settings: {
 },
 pager_settings: {
   enabled: true,
-  fullscreenStyle: 'overlay',             // overlay|top
-  hoverStyle: 'normal',                 // normal|dot|box
+  fullscreenStyle: 'overlay',             
+  hoverStyle: 'normal',                 
   imageType: (Modernizr.backgroundsize) ? 'background' : 'inline', // inline|background
-  scrollable: false,                  // Boolean
-  animationSpeed: globalSettings.animationSpeed,    // integer (in ms)
+  scrollable: false,                  
+  animationSpeed: globalSettings.animationSpeed,    
   animationEase: 'ease',
   animationDelay: 0,
   imgPath: globalSettings.imgPath,
   nameFormat: {prefix: 'slide', suffix: '-thumbnail.jpg'},
-  wrapper: $('#pager-wrapper'),           // jQuery selector
-  container: $('#pager-container'),         // jQuery selector
-  item: $('.bx-pager-item'),              // jQuery selector
-  img: $('.thumb-img'),               // jQuery selector
+  wrapper: $('#pager-wrapper'),           
+  container: $('#pager-container'),         
+  item: $('.bx-pager-item'),              
+  img: $('.thumb-img'),               
   ui: {
-    toggleBtn: $('#pager-tab'),           // jQuery selector
-    textBased: false                  // Boolean
+    toggleBtn: $('#pager-tab'),
+    textBased: false
   }
 },
 productgrid_settings: {
-  enabled: true,        // Boolean
-  defaultHidden: true,    // Boolean
-  container: $('.grid-container'), // jQuery selector
-  listContainer: $('#grid'),  // jQuery selector
-  codes: globalSettings.productCodes, // Array or 'auto'
-  quickshopPath: globalSettings.quickshopPath, // String
-  animationSpeed: globalSettings.animationSpeed, // Integer (in ms)
-  animationEasing: 'ease',  // String, options: ease|linear|ease-in|ease-out|ease-in-out|cubic-bezier()|initial|inherit;
-  animationDelay: 0,      // integer (in ms)
-  openClass: 'open',      // String
-  maxHeight: 210,       // Integer
+  enabled: true,
+  defaultHidden: true,
+  container: $('.grid-container'),
+  listContainer: $('#grid'),
+  codes: globalSettings.productCodes,
+  quickshopPath: globalSettings.quickshopPath,
+  animationSpeed: globalSettings.animationSpeed,
+  animationEasing: 'ease',  
+  animationDelay: 0, 
+  openClass: 'open', 
+  maxHeight: 210, 
   market: globalSettings.market,
   ui: {
     completeLook: $('#complete-look'),
