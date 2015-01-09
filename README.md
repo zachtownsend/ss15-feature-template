@@ -1,181 +1,325 @@
-<h1>ss15-feature-template</h1>
+# ss15-feature-template
 
-<h2>Description</h2>
-<p>This is the Boden feature template which is designed to improve the feature development workflow and maintain a 
-consistent experience to the customer. It follows a modular design allowing features to be switched on and off easily.</p>
+## Description
+This is the Boden feature template which is designed to improve the feature development workflow and maintain a 
+consistent experience to the customer. It follows a modular design allowing features to be switched on and off easily.
 
-<h2>Settings</h2>
+## Basic Usage
+### Create new instance
+Create a new instance of the template and use the ```init()``` method to initialise the template:
 
-  <h3>General</h3>
-  Most modules have an option called "enabled". If you wish to turn off that particular functionality set this to 
-  false.
+```javascript
+var Slider = new BodenCarousel();
+Slider.init();
+```
+
+This will create the template with the default settings
+
+### Customising the template
+In order to customise the template, define the custom settings in an object, then pass this to the constructor function when instantiating the carousel:
+
+```javascript
+var custom_settings = {
+  global_settings: {
+    cm_tag: 'SS15-TEMPLATE',
+    imgPath: '/images/magazine/features/SS15-carousel/',
+    animationSpeed: 400, //in ms
+    productCodes: 
+      [
+        null,
+        'WG590RED|WG590RED|WG590RED|WG590RED',
+        'WG590RED|WG590RED|WG590RED',
+        'WG590RED|WG590RED',
+        'WG590RED|WG590RED|WG590RED|WG590RED',
+        'WG590RED|WG590RED|WG590RED|WG590RED'
+      ]
+  }
+}
+```
+
+Each module has it's own settings object within which you can define your custom settings. Here is a list of the settings and their defaults
+
+```javascript
+global_settings: {
+  cm_tag: 'SS15-TEMPLATE',
+  imgPath: '/images/magazine/features/SS15-carousel/',
+  quickshopPath: '/products/outfitting.aspx?qr=',
+  animationSpeed: 400, //in ms
+  body: $('body'),
+  fontSize: 25,
+  PSDWidth: 1724,
+  fontParent: '#viewport-container',
+  productCodes: 
+    [
+      null,
+      'WH793LAV|WU003PPK|AR660NUD|AV090YEL',
+      'WK959SPK|WH779BLU|AR654PPK',
+      'WG590RED|AR662BLK',
+      'WC114OAT|WV020GRY|WE479OYS|AR662BLK',
+      'WE465NAV|WH787PPK|AR654BLK|AM224YEL'
+    ],
+  market: $('html').attr('lang')
+},
+slider_settings: {
+  initialSlide: 0,
+  activeClass: 'active-slide',
+  normalWidth: 1000,
+  fullscreenEnabled: true,
+  fullscreenButton: $('.fullscreen-btn'),
+  body: globalSettings.body,
+  resizeTimerDelay: 200,
+  dynamicFontSize: true,
+  navLocation: {
+    normal: '#ghost-', 
+    fullscreen: '#fullscreen_nav-'
+  },
+  timer: null,
+  uiSwitchSliders: false, //integer or array, depending on the index of slide that requires switching. false if not necessary
+  translateEnabled: false //if true, all default live copy will be translated
+},
+pager_settings: {
+  enabled: true,
+  fullscreenStyle: 'overlay',             // overlay|top
+  hoverStyle: 'normal',                 // normal|dot|box
+  imageType: (Modernizr.backgroundsize) ? 'background' : 'inline', // inline|background
+  scrollable: false,                  // Boolean
+  animationSpeed: globalSettings.animationSpeed,    // integer (in ms)
+  animationEase: 'ease',
+  animationDelay: 0,
+  imgPath: globalSettings.imgPath,
+  nameFormat: {prefix: 'slide', suffix: '-thumbnail.jpg'},
+  wrapper: $('#pager-wrapper'),           // jQuery selector
+  container: $('#pager-container'),         // jQuery selector
+  item: $('.bx-pager-item'),              // jQuery selector
+  img: $('.thumb-img'),               // jQuery selector
+  ui: {
+    toggleBtn: $('#pager-tab'),           // jQuery selector
+    textBased: false                  // Boolean
+  }
+},
+productgrid_settings: {
+  enabled: true,        // Boolean
+  defaultHidden: true,    // Boolean
+  container: $('.grid-container'), // jQuery selector
+  listContainer: $('#grid'),  // jQuery selector
+  codes: globalSettings.productCodes, // Array or 'auto'
+  quickshopPath: globalSettings.quickshopPath, // String
+  animationSpeed: globalSettings.animationSpeed, // Integer (in ms)
+  animationEasing: 'ease',  // String, options: ease|linear|ease-in|ease-out|ease-in-out|cubic-bezier()|initial|inherit;
+  animationDelay: 0,      // integer (in ms)
+  openClass: 'open',      // String
+  maxHeight: 210,       // Integer
+  market: globalSettings.market,
+  ui: {
+    completeLook: $('#complete-look'),
+    toggleBtn: $('#toggle-grid'),
+    showBtnClass: 'show-btn',
+    itemClass: 'page-nav',
+    textBased: true
+  }
+},
+quicklink_settings: {
+  updateBagAfterLoad: true,
+  updateBagBeforeClose: true
+},
+jpganimate_settings: {
+  enabled: false,
+  container: '.bg-container',
+  slidePrefix: '.slide',
+  imgPath: globalSettings.imgPath,
+  speed: 300, //in ms
+  repeat: -1,
+  paused: true,
+  yoyo: true,
+  repeatDelay: 0, //in ms
+  scene: [null, 8, 8, 10, 8, 10],
+  css3: Modernizr.backgroundsize,
+  ctl: null
+},
+layers_settings: {
+  enabled: false,
+  layerClass: 'layer',
+  duration: 1,
+  delay: 0.4
+},
+ghosts_settings: {
+  enabled: true,
+  selector: $('.ghost')
+}
+```
+
+## Settings
+
+### General
+Most modules have an option called "enabled". If you wish to turn off that particular functionality set this to 
+false.
+
+### Global Settings
+```cm_tag```
+  This sets the string you provide for the Coremetrics tracking.
   
-  <h3>Global Settings</h3>
-  <h4>cm_tag</h4>
-    This sets the string you provide for the Coremetrics tracking.
-    
-  <h4>imgPath</h4>
-    This is the path to the image folders for this feature.
-    
-  <h4>quickshopPath</h4>
-    This is the standard quickshop path. You should probably never need to change this, but this is just in case the 
-    back-end of the site is changed for some reason.
-    
-  <h4>animationSpeed</h4>
-    This is the general animation speed used throughout the feature. This helps the different modules maintain
-    consistent animation speeds. These can be overwritten in individual module settings.
-    
-  <h4>body</h4>
-    This caches the 'body' tag as a jQuery selector
-    
-  <h4>fontSize/PSDWidth</h4>
-    This was meant to make responsive live text easy to calculate by working out the ratio of the font size and canvas
-    width in the original PSD's, but as the designers quite often resize the texts this makes this calculation
-    redundant. However, you can still tweak the fontSize attribute to get the effect you want, but it is a case of
-    trial-and-error.
-    
-  <h4>fontParent</h4>
-    This is the element that has an absolute font-size CSS style set, from which the aforementioned responsive live
-    text is calculated.
-    
-  <h4>productCodes</h4>
-    This is where you set the product codes for each slide. This is purely for dynamically creating the product grid, 
-    so if this module is disabled this setting is irrelevent. Each cell represents the slide number, so put the 
-    product code string into the relevent cell to generate the grid for that cell. If the slide doesn't have any 
-    products just enter null.
-    
-  <h4>market</h4>
-    This automatically gets the market code (eg. en-GB, en-US, de-AT etc.).
-    
+```imgPath```
+  This is the path to the image folders for this feature.
   
+```quickshopPath```
+  This is the standard quickshop path. You should probably never need to change this, but this is just in case the 
+  back-end of the site is changed for some reason.
   
-  <h3>Slider</h3>
-  This is the core module where all the settings are initialised. This is the only module that is dependent on other modules, and it's purpose is to pull all the modules together and run them correctly.
-  <h4>initialSlide</h4>
-    Index of starting slide.
-    
-  <h4>activeClass</h4>
-    This is the class added to the container of the active slide.
-    
-  <h4>normalWidth</h4>
-    This is the width of the slide in small screen mode.
-    
-  <h4>fullscreenEnabled</h4>
-    This switches the fixed width/fullscreen toggle functionality
-    
-  <h4>fullscreenButton</h4>
-    This is the selector for the button that toggles the fullscreen mode
-    
-  <h4>body</h4>
-    See global settings
-    
-  <h4>resizeTimerDelay</h4>
-    When you resize the window in fullscreen mode, the bx-slider reloads itself with new settings. This sets the delay
-    before this happens to prevent the reload from happening after the window resize has complete.
-    
-  <h4>dynamicFontSize</h4>
-    This enables the responsive live text functionality mentioned in the global settings section above.
-    
-  <h4>navLocation</h4>
-    This is the prefix for the the navigation arrows for fixed width mode ('normal') and fullscreen mode 
-    ('fullscreen'). Probably leave these as they are.
-    
-  <h4>uiSwitchSliders</h4>
-    This is in case you need a different UI style on particular slides. This is typically required if the UI element  
-    colour is obscured by the slide.
-    
-  <h4>translateEnabled</h4>
-    This enables the generic live copy on the page to be automatically translated into the appropriate language. Leave
-    this as false for English language countries.
+```animationSpeed```
+  This is the general animation speed used throughout the feature. This helps the different modules maintain
+  consistent animation speeds. These can be overwritten in individual module settings.
   
+```body```
+  This caches the 'body' tag as a jQuery selector
   
-  <h3>Pager</h3>
-  This handles all the settings and methods for the pagination of the feature.
-  <h4>fullscreenStyle</h4>
-    This declares the style for pagination. This should probably be removed at some point as 'overlay' mode will probably be the only mode used.
-    
-  <h4>hoverStyle</h4>
-  This selects the effect that happens when the user hovers over the thumbnail. As above, this may be removed in the future if other options aren't used.
+```fontSize/PSDWidth```
+  This was meant to make responsive live text easy to calculate by working out the ratio of the font size and canvas
+  width in the original PSD's, but as the designers quite often resize the texts this makes this calculation
+  redundant. However, you can still tweak the fontSize attribute to get the effect you want, but it is a case of
+  trial-and-error.
   
-  <h4>imageType</h4>
-  This declares the type of image that is used for the thumbnails, either inline or background. Background is probably the preferable option as it is more responsive
+```fontParent```
+  This is the element that has an absolute font-size CSS style set, from which the aforementioned responsive live
+  text is calculated.
   
-  <h4>scrollable</h4>
-  This feature is unfinished, but the original idea is if there are a lot of slides, the pagination could be scrollable to fit more in.
+```productCodes```
+  This is where you set the product codes for each slide. This is purely for dynamically creating the product grid, 
+  so if this module is disabled this setting is irrelevent. Each cell represents the slide number, so put the 
+  product code string into the relevent cell to generate the grid for that cell. If the slide doesn't have any 
+  products just enter null.
   
-  <h4>animationSpeed / imgPath</h4>
-  See globalSettings
+```market```
+  This automatically gets the market code (eg. en-GB, en-US, de-AT etc.).
   
-  <h4>animationEase</h4>
-  This sets the ease mode for the CSS3 animations
+
+
+### Slider
+This is the core module where all the settings are initialised. This is the only module that is dependent on other modules, and it's purpose is to pull all the modules together and run them correctly.
+```initialSlide```
+  Index of starting slide.
   
-  <h4>animationDelay</h4>
-  This is the delay before the animation starts
+```activeClass```
+  This is the class added to the container of the active slide.
   
-  <h4>nameFormat</h4>
-  This sets the prefix and suffix for the thumbnail images.
+```normalWidth```
+  This is the width of the slide in small screen mode.
   
-  <h4>wrapper/container/item/img</h4>
-  Caches useful selectors
+```fullscreenEnabled```
+  This switches the fixed width/fullscreen toggle functionality
   
+```fullscreenButton```
+  This is the selector for the button that toggles the fullscreen mode
   
-  <h3>ProductGrid</h3>
-  This handles all the settings and methods for the dynamic product grid.
+```body```
+  See global settings
   
-  <h4>defaultHidden</h4>
-  This sets whether the product grid is hidden or shown by default
+```resizeTimerDelay```
+  When you resize the window in fullscreen mode, the bx-slider reloads itself with new settings. This sets the delay
+  before this happens to prevent the reload from happening after the window resize has complete.
   
-  <h4>codes</h4>
-  Here you can either enter an array of product codes (see productCodes in Global Settings), or you can set this to retrieve the codes from your HTML if you enter 'auto'. Add 'retrieve' to each 'quicklink' class that you want to retrieve the codes from. There can only be 1 retrieve class per slide for this to work.
+```dynamicFontSize```
+  This enables the responsive live text functionality mentioned in the global settings section above.
   
-  <h4>Open Class</h4>
-  Sets the class that is added when the product grid is open
+```navLocation```
+  This is the prefix for the the navigation arrows for fixed width mode ('normal') and fullscreen mode 
+  ('fullscreen'). Probably leave these as they are.
   
-  <h4>maxHeight</h4>
-  Set's max height for product grid in fullscreen mode
+```uiSwitchSliders```
+  This is in case you need a different UI style on particular slides. This is typically required if the UI element  
+  colour is obscured by the slide.
   
-  <h4>ui</h4>
-  Selectors for UI elements
+```translateEnabled```
+  This enables the generic live copy on the page to be automatically translated into the appropriate language. Leave
+  this as false for English language countries.
+
+
+### Pager
+This handles all the settings and methods for the pagination of the feature.
+```fullscreenStyle```
+  This declares the style for pagination. This should probably be removed at some point as 'overlay' mode will probably be the only mode used.
   
-  
-  <h3>Quicklink</h3>
-  This handles the quicklink functionality
-  
-  <h4>updateBagAfterLoad</h4>
-  If true, the shopping bag will be updated after you open a quickshop
-  
-  <h4>updateBagBeforeClose</h4>
-  If true, the shopping bag will be updated just before the quickshop closes
-  
-  
-  <h3>JpgAnimate</h3>
-  This handles the Jpeg animation functionality.
-  
-  <h4>container</h4>
-  This sets the container for which the animation frames are generated
-  
-  <h4>slidePrefix</h4>
-  Just leave this as it is...
-  
-  <h4>speed</h4>
-  This is the framerate of the animation in ms
-  
-  <h4>repeat</h4>
-  This is how many times the animation repeats. -1 is continous loop.
-  
-  <h4>paused</h4>
-  If true, the animation will be paused until it is told to play when you go to that slide.
-  
-  <h4>yoyo</h4>
-  If true, the animation will go through all the frames and then reverse back through them
-  
-  <h4>repeatDelay</h4>
-  This is the delay between each repeat in ms.
-  
-  
-  <h3>scene</h3>
-  Here you declare the number of animation frames for each slide. If no animation is required, enter null.
-  
-  
-  <h3>Ghosts</h3>
-    This controls the "ghost" overlay for the small screen mode
+```hoverStyle```
+This selects the effect that happens when the user hovers over the thumbnail. As above, this may be removed in the future if other options aren't used.
+
+```imageType```
+This declares the type of image that is used for the thumbnails, either inline or background. Background is probably the preferable option as it is more responsive
+
+```scrollable```
+This feature is unfinished, but the original idea is if there are a lot of slides, the pagination could be scrollable to fit more in.
+
+```animationSpeed / imgPath```
+See globalSettings
+
+```animationEase```
+This sets the ease mode for the CSS3 animations
+
+```animationDelay```
+This is the delay before the animation starts
+
+```nameFormat```
+This sets the prefix and suffix for the thumbnail images.
+
+```wrapper/container/item/img```
+Caches useful selectors
+
+
+### ProductGrid
+This handles all the settings and methods for the dynamic product grid.
+
+```defaultHidden```
+This sets whether the product grid is hidden or shown by default
+
+```codes```
+Here you can either enter an array of product codes (see productCodes in Global Settings), or you can set this to retrieve the codes from your HTML if you enter 'auto'. Add 'retrieve' to each 'quicklink' class that you want to retrieve the codes from. There can only be 1 retrieve class per slide for this to work.
+
+```Open Class```
+Sets the class that is added when the product grid is open
+
+```maxHeight```
+Set's max height for product grid in fullscreen mode
+
+```ui```
+Selectors for UI elements
+
+
+### Quicklink
+This handles the quicklink functionality
+
+```updateBagAfterLoad```
+If true, the shopping bag will be updated after you open a quickshop
+
+```updateBagBeforeClose```
+If true, the shopping bag will be updated just before the quickshop closes
+
+
+### JpgAnimate
+This handles the Jpeg animation functionality.
+
+```container```
+This sets the container for which the animation frames are generated
+
+```slidePrefix```
+Just leave this as it is...
+
+```speed```
+This is the framerate of the animation in ms
+
+```repeat```
+This is how many times the animation repeats. -1 is continous loop.
+
+```paused```
+If true, the animation will be paused until it is told to play when you go to that slide.
+
+```yoyo```
+If true, the animation will go through all the frames and then reverse back through them
+
+```repeatDelay```
+This is the delay between each repeat in ms.
+
+
+### scene
+Here you declare the number of animation frames for each slide. If no animation is required, enter null.
+
+
+### Ghosts
+  This controls the "ghost" overlay for the small screen mode
