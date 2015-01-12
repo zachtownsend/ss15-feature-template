@@ -114,7 +114,7 @@ function BodenCarousel(custom) {
 		},
 		initialise: function(slider) {
 			
-			$('.bxslider').bxSlider(Slider.mode.normal());
+			Slider.slider = $('.bxslider').bxSlider(Slider.mode.normal());
 			if(Slider.settings.fullscreenEnabled) {
 				Slider.bindUIactions();
 			} else {
