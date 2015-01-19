@@ -120,139 +120,79 @@ false.
  ``` cm_tag ``` 
   This sets the string you provide for the Coremetrics tracking.
   
- ``` imgPath ``` 
+ ``` img_path ``` 
   This is the path to the image folders for this feature.
   
- ``` quickshopPath ``` 
+ ``` quickshop_path ``` 
   This is the standard quickshop path. You should probably never need to change this, but this is just in case the 
   back-end of the site is changed for some reason.
   
- ``` animationSpeed ``` 
+ ``` animation_speed ``` 
   This is the general animation speed used throughout the feature. This helps the different modules maintain
   consistent animation speeds. These can be overwritten in individual module settings.
   
  ``` body ``` 
   This caches the 'body' tag as a jQuery selector
   
- ``` fontSize/PSDWidth ``` 
-  This was meant to make responsive live text easy to calculate by working out the ratio of the font size and canvas
-  width in the original PSD's, but as the designers quite often resize the texts this makes this calculation
-  redundant. However, you can still tweak the fontSize attribute to get the effect you want, but it is a case of
-  trial-and-error.
-  
- ``` fontParent ``` 
-  This is the element that has an absolute font-size CSS style set, from which the aforementioned responsive live
-  text is calculated.
-  
  ``` productCodes ``` 
   This is where you set the product codes for each slide. This is purely for dynamically creating the product grid, 
   so if this module is disabled this setting is irrelevent. Each cell represents the slide number, so put the 
   product code string into the relevent cell to generate the grid for that cell. If the slide doesn't have any 
   products just enter null.
-  
- ``` market ``` 
-  This automatically gets the market code (eg. en-GB, en-US, de-AT etc.).
-  
 
 
 ### Slider
 This is the core module where all the settings are initialised. This is the only module that is dependent on other modules, and it's purpose is to pull all the modules together and run them correctly.
- ``` initialSlide ``` 
+ ``` initial_slide ``` 
   Index of starting slide.
   
- ``` activeClass ``` 
+ ``` active_class ``` 
   This is the class added to the container of the active slide.
   
- ``` normalWidth ``` 
+ ``` normal_width ``` 
   This is the width of the slide in small screen mode.
   
- ``` fullscreenEnabled ``` 
+ ``` fullscreen_enabled ``` 
   This switches the fixed width/fullscreen toggle functionality
   
- ``` fullscreenButton ``` 
+ ``` fullscreen_button ``` 
   This is the selector for the button that toggles the fullscreen mode
   
  ``` body ``` 
   See global settings
   
- ``` resizeTimerDelay ``` 
+ ``` resize_delay ``` 
   When you resize the window in fullscreen mode, the bx-slider reloads itself with new settings. This sets the delay
   before this happens to prevent the reload from happening after the window resize has complete.
   
- ``` dynamicFontSize ``` 
-  This enables the responsive live text functionality mentioned in the global settings section above.
-  
- ``` navLocation ``` 
+ ``` nav_location: {normal/fullscreen} ``` 
   This is the prefix for the the navigation arrows for fixed width mode ('normal') and fullscreen mode 
   ('fullscreen'). Probably leave these as they are.
   
- ``` uiSwitchSliders ``` 
+ ``` ui_switch ``` 
   This is in case you need a different UI style on particular slides. This is typically required if the UI element  
   colour is obscured by the slide.
-  
- ``` translateEnabled ``` 
-  This enables the generic live copy on the page to be automatically translated into the appropriate language. Leave
-  this as false for English language countries.
-
 
 ### Pager
 This handles all the settings and methods for the pagination of the feature.
- ``` fullscreenStyle ``` 
-  This declares the style for pagination. This should probably be removed at some point as 'overlay' mode will probably be the only mode used.
-  
- ``` hoverStyle ``` 
-This selects the effect that happens when the user hovers over the thumbnail. As above, this may be removed in the future if other options aren't used.
 
- ``` imageType ``` 
-This declares the type of image that is used for the thumbnails, either inline or background. Background is probably the preferable option as it is more responsive
-
- ``` scrollable ``` 
-This feature is unfinished, but the original idea is if there are a lot of slides, the pagination could be scrollable to fit more in.
-
- ``` animationSpeed / imgPath ``` 
+ ``` animation_speed, img_path ``` 
 See globalSettings
 
- ``` animationEase ``` 
-This sets the ease mode for the CSS3 animations
-
- ``` animationDelay ``` 
-This is the delay before the animation starts
-
- ``` nameFormat ``` 
+ ``` name_format ``` 
 This sets the prefix and suffix for the thumbnail images.
-
- ``` wrapper/container/item/img ``` 
-Caches useful selectors
-
 
 ### ProductGrid
 This handles all the settings and methods for the dynamic product grid.
 
- ``` defaultHidden ``` 
-This sets whether the product grid is hidden or shown by default
-
  ``` codes ``` 
 Here you can either enter an array of product codes (see productCodes in Global Settings), or you can set this to retrieve the codes from your HTML if you enter 'auto'. Add 'retrieve' to each 'quicklink' class that you want to retrieve the codes from. There can only be 1 retrieve class per slide for this to work.
 
- ``` Open Class ``` 
+ ``` open_class ``` 
 Sets the class that is added when the product grid is open
 
- ``` maxHeight ``` 
+ ``` max_height ``` 
 Set's max height for product grid in fullscreen mode
-
- ``` ui ``` 
-Selectors for UI elements
-
-
-### Quicklink
-This handles the quicklink functionality
-
- ``` updateBagAfterLoad ``` 
-If true, the shopping bag will be updated after you open a quickshop
-
- ``` updateBagBeforeClose ``` 
-If true, the shopping bag will be updated just before the quickshop closes
-
 
 ### JpgAnimate
 This handles the Jpeg animation functionality.
@@ -260,8 +200,11 @@ This handles the Jpeg animation functionality.
  ``` container ``` 
 This sets the container for which the animation frames are generated
 
- ``` slidePrefix ``` 
+ ``` slide_prefix ``` 
 Just leave this as it is...
+
+``` img_path ```
+See global_settings
 
  ``` speed ``` 
 This is the framerate of the animation in ms
@@ -275,13 +218,5 @@ If true, the animation will be paused until it is told to play when you go to th
  ``` yoyo ``` 
 If true, the animation will go through all the frames and then reverse back through them
 
- ``` repeatDelay ``` 
+ ``` repeat_delay ``` 
 This is the delay between each repeat in ms.
-
-
-### scene
-Here you declare the number of animation frames for each slide. If no animation is required, enter null.
-
-
-### Ghosts
-  This controls the "ghost" overlay for the small screen mode
