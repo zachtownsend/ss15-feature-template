@@ -4,16 +4,16 @@
 ;window.Modernizr=function(a,b,c){function w(a){i.cssText=a}function x(a,b){return w(prefixes.join(a+";")+(b||""))}function y(a,b){return typeof a===b}function z(a,b){return!!~(""+a).indexOf(b)}function A(a,b){for(var d in a){var e=a[d];if(!z(e,"-")&&i[e]!==c)return b=="pfx"?e:!0}return!1}function B(a,b,d){for(var e in a){var f=b[a[e]];if(f!==c)return d===!1?a[e]:y(f,"function")?f.bind(d||b):f}return!1}function C(a,b,c){var d=a.charAt(0).toUpperCase()+a.slice(1),e=(a+" "+m.join(d+" ")+d).split(" ");return y(b,"string")||y(b,"undefined")?A(e,b):(e=(a+" "+n.join(d+" ")+d).split(" "),B(e,b,c))}var d="2.8.3",e={},f=b.documentElement,g="modernizr",h=b.createElement(g),i=h.style,j,k={}.toString,l="Webkit Moz O ms",m=l.split(" "),n=l.toLowerCase().split(" "),o={},p={},q={},r=[],s=r.slice,t,u={}.hasOwnProperty,v;!y(u,"undefined")&&!y(u.call,"undefined")?v=function(a,b){return u.call(a,b)}:v=function(a,b){return b in a&&y(a.constructor.prototype[b],"undefined")},Function.prototype.bind||(Function.prototype.bind=function(b){var c=this;if(typeof c!="function")throw new TypeError;var d=s.call(arguments,1),e=function(){if(this instanceof e){var a=function(){};a.prototype=c.prototype;var f=new a,g=c.apply(f,d.concat(s.call(arguments)));return Object(g)===g?g:f}return c.apply(b,d.concat(s.call(arguments)))};return e}),o.backgroundsize=function(){return C("backgroundSize")},o.csstransforms=function(){return!!C("transform")},o.csstransitions=function(){return C("transition")};for(var D in o)v(o,D)&&(t=D.toLowerCase(),e[t]=o[D](),r.push((e[t]?"":"no-")+t));return e.addTest=function(a,b){if(typeof a=="object")for(var d in a)v(a,d)&&e.addTest(d,a[d]);else{a=a.toLowerCase();if(e[a]!==c)return e;b=typeof b=="function"?b():b,typeof enableClasses!="undefined"&&enableClasses&&(f.className+=" "+(b?"":"no-")+a),e[a]=b}return e},w(""),h=j=null,e._version=d,e._domPrefixes=n,e._cssomPrefixes=m,e.testProp=function(a){return A([a])},e.testAllProps=C,e}(this,this.document);
 
 function BodenCarousel(custom) {
-	var globalSettings = $.extend({
+	var user_settings = custom || {};
+	
+	var global_settings = $.extend({
 		cm_tag: 'SS15-TEMPLATE',
-		imgPath: '/images/magazine/features/SS15-carousel/',
-		quickshopPath: '/products/outfitting.aspx?qr=',
-		animationSpeed: 400, //in ms
+		img_path: '/images/magazine/features/SS15-carousel/',
+		quickshop_path: '/products/outfitting.aspx?qr=',
+		animation_speed: 400, //in ms
 		body: $('body'),
-		fontSize: 25,
-		PSDWidth: 1724,
-		fontParent: '#viewport-container',
-		productCodes: 
+		feature_wrapper: $('.feature-wrapper'),
+		product_codes: 
 			[
 				null,
 				'WH793LAV|WU003PPK|AR660NUD|AV090YEL',
@@ -21,697 +21,642 @@ function BodenCarousel(custom) {
 				'WG590RED|AR662BLK',
 				'WC114OAT|WV020GRY|WE479OYS|AR662BLK',
 				'WE465NAV|WH787PPK|AR654BLK|AM224YEL'
-			],
-		market: $('html').attr('lang')
-	}, custom.global_settings);
-	//console.log(globalSettings);
-	// SLIDER
-	var Slider = {
-		settings: $.extend({
-			initialSlide: 0,
-			activeClass: 'active-slide',
-			normalWidth: 1000,
-			fullscreenEnabled: true,
-			fullscreenButton: $('.fullscreen-btn'),
-			body: globalSettings.body,
-			resizeTimerDelay: 200,
-			dynamicFontSize: true,
-			navLocation: {
-				normal: '#ghost-', 
-				fullscreen: '#fullscreen_nav-'
-			},
-			timer: null,
-			uiSwitchSliders: false, //integer or array, depending on the index of slide that requires switching. false if not necessary
-			translateEnabled: false //if true, all default live copy will be translated
-		}, custom.slider_settings),
-		slider: null,
-		bindUIactions: function() {
-			
-			Slider.settings.fullscreenButton.click(function() {
-				Slider.toggleFullscreen();
-			});
-			
-			$('.next').click(function(e) {
-				e.preventDefault();
-				Slider.slider.goToNextSlide();
-			});
-			
-		},
-		bindWindowResize: function() {
-			$(window).resize(function(){
-				if(Slider.isFullscreen()) {
-					clearTimeout(Slider.settings.timer);
-					Slider.settings.timer = setTimeout(function(){
-						var currentSlide = $('.' + Slider.settings.activeClass).index() - 1;
-						Slider.slider.reloadSlider(Slider.mode.fullscreen());
-						
-					}, Slider.settings.resizeTimerDelay);
-					Slider.setFontSize(globalSettings.fontSize, globalSettings.PSDWidth, $(this).width(), globalSettings.fontParent, Slider.isFullscreen());
+			]
+		}, user_settings.global_settings);
+	
+	// Private variables
+	var warnings = [];
+	var market = $('html').attr('lang');
+	
+	// ====================== //
+	// == HELPER FUNCTIONS == //
+	// ====================== //
+	
+	// Apply quicklinks
+	function apply_quicklinks() {
+		$('.quicklink').each(function(){
+			$(this).fancybox({				
+				'type':'iframe',
+				'width':420,
+				'height':190,
+				'padding':25,
+				'onComplete' : function() {
+					$('#fancybox-frame').load(function() { 
+						$('#fancybox-content').height($(this).contents().find('body').height()+15);
+						$.fancybox.center(true);
+					});
+				},
+				'afterLoad' : function() {
+					Shopping_bag.after_load();
+				},
+				'beforeClose' : function() {
+					Shopping_bag.before_close();
 				}
+			});    
+		});
+	};
+	
+	// Get appropriate copy for market
+	function translation(copy) {
+		var mkt = market.slice(0,2);
+		var lang = (mkt === 'en') ? 0 : (mkt === 'de') ? 1 : (mkt === 'fr') ? 2 : 0;
+		return copy[lang];
+	}
+	
+	// Append html to the feature 
+	function feature_append(html) {
+		global_settings.feature_wrapper.append(html);
+	}
+	
+	// =============== //
+	// === MODULES === //
+	// =============== //
+	
+	// == Staggered animation layers functionality
+	var Layers = function() {
+		var settings = $.extend({
+			enabled: false,
+			layer_class: 'layer',
+			duration: 1,
+			delay: 0.4
+		}, custom.layers_settings);
+		
+		var public_props = {
+			enabled : settings.enabled,
+			slide : function() { return false }
+		};
+		
+		if(!settings.enabled) return public_props;
+		
+		public_props.slide = function(parent, vpWidth, oldIndex, newIndex) {
+			var layers = parent.find('.' + settings.layer_class);
+			var forward = (oldIndex - newIndex) ? true : false;
+			var startPoint = vpWidth;
+			var attr = (forward) ? {left: startPoint, right: 'auto'} : {right: startPoint, left: 'auto'};
+			TweenMax.staggerFrom(layers, settings.duration, attr, settings.delay);
+		}
+		
+		return public_props;
+	}();
+	
+	// == Jpeg animation functionality
+	var Jpeg_animate = function() {
+		var settings = $.extend({
+			enabled: false,
+			container: '.bg-container',
+			slide_prefix: '.slide',
+			img_path: global_settings.img_path,
+			speed: 300, //in ms
+			repeat: -1,
+			paused: true,
+			yoyo: true,
+			repeat_delay: 0, //in ms
+			scene: [2, null, null, null, null, null]
+		}, custom.jpganimate_settings);
+		
+		var public_props = {
+			enabled : settings.enabled,
+			playFrames : function() { return false },
+			initialise : function() { return false }
+		};
+		
+		if(!settings.enabled) return public_props;
+		
+		var css3 = Modernizr.backgroundsize;
+		var ctl = null;
+		
+		var add_frames = function(target, frames, index) {
+			var target = $(target);
+			var container = target.find(settings.container);
+			var imgVar = '';
+			var css3 = true;
+			for(i = 1; i <= frames; i++) {
+				var first = (i === 1) ? ' first' : '';
+				var div = (settings.css3) ? 
+					'<div class="animation-frame' + first + '" style="background-image: url(' + settings.img_path + 'slide' + index + '/slide' + i + '.jpg);"></div>' :
+					'<div class="animation-frame' + first + '"><img class="ie-bg" src="' + settings.img_path + 'slide' + index + '/slide' + i + '.jpg" /></div>';
+				imgVar += div;
+			}
+			container.append(imgVar);
+		};
+		
+		var control = function(target, frames) {
+			var framesArray = $(target).find(settings.container).children();
+			var duration = settings.speed / 1000;
+			var animate = 
+				new TimelineMax({repeat: settings.repeat, paused: settings.paused, yoyo: settings.yoyo, repeat_delay: (settings.repeat_delay / 1000)})
+					.staggerFromTo(framesArray, duration, {zIndex: 0}, {zIndex: 1}, (settings.speed / 1000));
+			return animate;
+		};
+		
+		public_props.playFrames = function(newIndex, oldIndex) {
+			if(ctl === null) return false;
+			var newScene = ctl[newIndex];
+			var oldScene = ctl[oldIndex];
+			if(newScene != undefined) newScene.play();
+			if(oldScene != undefined) oldScene.pause();
+		};
+		
+		public_props.initialise = function() {
+			var scenes = Array();
+			
+			$.each(settings.scene, function(index, value) {
+				var target = settings.slide_prefix + index;
 				
-				Ghosts.set();
+				if(value != null) {
+					add_frames(target, value, index);
+					scenes[index] = control('.slide' + index, settings.scene[index]);
+				}
 			});
-		},
-		moveToTop: function() {
-			var height = $('.topBarContainer').height();
-			$('html').scrollTop(height);
-		},
-		ie8Fullscreen: function(array){
-			if(Modernizr.backgroundsize) {
+			ctl = scenes;
+		};
+		
+		return public_props;
+		
+	}();
+	
+	// == Pagination functionality
+	var Pager = function() {
+		var settings = $.extend({
+			enabled: true,
+			img_path: global_settings.img_path,
+			name_format: {prefix: 'slide', suffix: '-thumbnail.jpg'},
+			animation_speed: global_settings.animation_speed
+		}, user_settings.pager_settings);
+		
+		var public_props = {
+			enabled : settings.enabled,
+			container : false,
+			toggle_pager : function() { return false },
+			generate_thumbnail : function() { return false },
+			close_pager : function() { return false },
+			initialise : function() { return false }
+		};
+		
+		if(!settings.enabled) return public_props;
+		
+		var $pager_wrapper, $toggle_btn;
+		var open_class = 'open';
+		
+		public_props.generate_thumbnail =  function(slideIndex) {
+			var thumb;
+			var image = settings.img_path + settings.name_format.prefix + slideIndex + settings.name_format.suffix;
+			var thumb = '<div class="thumb-inner"><div class="thumb-img" style="background-image: url(' + image + ')"></div></div>';
+			return thumb;
+		}
+		
+		var is_open = function() { return $pager_wrapper.hasClass(open_class) };
+		
+		public_props.toggle_pager = function(override_close) {
+			var override = override_close || false;
+			if(override && is_open) {
+				$pager_wrapper.removeClass(open_class);
 				return false;
 			}
-			var target = (array instanceof jQuery) ? array : $(array);
-			target.each(function(){
-				var $this = $(this);
-				var bg = $this.css('background-image').split('"');
-				$this.prepend('<img class="ie-fullscreen" src="' + bg[1] + '" />');
+			var toggle_class = function() { $pager_wrapper.toggleClass(open_class); };
+			toggle_class();
+		};
+				
+		var bindUI = function() {
+			$toggle_btn.click(function(){
+				public_props.toggle_pager();
 			});
-		},
-		setFontSize: function(fontSize, origWidth, newWidth, target, fullscreen){
-			if(this.settings.dynamicFontSize) {
-				if(!fullscreen) {
-					$(target).removeAttr('style');
-					return false;
-				}
-				var pc = fontSize / origWidth;
-				var size = newWidth * pc;
-				$(target).css({'font-size': size});
-			}
-			return false;
-		},
-		translate: function(market) {
-			if(!this.settings.translateEnabled) return false;
-			var bag = ['Bag', 'Warenkorb', 'Panier' ];
-			var show = ['Show','Anzeigen', 'Montrer' ];
-			var hide = ['Hide', 'Verbergen', 'Cacher' ];
-			var buylook = ['Buy complete look', 'Den kompletten Look shoppen', 'Acheter la tenue compl&#232;te'];
-			var mkt = market.slice(0,2);
-			var lang = (mkt === 'en') ? 0 : (mkt === 'de') ? 1 : (mkt === 'fr') ? 2 : 0;
-			$('#bag-copy').text(bag[lang]);
-			$('#show-copy').text(show[lang]);
-			$('#hide-copy').text(hide[lang]);
-			$('#complete-look').text(buylook[lang]);
-		},
-		initialise: function(slider) {
-			
-			Slider.slider = $('.bxslider').bxSlider(Slider.mode.normal());
-			if(Slider.settings.fullscreenEnabled) {
-				Slider.bindUIactions();
-			} else {
-				Slider.settings.fullscreenButton.remove();
-			}
-			
-			Slider.ie8Fullscreen($('.slide-container'));
-			$('#Head1').find('meta[name=viewport]').remove();
-			ProductGrid.initialise();
-			Pager.initialise();
-			Ghosts.initialise();
-			Slider.bindWindowResize();
-			
-			Slider.moveToTop();
-			JpgAnimate.initialise();
-			Slider.translate(globalSettings.market);
-			ShoppingBag.update();
-		},
-		mode: {
-			normal: function() { return  Slider.getSliderAttr(Slider.settings.normalWidth, Slider.settings.initialSlide, Slider.settings.navLocation.normal)},
-			fullscreen: function() { return Slider.getSliderAttr($(window).width(), Slider.settings.initialSlide, Slider.settings.navLocation.fullscreen)},
-			
-		},
-		uiSwitch: function(newIndex, slideNumber) {
-			if(!slideNumber) return false;
-			var switchClass = 'ui-switch';
-			var array = (slideNumber.constructor === Array) ? slideNumber : [slideNumber];
-			var $featureWrapper = $('.feature-wrapper');
-			$.each(array, function(index, value) {
-				if(value == newIndex) {
-					$featureWrapper.addClass('ui-switch');
-					return false;
-				} 
-				if ($featureWrapper.hasClass('ui-switch')) {
-					$featureWrapper.removeClass('ui-switch');
-					return false;
-				}
-			});
-		},
-		isFullscreen: function() { return this.settings.body.hasClass('fullscreen') },
-		toggleFullscreen: function() {
-			this.settings.body.toggleClass('fullscreen');
-			if(this.isFullscreen()) {
-				Slider.slider.reloadSlider(this.mode.fullscreen());
-			} else {
-				Slider.slider.reloadSlider(this.mode.normal());
-				Ghosts.set();
-			}
-		},
-		
-		updateActive: function(newIndex) {
-			$('.' + this.settings.activeClass).removeClass(this.settings.activeClass);
-			$('li', '.bxslider').eq(newIndex + 1).addClass(this.settings.activeClass);
-		},
-		
-		autoHide: function(currentIndex, fade) {
-			var gridUI = ProductGrid.settings.ui;
-			if(Slider.isFullscreen()) {
-				ProductGrid.autoHide([gridUI.completeLook, gridUI.toggleBtn], currentIndex, fade);
-			} else {
-				gridUI.toggleBtn.hide();
-				ProductGrid.autoHide([gridUI.completeLook], currentIndex, fade);
-			}
-		},
-		vpWidth: function() {
-			var vpWidth = (this.isFullscreen()) ? $(window).width() : this.settings.normalWidth;
-			return vpWidth;
-		},
-		// Dynamically create bxSlider attributes
-		getSliderAttr: function(width, currentIndex, navLocation) {
-			return {
-					slideWidth: width
-					,startSlide: currentIndex
-					,pager: Pager.settings.enabled
-					,pagerSelector: Pager.settings.container
-					,buildPager: function(slideIndex){
-						return Pager.generateThumbnail(slideIndex);
-					}
-					,onSliderLoad: function(currentIndex) {
-						
-						cmCreateElementTag(globalSettings.cm_tag + '_' + currentIndex, 'OUTFIT');
-						Quicklink.apply();
-						Slider.settings.initialSlide = currentIndex;
-						Slider.autoHide(currentIndex, false);	
-						Slider.setFontSize(globalSettings.fontSize, globalSettings.PSDWidth, $(window).width(), globalSettings.fontParent, Slider.isFullscreen());
-						JpgAnimate.playFrames(currentIndex);
-					}
-					,onSlideBefore: function($slideElement, oldIndex, newIndex){	
-						Slider.updateActive(newIndex);
-						Slider.autoHide(newIndex, true);
-						if(Pager.isOpen()) {
-							Pager.togglePager(true);
-						}
-						Layers.slide($slideElement, Slider.vpWidth(), oldIndex, newIndex);
-						ProductGrid.applyMix(newIndex);
-						ProductGrid.updateOutfit(newIndex);
-						Slider.settings.initialSlide = newIndex;
-						Slider.uiSwitch(newIndex, Slider.settings.uiSwitchSliders);
-					}
-					,onSlideAfter: function($slideElement, oldIndex, newIndex) {
-						Slider.updateActive(newIndex);
-						JpgAnimate.playFrames(newIndex, oldIndex);
-						
-						cmCreateElementTag(globalSettings.cm_tag + '_' + newIndex, 'OUTFIT');
-					}
-					,prevSelector: navLocation + 'left'
-					,nextSelector: navLocation + 'right'
-				}
-			}
-	};
-
-	// PAGER
-	// This is the module that controls the pagination
-	var Pager = {
-		settings: $.extend({
-			enabled: true,
-			fullscreenStyle: 'overlay', 						// overlay|top
-			hoverStyle: 'normal', 								// normal|dot|box
-			imageType: (Modernizr.backgroundsize) ? 'background' : 'inline', // inline|background
-			scrollable: false,									// Boolean
-			animationSpeed: globalSettings.animationSpeed, 		// integer (in ms)
-			animationEase: 'ease',
-			animationDelay: 0,
-			imgPath: globalSettings.imgPath,
-			nameFormat: {prefix: 'slide', suffix: '-thumbnail.jpg'},
-			wrapper: $('#pager-wrapper'),						// jQuery selector
-			container: $('#pager-container'),					// jQuery selector
-			item: $('.bx-pager-item'),							// jQuery selector
-			img: $('.thumb-img'),								// jQuery selector
-			ui: {
-				toggleBtn: $('#pager-tab'),						// jQuery selector
-				textBased: false									// Boolean
-			},
-		}, custom.pager_settings),
-		bindUIactions: function() {
-			this.settings.ui.toggleBtn.click(function(){
-				Pager.togglePager();
-			});
-		},
-		initialise: function() {
-			if(this.settings.enabled) {
-				this.bindUIactions();
-				
-				this.settings.wrapper
-					.addClass(this.settings.fullscreenStyle)
-					.addClass(this.settings.hoverStyle);
-				
-				if(Modernizr.csstransitions) {
-					this.settings.ui.toggleBtn.css({
-						'transition': 'all ' + this.settings.animationSpeed + 'ms ' + this.settings.animationEase + ' ' + this.settings.animationDelay + 'ms'
-					});
-					this.settings.wrapper.css({
-						'transition': 'left ' + this.settings.animationSpeed + 'ms ' + this.settings.animationEase + ' ' + this.settings.animationDelay + 'ms'
-					});
-				}
-				
-				if(this.settings.ui.textBased) {
-					this.settings.ui.toggleBtn.find('.close-copy').addClass('hide');
-				} else {
-					this.settings.ui.toggleBtn.find('span').hide();
-				}
-			} else {
-				this.settings.wrapper.remove();
-			}
-			return false;
-
-		},
-		isOpen: function() { return this.settings.wrapper.hasClass('open') },
-		togglePager: function(loadDelay) {
-			var $pager = this.settings;
-			var load = (typeof loadDelay == 'undefined') ? false : true;
-			var dly = (load) ? $pager.animationSpeed : 0;
-			
-			if(this.isOpen()) {
-				var delay = 0;
-				var len = $pager.item.length;
-				var delayMod = $pager.animationSpeed / len;
-				
-				$pager.item.each(function(){
-					$(this).delay(delay += delayMod).fadeOut(function(){
-						if($(this).index() + 1 === len) {
-							$pager.item.each(function(){
-								$(thiS).removeAttr('style');
-							});
-						}
-					});
-					
-				});
-			}
-			
-			if(!Modernizr.csstransitions) {
-				var end = (this.isOpen()) ? '-100%' : '0%';
-				var tabEnd = (this.isOpen()) ? '-70px' : '10px';
-				this.changeText();
-				$pager.wrapper.stop(true).delay(dly).animate(
-					{'left': end}, 
-					$pager.animationSpeed, 
-					function(){	Pager.settings.wrapper.toggleClass('open')	}
-				);
-				$pager.ui.toggleBtn.delay(dly).animate(
-					{'right': tabEnd},
-					$pager.animationSpeed
-				);
-				
-			} else {
-				$pager.wrapper.toggleClass('open');
-			};
-		},
-		changeText: function() {
-			if(this.settings.ui.textBased) {
-				var tab = this.settings.ui.toggleBtn;
-				tab.find('.open-copy').toggleClass('hide');
-				tab.find('.close-copy').toggleClass('hide');
-			}
-			return false;
-		},
-		resetPager: function() {
-			this.wrapper.removeClass('open').removeAttr('style');
-		},
-		generateThumbnail: function(slideIndex) {
-				var thumb;
-				var image = this.settings.imgPath + this.settings.nameFormat.prefix + slideIndex + this.settings.nameFormat.suffix;
-				switch(this.settings.imageType) {
-					case 'background':
-						thumb = 
-						'<div class="thumb-inner"><div class="thumb-img" style="background-image: url(' + image + ')"></div></div>';
-						break;
-					case 'inline':
-						thumb = '<img src="' + image + '" />';	
-						break;
-				}
-				return thumb;
-			return false;
 		}
-	}
-
-	// PRODUCT GRID
-	// This module controls the product grid functionality
-	var ProductGrid = {
-		settings: $.extend({
+		
+		public_props.initialise = function() {
+			var html = [
+				'<div id="pager-wrapper">',
+					'<div id="pager-container">',
+					'</div>',
+					'<div id="pager-tab"></div>',
+				'</div>'
+			].join('\n');
+			
+			feature_append(html);
+			public_props.container = $('#pager-container');
+			$pager_wrapper = $('#pager-wrapper');
+			$toggle_btn = $('#pager-tab');
+			bindUI();
+		}
+		
+		return public_props;
+	}();
+	
+	// == Product Grid functionality
+	var ProductGrid = function() {
+		var settings = $.extend({
 			enabled: true,				// Boolean
-			defaultHidden: true,		// Boolean
-			container: $('.grid-container'), // jQuery selector
-			listContainer: $('#grid'),	// jQuery selector
-			codes: globalSettings.productCodes, // Array or 'auto'
-			quickshopPath: globalSettings.quickshopPath, // String
-			animationSpeed: globalSettings.animationSpeed, // Integer (in ms)
-			animationEasing: 'ease', 	// String, options: ease|linear|ease-in|ease-out|ease-in-out|cubic-bezier()|initial|inherit;
-			animationDelay: 0, 			// integer (in ms)
-			openClass: 'open',			// String
-			maxHeight: 210,				// Integer
-			market: globalSettings.market,
-			ui: {
-				completeLook: $('#complete-look'),
-				toggleBtn: $('#toggle-grid'),
-				showBtnClass: 'show-btn',
-				itemClass: 'page-nav',
-				textBased: true
-			},
-		}, custom.productgrid_settings),
-		initialise: function() {
-			if(this.settings.enabled) {
-				this.autoCodes();
-				this.generate();
-				this.applyMix();
-				this.bindUIactions();
-				
-				if(Modernizr.csstransitions) {
-					this.settings.container.css({'transition': 'max-height ' + this.settings.animationSpeed + 'ms ' + this.settings.animationEasing + ' ' + this.settings.animationDelay + 'ms'});
-					this.settings.ui.toggleBtn.css({'transition': 'top ' + this.settings.animationSpeed + 'ms ' + this.settings.animationEasing + ' ' + this.settings.animationDelay + 'ms'});
+			slider_class: '.bxslider',
+			codes: global_settings.product_codes, // Array or 'auto'
+			quickshop_path: global_settings.quickshop_path, // String
+			open_class: 'open',			// String
+			max_height: 210,				// Integer
+			market: market
+		}, custom.productgrid_settings);
+		
+		var public_props = {
+			enabled : settings.enabled,
+			initialise : function() { return false },
+			update : function() { return false }
+		};
+		
+		if(!settings.enabled) return public_props;
+		
+		// Set jquery selectors
+		var slider = $(settings.slider_class);
+		
+		// Declare variables
+		var $grid, $grid_container, $grid_ui, $outfit_btn, $toggle_btn;
+		
+		// Auto retrieve codes if necessary
+		if(settings.codes === 'auto') settings.codes = retrieve_codes();
+		
+		// Generate product grid
+		var generate = function(callback) {
+			var html = '';
+			var codes = settings.codes;
+			var merged_codes = function() {
+				return settings.codes.toString().replace(/,/g , '|');
+			};
+			var path = settings.quickshop_path + merged_codes();
+			var product_codes = settings.codes;
+			
+			$.get(path, function(data) {
+				var $data = $(data);
+				var img = $data.find('.ProductMain');
+				var imgEq = 0;
+				for(i = 0; i < product_codes.length; i++) {
+					
+					if(product_codes[i] != null) {
+						var current = product_codes[i];
+						var array = product_codes[i].split('|');
+						for(x = 0; x < array.length; x++) {
+							var baseCode = array[x].slice(0,5);
+							if($('[data-productcode=' + baseCode + ']', $data).data('productcode') != null) {
+								var tag = '<li class="mix slide' + i + '"><a class="quicklink" href="/products/outfitting.aspx?qr=' + array[x] + '"><img src="' + img.eq(imgEq).attr('src') + '" /></a></li>';
+								imgEq++;
+								html += tag;
+							} else {
+								warnings.push('The product code does not exist: ' + array[x]);
+							}
+						}
+					}
 				}
 				
-				if(this.settings.ui.textBased) {
-					this.settings.ui.toggleBtn.find('.close-copy').addClass('hide');
-				} else {
-					this.settings.ui.toggleBtn.find('span').hide();
-				}
-				
-				
-			} else {
-				this.settings.container.remove();
-			}
-			return false;
-
-		},
-		autoCodes: function() {
-			var array = (this.settings.codes === 'auto') ?
-				this.retrieveCodes() :
-				this.settings.codes;
-			this.settings.codes = array;
-		},
-		bindUIactions: function() {
-			this.settings.ui.toggleBtn.click(function(){
-				ProductGrid.toggleGrid();
+				$grid.prepend(html);
+				callback();
 			});
-		},
-		applyMix: function(newIndex) {
-			if(ProductGrid.settings.enabled) {
-				if(!ProductGrid.settings.listContainer.mixItUp('isLoaded')) {
-					ProductGrid.createMix();
-				} else {
-					ProductGrid.filterGrid(newIndex);
+		};
+		
+		// Update mix filter
+		public_props.update = function(newIndex, fade) {
+			var code = settings.codes;
+			var fade = fade || false;
+			var has_products = settings.codes[newIndex] != null ? true : false;
+			var filter = has_products ? '.slide' + newIndex : 'none';
+			if(!$grid.mixItUp('isLoaded')) $grid.mixItUp({load: {'filter' : 'none'}});
+			$grid.mixItUp('filter', filter);
+			var is_fullscreen = $('body').hasClass('fullscreen');
+			
+			if(has_products) {
+				$outfit_btn.attr('href', settings.quickshop_path + settings.codes[newIndex]);
+				if(!$('#grid-ui').is(':visible')) { 
+					if(fade) {
+						$('#grid-ui').fadeIn();
+					} else {
+						$('#grid-ui').show();
+					}
 				}
-			}
-		},
-		retrieveCodes: function() {
-			var li = $('.bxslider').children('li').not('.bx-clone');
-			var $retrieve = $('.quicklink.retrieve');
-			var array = Array();
-			var exclStr = ProductGrid.settings.market + ProductGrid.settings.quickshopPath;
+			} else {
+				$outfit_btn.attr('href', '#');
+				if($grid_ui.is(':visible')) { 
+					$grid_ui.fadeOut();
+				} else {
+					if(fade) {
+						$grid_ui.fadeOut();
+					} else {
+						$grid_ui.hide();
+					}
+				}
+			}			
+		};
+		
+		// Retreive codes function
+		function retrieve_codes() {
+			var li = slider.children('li').not('.bx-clone');
+			var array = [];
+			var exclStr = settings.market + settings.quickshop_path;
 			li.each(function() {
 				var $retrieve = $('.quicklink.retrieve',this);
 				if($retrieve.length == 0) {
 					array.push(null);
 				} else {
 					var href = $retrieve.attr('href');
-					var codes = href.replace('/' + ProductGrid.settings.market + ProductGrid.settings.quickshopPath, '');
+					var codes = href.replace('/' + settings.market + settings.quickshop_path, '');
 					array.push(codes);
 				}
 			});
 			return array;
-		},
-		mergedCodes: function() {
-			return this.settings.codes.toString().replace(/,/g , '|');
-		},
-		generate: function() {
-			var html = '';
-			var path = this.settings.quickshopPath + this.mergedCodes();
-			var productCodes = this.settings.codes;
-			
-			$.get(path, function(data) {
-				var $data = $(data);
-				var img = $data.find('.ProductMain');
-				var imgEq = 0;
-				for(i = 0; i < productCodes.length; i++) {
-					
-					if(productCodes[i] != null) {
-						var current = productCodes[i];
-						var array = productCodes[i].split('|');
-						for(x = 0; x < array.length; x++) {
-							var baseCode = array[x].slice(0,5);
-							if($('[data-productcode=' + baseCode + ']', $data).data('productcode') != null) {
-								var tag = '<li class="mix slide' + i + '"><a class="quicklink" href="~/products/outfitting.aspx?qr=' + array[x] + '"><img src="' + img.eq(imgEq).attr('src') + '" /></a></li>';
-								imgEq++;
-								html += tag;
-							} else {
-								console.log('The product code does not exist: ' + array[x]);
-							}
-						}
-					}
-				}
-				ProductGrid.settings.listContainer.prepend(html);
-				Quicklink.apply();
-			});
-		},
-		toggleGrid: function() {
-			var $grid = ProductGrid.settings;
-			var gridIsOpen = ($grid.listContainer.hasClass($grid.openClass));
-			this.changeText();
-			
+		}
+		
+		
+		var toggle_grid = function() {
+			var gridIsOpen = ($grid.hasClass($grid.open_class));			
 			if(!Modernizr.csstransitions) { 
-				var end = (gridIsOpen) ? 0 : $grid.maxHeight;
-				$grid.listContainer.animate(
-					{ maxHeight: end },
-					$grid.animationSpeed,
+				var end = (gridIsOpen) ? 0 : settings.max_height;
+				$grid.animate(
+					{ max_height: end },
+					settings.animation_speed,
 					function(){
 						if(gridIsOpen) {
-							ProductPanel.settings.ui.toggleBtn.text(text);
+							$toggle_btn.text(text);
 						} else {
-							$grid.listContainer.removeAttr('style');
+							$grid.removeAttr('style');
 						}
 					}
 				);
 				
 			}
-			$grid.container.toggleClass('open');
-		},
-		changeText: function() {
-			if(this.settings.ui.textBased) {
-				var tab = this.settings.ui.toggleBtn;
-				tab.find('.open-copy').toggleClass('hide');
-				tab.find('.close-copy').toggleClass('hide');
-			}
-			return false;
-		},
-		autoHide: function(target, index, fade) {
-			var fadeFx = (typeof fade == 'undefined') ? false : true;
-			var codes = ProductGrid.settings.codes;
-			for(i = (target.length - 1); i >= 0; i--) {
-				var current = target[i];
-				
-				if(codes[index] === null) {
-					(fadeFx) ? current.fadeOut(ProductGrid.settings.animationSpeed) : current.hide();
-				} else {
-					if(current.is(':visible')) return false;
-					(fadeFx) ? current.fadeIn(ProductGrid.settings.animationSpeed) : current.show();
-				}
-			}
-		},
-		createMix: function() {
-			this.settings.listContainer.mixItUp({
-				load: {
-					filter: 'none'
-				}
-			});	
-		},
-		filterGrid: function(newIndex) {
-			var code = this.settings.codes;
-			var filter = (code[newIndex] != null) ? '.slide' + newIndex : 'none';
-			this.settings.listContainer.mixItUp('filter', filter);
-		},
-		updateOutfit: function(newIndex) {
-			var $grid = this.settings;
-			$grid.ui.completeLook.attr('href', $grid.quickshopPath + $grid.codes[newIndex]);
+			$grid_container.toggleClass('open');
 		}
 		
+		var bindUI = function() {
+			$toggle_btn.click(function() {
+				toggle_grid();
+			});
+		}
 		
-	};
-
-	// QUICKLINK
-	// This module controls the quicklink functionality
-	var Quicklink = {
-		settings: $.extend({
-			updateBagAfterLoad: true,
-			updateBagBeforeClose: true
-		}, custom.quicklink_settings),
-		apply: function() {
-			$('.quicklink').each(function(){			
-				$(this).fancybox({				
-					'type':'iframe',
-					'width':420,
-					'height':190,
-					'padding':25,
-					'onComplete' : function() {
-						$('#fancybox-frame').load(function() { 
-							$('#fancybox-content').height($(this).contents().find('body').height()+15);
-							$.fancybox.center(true);
-						});
-					},
-					'afterLoad' : function() {
-						if (Quicklink.settings.updateBagAfterLoad) ShoppingBag.afterLoad();
-					},
-					'beforeClose' : function() {
-						if (Quicklink.settings.updateBagBeforeClose) ShoppingBag.beforeClose();
-					}
-				});    
-			});
-		}
-	};
-
-	// SHOPPING BAG
-	// This module controls the shopping bag functionality
-	var ShoppingBag = {
-		market: globalSettings.market,
-		afterLoad: function() {
-			if(Slider.isFullscreen()) {
-				var btn = $('.fancybox-iframe').contents().find('#addToBagBtn');
-				btn.click(function(){
-					if($(this).hasClass('enabled')) {
-						$('#shopping-bag').removeClass('changed').addClass('changed');
-						setTimeout(function() {
-							ShoppingBag.update();
-						}, 1500);
-						
-					}
-				});
-				
-			}
-		},
-		beforeClose: function() {
-			this.update();
-			$('#shopping-bag').removeClass('changed');
-		},
-		update: function() {
-			var bag = $('#bagPreview');
-			$.get('/ClientControls/Products/ShoppingBag.aspx?LanguageCode=' + this.market, function(data) {
-				var $data = $(data);
-				var shopping = {qty: $data.find('#ShoppingBag1_lblCount').text(), value: $data.find('#ShoppingBag1_lblTotal').text()};
-				$('#sb-qty').text(shopping.qty);
-				$('#sb-value').text(shopping.value);
-			});
-		}
-	};
-
-	// ANIMATED JPEG
-	var JpgAnimate = {
-		settings: $.extend({
-			enabled: false,
-			container: '.bg-container',
-			slidePrefix: '.slide',
-			imgPath: globalSettings.imgPath,
-			speed: 300, //in ms
-			repeat: -1,
-			paused: true,
-			yoyo: true,
-			repeatDelay: 0, //in ms
-			scene: [null, 8, 8, 10, 8, 10],
-			css3: Modernizr.backgroundsize,
-			ctl: null
-		}, custom.jpganimate_settings),
-		addFrames: function(target, frames, index) {
-			var settings = this.settings;
-			var target = $(target);
-			var container = target.find(settings.container);
-			//var slide = target.index();
-			var imgVar = '';
-			var css3 = true;
-			for(i = 1; i <= frames; i++) {
-				var first = (i === 1) ? ' first' : '';
-				var div = (settings.css3) ? 
-					'<div class="animation-frame' + first + '" style="background-image: url(' + settings.imgPath + 'slide' + index + '/slide' + i + '.jpg);"></div>' :
-					'<div class="animation-frame' + first + '"><img class="ie-bg" src="' + settings.imgPath + 'slide' + index + '/slide' + i + '.jpg" /></div>';
-				imgVar += div;
-			}
-			container.append(imgVar);
-		},
-		control: function(target, frames) {
-			var settings = this.settings;
-			var framesArray = $(target).find(settings.container).children();
-			var duration = settings.speed / 1000;
-			var animate = 
-				new TimelineMax({repeat: settings.repeat, paused: settings.paused, yoyo: settings.yoyo, repeatDelay: (settings.repeatDelay / 1000)})
-					.staggerFromTo(framesArray, duration, {zIndex: 0}, {zIndex: 1}, (settings.speed / 1000));
-			return animate;
-		},
-		initialise: function() {
-			if(!this.settings.enabled) return false;
-			var settings = this.settings;
-			var scenes = Array();
-			$.each(settings.scene, function(index, value) {
-				var target = settings.slidePrefix + index;
-				if(value != null) {
-					JpgAnimate.addFrames(target, value, index);
-					scenes[index] = JpgAnimate.control('.slide' + index, settings.scene[index]);
-				}
-			});
-			settings.ctl = scenes;
-		},
-		playFrames: function(newIndex, oldIndex) {
-			if(!this.settings.enabled) return false;
-			if(this.settings.ctl == null) return false;
-			var settings = this.settings;
-			var newScene = settings.ctl[newIndex];
-			var oldScene = settings.ctl[oldIndex];
-			if(newScene != undefined) newScene.play();
-			if(oldScene != undefined) oldScene.pause();
-		}
-	}
-
-	//Parallax layers
-	var Layers = {
-		settings: $.extend({
-			enabled: false,
-			layerClass: 'layer',
-			duration: 1,
-			delay: 0.4
-		}, custom.layers_settings),
-		slide: function(parent, vpWidth, oldIndex, newIndex) {
-			var settings = this.settings;
-			if(!settings.enabled) return false;
-			var layers = parent.find('.' + settings.layerClass);
-			var forward = (oldIndex - newIndex) ? true : false;
-			var startPoint = vpWidth;
-			var attr = (forward) ? {left: startPoint, right: 'auto'} : {right: startPoint, left: 'auto'};
-			TweenMax.staggerFrom(layers, settings.duration, attr, settings.delay);
-		}
-	}
-
-	// GHOSTS
-	// This module controls the navigation "ghost" overlay
-	var Ghosts = {
-		settings: $.extend({
+		public_props.initialise = function(callback) {
+			var buylook_copy = translation(['Buy complete look', 'Den kompletten Look shoppen', 'Acheter la tenue compl\u00e8te']);
+			var show_copy = translation(['Show','Anzeigen', 'Montrer' ]);
+			var hide_copy = translation(['Hide', 'Verbergen', 'Cacher' ]);
+			var html = 
+				['<div id="grid-container">',
+					'<div id="grid-ui" style="display: none">',
+						'<a href="#" class="quicklink" id="complete-look">' + buylook_copy + '</a>',
+						'<a href="#" id="toggle-grid">',
+							'<span class="show-hide" id="show-copy">' + show_copy + '</span>',
+							'<span class="show-hide" id="hide-copy">' + hide_copy + '</span>',
+						'</a>',
+					'</div>',
+					'<ul id="grid">',
+						'<!-- Products are dynamically created here -->',
+					'</ul>',
+				'</div>'].join('\n');
+			feature_append(html);
+			$grid = $('#grid');
+			$grid_container = $('#grid-container');
+			$grid_ui = $('#grid-ui');
+			$outfit_btn = $('#complete-look');
+			$toggle_btn = $('#toggle-grid');
+			public_props.update(0);
+			generate(callback);
+			bindUI();
+		};
+		public_props.ui = settings.ui;
+		return public_props;
+		
+	}();
+	
+	// == Shopping Bag functionality
+	var Shopping_bag = function() {
+		var settings = $.extend({
 			enabled: true,
-			selector: $('.ghost')
-		}, custom.ghosts_settings),
-		initialise: function() {
-			if(this.settings.enabled) {
-				Ghosts.set();
-			}
-			return false;
-		},
-		set: function() {
-			var offset = $('.bx-viewport').offset().left + $('.bx-viewport').width();
-			this.settings.selector.each(function(){
-				var $this = $(this);
-				var side = $this.attr('id').replace('ghost-', '');
-				var css = (side === 'left') ? {right: offset} : {left: offset};
-				$this.css(css);
+			market: market
+		}, user_settings.shoppingbag_settings);
+		
+		var public_props = {
+			after_load: function() { return false },
+			before_close: function() { return false },
+			update: function() { return false },
+			initialise: function() { return false }
+		}
+		
+		if(!settings.enabled) return public_props;
+		
+		public_props.after_load = function() {
+			var btn = $('.fancybox-iframe').contents().find('#addToBagBtn');
+			btn.click(function(){
+				if($(this).hasClass('enabled')) {
+					$('#shopping-bag').removeClass('changed').addClass('changed');
+					Shopping_bag.update();					
+				}
 			});
+		}
+		
+		public_props.update = function() {
+			var items = $('#ShoppingBag1_lblCount');
+			var value = items.text();
+			var cap = 25;
+			var timer = setInterval(function() {
+				var new_val = items.text();
+				if(new_val != value) {
+					items.text(new_val);
+					clearInterval(timer);
+				}
+				if(cap === 0) clearInterval(timer);
+				cap--;
+			}, 200);
+		}
+		
+		public_props.before_close = function() {
+			$('#shopping-bag').removeClass('changed');
+		};
+		
+		public_props.initialise = function() {
+			var bag = translation(['Bag', 'Warenkorb', 'Panier' ]);
+			var html = [
+				'<a title="Bag" href="~/checkout/shopping-bag.html#nav" id="shopping-bag">',
+					'<h2 id="bag-copy">' + bag + '</h2>',
+					'<span class="bagCounter" id="sb-qty">0</span><span class="sbItemText">items</span>',
+					'<span class="sbTotalPriceText">Total</span>',
+					'<span id="sb-value">&pound;0.00</span>',
+				'</a>'
+			].join('\n');
+			
+			$('.fullscreen-info').prepend(html);
+		}
+		
+		return public_props;
+	}();
+	
+	// ==================== //
+	// === Core Feature === //
+	// ==================== //
+	var settings = $.extend({
+			initial_slide: 0,
+			active_class: 'active-slide',
+			normal_width: 1000,
+			fullscreen_enabled: true,
+			fullscreen_button: $('.fullscreen-btn'),
+			body: global_settings.body,
+			resize_delay: 100,
+			nav_location: {
+				normal: '#ghost-', 
+				fullscreen: '#fullscreen_nav-'
+			},
+			ui_switch: false, //integer or array, depending on the index of slide that requires switching. false if not necessary
+		}, user_settings.slider_settings);
+	
+	var slider, timer;
+	
+	var fullscreen = {
+		is_active: function() { return false },
+		mode: function() { return get_attrs( settings.normal_width, settings.initial_slide, settings.nav_location.normal ) },
+		apply_ui: function() { return false }
+	}
+	
+	var viewport_width = function() { return fullscreen.is_active() ? $(window).width() : settings.normal_width};
+	
+	if(settings.fullscreen_enabled) {
+		var html = [];
+		html[0] = [
+			'<div id="fullscreen_nav-container">',
+				'<div id="fullscreen_nav-left" class="fullscreen-nav"></div>',
+				'<div id="fullscreen_nav-right" class="fullscreen-nav"></div>',
+				'<div class="fullscreen-info">',
+					'<a class="fullscreen-btn" href="#">Small screen</a>',
+				'</div>',
+			'</div>	'    
+		].join('\n');
+		html[1] = [
+			'<div class="fullscreen-btn">',
+				'<a href="#">Full screen</a>',
+			'</div>'
+		].join('\n');
+		fullscreen = {
+			is_active: function() { return settings.body.hasClass('fullscreen') },
+			mode: function() {
+				return this.is_active() ?
+					get_attrs( $(window).width(), settings.initial_slide, settings.nav_location.fullscreen ) :
+					get_attrs( settings.normal_width, settings.initial_slide, settings.nav_location.normal );
+			},
+			apply_ui: function() { 
+				feature_append(html[0]);
+				$('#ghost-right').append(html[1]);
+				this.bind_ui();
+			},
+			bind_ui: function() {
+				$('.fullscreen-btn').click(function() {
+					fullscreen.toggle();
+				});
+			},
+			toggle: function() {
+				settings.body.toggleClass('fullscreen');
+				slider.reloadSlider(fullscreen.mode());
+				if(!fullscreen.is_active()) set_ghosts();
+				ProductGrid.update(settings.initial_slide, false);
+			}
+		}
+	};
+	
+	if( settings.ui_switch.constructor === Array ) {
+		
+	}
+	
+	var ui_switch = function(newIndex, slideNumber) {
+		if(!settings.ui_switch) return false;
+		var switchClass = 'ui-switch';
+		var array = (slideNumber.constructor === Array) ? slideNumber : [slideNumber];
+		var $featureWrapper = $('.feature-wrapper');
+		$.each(array, function(index, value) {
+			if(value == newIndex) {
+				global_settings.feature_wrapper.addClass('ui-switch');
+				return false;
+			} 
+			if (global_settings.feature_wrapper.hasClass('ui-switch')) {
+				global_settings.feature_wrapper.removeClass('ui-switch');
+				return false;
+			}
+		});
+	}
+		
+	var set_ghosts = function() {
+		var offset = $('.bx-viewport').offset().left + $('.bx-viewport').width();
+		$('.ghost').each(function(){
+			var $this = $(this);
+			var side = $this.attr('id').replace('ghost-', '');
+			var css = (side === 'left') ? {right: offset} : {left: offset};
+			$this.css(css);
+		});
+	};
+		
+	var get_attrs = function( width, current_index, nav_location ) {
+		return {
+				slideWidth: width
+				,startSlide: current_index
+				,pager: Pager.enabled // ####
+				,pagerSelector: Pager.container // ####
+				,buildPager: function(slideIndex){
+					return Pager.generate_thumbnail(slideIndex); // ####
+				}
+				,onSliderLoad: function(current_index) {
+					
+					cmCreateElementTag(global_settings.cm_tag + '_' + current_index, 'OUTFIT');
+					settings.initial_slide = current_index;
+					set_ghosts();
+					Jpeg_animate.playFrames(current_index);
+					//JpgAnimate.playFrames(current_index);
+				}
+				,onSlideBefore: function($slideElement, oldIndex, newIndex){	
+					//Slider.updateActive(newIndex);
+					Pager.toggle_pager(true);
+					settings.initial_slide = newIndex;
+					Layers.slide($slideElement, viewport_width(), oldIndex, newIndex);
+					ProductGrid.update(newIndex, true);
+					ui_switch(newIndex);
+				}
+				,onSlideAfter: function($slideElement, oldIndex, newIndex) {
+					Jpeg_animate.playFrames(newIndex, oldIndex);
+					cmCreateElementTag(global_settings.cm_tag + '_' + newIndex, 'OUTFIT');
+				}
+				,prevSelector: nav_location + 'left'
+				,nextSelector: nav_location + 'right'
+			}
+	};
+		
+	var window_resize = function() {
+		set_ghosts();
+		if(fullscreen.is_active()) {
+			clearTimeout(timer);
+			timer = setTimeout(function(){
+				var currentSlide = $('.' + settings.active_class).index() - 1;
+				slider.reloadSlider(fullscreen.mode());
+				
+			}, settings.resize_delay);
+			return false;
 		}
 	}
 	
-	/*Slider.initialise();
-	ProductGrid.applyMix(0);
-	ProductGrid.autoHide();*/
+	var log_warnings = function() {
+		if(global_settings.cm_tag === 'SS15-TEMPLATE') warnings.push('You have not changed the coremetrics tag');
+		
+		for(i in warnings) {
+			console.log('WARNING: ' + warnings[i]);
+		}
+	};
+
+	var initialise = function() {
+		$('[name=viewport]', '#Head1').attr('content', 'width=1000');
+		Pager.initialise();
+		Jpeg_animate.initialise();
+		ProductGrid.initialise(function(){
+			apply_quicklinks();
+			log_warnings();
+			Shopping_bag.initialise();
+		});
+		slider = $('.bxslider').bxSlider(fullscreen.mode());
+		fullscreen.apply_ui();
+		apply_quicklinks();
+	};
+	
+	var bindUIelements = function() {
+		if(settings.fullscreen_enabled) settings.fullscreen_button.click(function() { toggle_fullscreen() });
+		$(window).resize(function() { window_resize() });
+	}();
+	
+	
 	return {
-		init: Slider.initialise,
-		applyMix: ProductGrid.applyMix 
-	}
+		init: initialise
+	};
 }

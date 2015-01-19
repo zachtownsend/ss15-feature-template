@@ -96,6 +96,7 @@ body.fullscreen {overflow: hidden;}
   position: absolute;
   top: 10px;
   width: 39px;
+  z-index: 1;
 }
 
 .fullscreen-btn {
@@ -146,7 +147,7 @@ li.mix > .quicklink {
   width: 80%;
 }
 
-.grid-container a {
+#grid-container a {
 	font-family: BrandonGrotesque-Regular, Helvetica, Arial, sans serif;
 }
 
@@ -154,7 +155,7 @@ li.mix > .quicklink {
   background: none repeat scroll 0 0 rgba(0, 0, 0, 0);
   color: #000;
   display: inline-block;
-  font: 14px/20px BrandonGrotesque-Medium;
+  font: 14px/20px BrandonGrotesque-Medium !important;
   height: 20px;
   letter-spacing: 1.9px;
   margin: 1px 0 15px;
@@ -398,6 +399,7 @@ li.mix > .quicklink {
 
 .fullscreen #border-bottom {
   background-color: #fff;
+  bottom: 0;
   display: block;
   height: 10px;
   left: 0;
@@ -457,7 +459,7 @@ li.mix > .quicklink {
 }
 
 /* === Grid (FULLSCREEN) === */
-.fullscreen .grid-container {
+.fullscreen #grid-container {
   background-image: url('/images/magazine/features/ss15-carousel/white75percent-bg.png');
   bottom: 10px;
   max-height: 0;
@@ -467,8 +469,39 @@ li.mix > .quicklink {
   width: calc(100% - 20px);
 }
 
-.fullscreen .grid-container.open {
+.fullscreen #grid-container.open {
   max-height: 210px;
+}
+
+.fullscreen #grid-container,
+.fullscreen #toggle-grid,
+.fullscreen #pager-wrapper,
+.fullscreen #pager-tab {
+	transition-duration: 0.4s;
+	-webkit-transition-duration: 0.4s;
+	-moz-transition-duration: 0.4s;
+	-ms-transition-duration: 0.4s;
+	-o-transition-duration: 0.4s;
+	transition-timing-function: ease-in-out;
+	-webkit-transition-timing-function: ease-in-out;
+	-moz-transition-timing-function: ease-in-out;
+	-ms-transition-timing-function: ease-in-out;
+	-o-transition-timing-function: ease-in-out;
+}
+.fullscreen #grid-container {
+	transition-property: max-height;
+}
+
+.fullscreen #toggle-grid {
+	transition-property: top;
+}
+
+.fullscreen #pager-wrapper {
+	transition-property: left;
+}
+
+.fullscreen #pager-tab {
+	transition-property: right;
 }
 
 .fullscreen #grid {
@@ -553,88 +586,7 @@ li.mix > .quicklink {
   top: 10px;
 }
 /* === Pagination (FULLSCREEN) === */
-/* == Normal mode == */
 .fullscreen #pager-wrapper {
-  background-color: #fff;
-  height: 81px;
-  left: 0;
-  position: fixed;
-  top: -81px;
-  width: 100%;
-}
-
-.fullscreen #pager-container {
-  height: 100%;
-  position: relative;
-  width: 100%;
-}
-
-.fullscreen #pager-tab {
-  background-color: #fff;
-  border-radius: 0 0 5px 5px;
-  bottom: -30px;
-  box-shadow: 0 3px 2px -2px;
-  content: "";
-  cursor: pointer;
-  display: block;
-  height: 30px;
-  left: 50%;
-  margin-left: -25px;
-  position: absolute;
-  width: 50px;
-  z-index: 10;
-}
-
-.fullscreen .bx-pager.bx-custom-pager {
-  height: 67px;
-  margin: 0 auto;
-  position: relative;
-  top: 7px;
-  white-space: nowrap;
-  width: 100%;
-}
-
-.fullscreen .bx-pager-item {
-  box-sizing: border-box;
-  display: inline-block;
-  height: 67px;
-  overflow: hidden;
-  padding: 0 5px;
-  width: 100px;
-}
-
-.fullscreen .bx-pager-link {
-  box-sizing: border-box;
-  display: inline-block;
-  height: 100%;
-  line-height: 0;
-  max-width: 100%;
-  overflow: hidden;
-  border: 3px solid transparent;
-}
-
-.fullscreen .bx-pager-link > img {
-  height: 100%;
-  width: auto;
-}
-
-.fullscreen #pager-tab {
-	position: relative;
-}
-
-.fullscreen #pager-tab span {
-	width:100%;
-	position: absolute;
-	left: 0;
-	display: block;
-}
-
-.fullscreen #pager-tab span.hide {
-	display: none;
-}
-
-/* == 'Overlay' Mode == */
-.fullscreen #pager-wrapper.overlay {
   background-color: #fff;
   height: 100%;
   left: -100%;
@@ -644,18 +596,18 @@ li.mix > .quicklink {
   z-index: 2;
 }
 
-.fullscreen #pager-wrapper.overlay.open {
+.fullscreen #pager-wrapper.open {
 	left: 0;
 }
 
-.fullscreen .overlay #pager-container {
+.fullscreen #pager-container {
   display: block;
   height: 100%;
   position: relative;
   width: 100%;
 }
 
-.fullscreen .overlay .bx-pager.bx-custom-pager {
+.fullscreen .bx-pager.bx-custom-pager {
   display: block;
   height: 70%;
   margin: 0 auto;
@@ -666,7 +618,7 @@ li.mix > .quicklink {
   padding-top: 7%;
 }
 
-.fullscreen .overlay .bx-pager-item {
+.fullscreen .bx-pager-item {
   box-sizing: border-box;
   display: inline-block;
   float:left;
@@ -675,7 +627,7 @@ li.mix > .quicklink {
   width: 33.3333%;
 }
 
-.fullscreen .overlay .bx-pager-link, .fullscreen .overlay .bx-pager-link:active {
+.fullscreen .bx-pager-link, .fullscreen .bx-pager-link:active {
   box-sizing: border-box;
   display: inline-block;
   height: 100%;
@@ -685,7 +637,7 @@ li.mix > .quicklink {
   width: 100%;
 }
 
-.fullscreen .box.overlay .bx-pager-link .thumb-inner, .fullscreen .box.overlay .bx-pager-link.active .thumb-inner {
+.fullscreen .box.bx-pager-link .thumb-inner, .fullscreen .box.bx-pager-link.active .thumb-inner {
   border: medium none;
   border-radius: initial;
   box-sizing: border-box;
@@ -698,7 +650,7 @@ li.mix > .quicklink {
   width: 100%;
 }
 
-.fullscreen .box.overlay .bx-pager-item .thumb-inner > .thumb-img {
+.fullscreen .box.bx-pager-item .thumb-inner > .thumb-img {
   background-position: center top;
   background-size: cover;
   border: 3px solid #fff;
@@ -709,7 +661,7 @@ li.mix > .quicklink {
   width: 100%;
 }
 
-.fullscreen .box.overlay .bx-pager-item .bx-pager-link:hover .thumb-inner > .thumb-img, .fullscreen .box.overlay .bx-pager-item .bx-pager-link.active .thumb-inner > .thumb-img {
+.fullscreen .box.bx-pager-item .bx-pager-link:hover .thumb-inner > .thumb-img, .fullscreen .box.bx-pager-item .bx-pager-link.active .thumb-inner > .thumb-img {
   box-shadow: none;
   box-sizing: border-box;
   display: block;
@@ -720,7 +672,7 @@ li.mix > .quicklink {
   width: 100%;
 }
 
-.fullscreen .box.overlay .bx-pager-item:hover .thumb-inner > .thumb-img {
+.fullscreen .box.bx-pager-item:hover .thumb-inner > .thumb-img {
   border: 3px solid #fff;
   display: block;
   height: 100%;
@@ -730,7 +682,7 @@ li.mix > .quicklink {
   width: 100%;
 }
 
-.fullscreen .overlay #pager-tab {
+.fullscreen #pager-tab {
   background-color: transparent;
   background-image: url("/images/magazine/features/ss15-carousel/spritesheet.png");
   background-position: -115px 0;
@@ -747,21 +699,11 @@ li.mix > .quicklink {
   z-index: 10;
 }
 
-.fullscreen .overlay.open #pager-tab {
+.fullscreen .open #pager-tab {
   background-position: -76px center;
   height: 37px;
   right: 10px;
 }
-
-/*.fullscreen .overlay.open #pager-loadbar {
-  background-color: red;
-  bottom: 0;
-  display: block;
-  height: 10px;
-  left: 0;
-  position: absolute;
-  width: 0;
-}*/
 
 /* === Navigation (FULLSCREEN) === */
 .fullscreen .bx-controls {
@@ -792,16 +734,6 @@ li.mix > .quicklink {
 /* ========================== */
 /* ===== Special Styles ===== */
 /* ========================== */
-/* == 'Likes' functionality ==*/
-.liked {
-	border: 3px solid green;
-	box-sizing: border-box;
-}
-
-.likes-detected {
-	background-color: green;
-	color: #fff;
-}
 
 /* == Animated Jpeg functionality == */
 .bg-container {
@@ -1050,7 +982,7 @@ li.mix > .quicklink {
 
 @media only screen 
 and (orientation : portrait) { 
-	.fullscreen .overlay .bx-pager-item {
+	.fullscreen .bx-pager-item {
 	  width: 50%;
 	  height:33.333%;
 	}
@@ -1069,7 +1001,9 @@ and (orientation : portrait) {
 		<ul class="bxslider">
 			<li id="intro" class="active-slide slide0">
 				<div class="slide-container bg-top-left">
+					
 					<div class="content-container">
+					<div class="bg-container"></div>
 						<div class="copy">
 							<h2>Lorem Ipsum</h2>
 							<p>Lorem Ipsum</p>
@@ -1084,9 +1018,9 @@ and (orientation : portrait) {
 				<div class="slide-container bg-top">
 					<div class="content-container">
 						<div class="copy">
-							<h2>Lorem Ipsum</h2>
-							<p>Lorem Ipsum</p>
-							<a href="~/products/outfitting.aspx?qr=WH793LAV|WU003PPK|AR660NUD|AV090YEL" class="retrieve quicklink">Lorem Ipsum <span class="r-arw"></span></a>
+							<h2 class="layer">Lorem Ipsum</h2>
+							<p class="layer">Lorem Ipsum</p>
+							<a href="~/products/outfitting.aspx?qr=WH793LAV|WU003PPK|AR660NUD|AV090YEL" class="layer retrieve quicklink">Lorem Ipsum <span class="r-arw"></span></a>
 						</div>
 					</div>
 				</div>
@@ -1140,57 +1074,18 @@ and (orientation : portrait) {
 				</div>
 			</li>
 									
-		</ul>
-		
-		<div id="pager-wrapper">
-			<div id="pager-container">
-				
-			</div>
-			<div id="pager-tab"></div>
-			<div id="pager-loadbar"></div>
-		</div>
-		
+		</ul>		
 	</div>
 	
 	<div id="ghost-left" class="ghost"></div>
-	<div id="ghost-right" class="ghost">
-		<div class="fullscreen-btn">
-			<a href="#">Full screen</a>
-		</div>
-	</div>
+	<div id="ghost-right" class="ghost"></div>
 		
-	<div id="fullscreen_nav-container">
-		<div id="fullscreen_nav-left" class="fullscreen-nav"></div>
-		<div id="fullscreen_nav-right" class="fullscreen-nav"></div>
-		<div class="fullscreen-info">
-			<a title="Bag" href="~/checkout/shopping-bag.html#nav" id="shopping-bag">
-				<h2 id="bag-copy">Bag</h2>
-				<span class="bagCounter" id="sb-qty">0</span><span class="sbItemText">items</span>
-				<span class="sbTotalPriceText">Total</span>
-				<span id="sb-value">&pound;0.00</span>  
-			</a>
-			<a class="fullscreen-btn" href="#">Small screen</a>
-		</div>
-		
-	</div>
-			
-	<div class="grid-container">
-		<a href="#" class="quicklink" id="complete-look">Buy Complete Look</a>
-		<a href="#" id="toggle-grid">
-			<span class="show-hide" id="show-copy">Show</span>
-			<span class="show-hide" id="hide-copy">Hide</span>
-		</a>
-		<ul id="grid">
-			<!-- Products are dynamically created here -->
-		</ul>
-	</div>
-	<span id="border-bottom"></span>    
 </div>
-
+<span id="border-bottom"></span>
 <script type="text/javascript" src="/content/scripts/jquery.bxslider.min.js"></script>
 <script type="text/javascript" src="/content/scripts/TweenMax.min.js"></script>
 <script src="/content/scripts/jquery.mixitup-v2.js"></script>
-<script src="/content/scripts/ss15-boden-carousel.js"></script>
+<script src="/content/scripts/ss15-boden-carousel.min.js"></script>
 
 <script>
 var custom_settings = {
@@ -1198,15 +1093,28 @@ var custom_settings = {
 		cm_tag: 'SS15-TEMPLATE',
 		imgPath: '/images/magazine/features/SS15-carousel/',
 		animationSpeed: 400, //in ms
-		productCodes: 
+		productCodes: //'auto'
 			[
 				null,
-				'WG590RED|WG590RED|WG590RED|WG590RED',
-				'WG590RED|WG590RED|WG590RED',
-				'WG590RED|WG590RED',
-				'WG590RED|WG590RED|WG590RED|WG590RED',
-				'WG590RED|WG590RED|WG590RED|WG590RED'
+				'WH793LAV|WU003PPK|AR660NUD|AV090YEL',
+				'WK959SPK|WH779BLU|AR654PPK',
+				'WG590RED|AR662BLK',
+				'WC114OAT|WV020GRY|WE479OYS|AR662BLK',
+				'WE465NAV|WH787PPK|AR654BLK|AM224YEL'
 			]
+	},
+	slider_settings: {
+		//fullscreenEnabled: false
+	},
+	pager_settings: {
+		//enabled: false
+	},
+	productgrid_settings: {
+		//enabled: false
+		//codes: 'auto'
+	},
+	jpganimate_settings: {
+		//enabled: true
 	}
 }
 $(document).ready(function(){
@@ -1216,7 +1124,5 @@ $(document).ready(function(){
 
 $(window).load(function() {
 	$('#loading-overlay').fadeOut();
-	$(this).scrollTop(118);
-	Slider.applyMix(0);
 });
 </script>
