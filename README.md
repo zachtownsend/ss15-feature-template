@@ -41,110 +41,72 @@ Each module has it's own settings object within which you can define your custom
 
  ``` javascript
 global_settings: {
-  cm_tag: 'SS15-TEMPLATE',
-  imgPath: '/images/magazine/features/SS15-carousel/',
-  quickshopPath: '/products/outfitting.aspx?qr=',
-  animationSpeed: 400, //in ms
-  body: $('body'),
-  fontSize: 25,
-  PSDWidth: 1724,
-  fontParent: '#viewport-container',
-  productCodes: 
-    [
-      null,
-      'WH793LAV|WU003PPK|AR660NUD|AV090YEL',
-      'WK959SPK|WH779BLU|AR654PPK',
-      'WG590RED|AR662BLK',
-      'WC114OAT|WV020GRY|WE479OYS|AR662BLK',
-      'WE465NAV|WH787PPK|AR654BLK|AM224YEL'
-    ],
-  market: $('html').attr('lang')
+	cm_tag: 'SS15-TEMPLATE',
+	img_path: '/images/magazine/features/SS15-carousel/',
+	quickshop_path: '/products/outfitting.aspx?qr=',
+	animation_speed: 400, //in ms
+	body: $('body'),
+	feature_wrapper: $('.feature-wrapper'),
+	product_codes: 
+		[
+			null,
+			'WH793LAV|WU003PPK|AR660NUD|AV090YEL',
+			'WK959SPK|WH779BLU|AR654PPK',
+			'WG590RED|AR662BLK',
+			'WC114OAT|WV020GRY|WE479OYS|AR662BLK',
+			'WE465NAV|WH787PPK|AR654BLK|AM224YEL'
+		]
 },
 slider_settings: {
-  initialSlide: 0,
-  activeClass: 'active-slide',
-  normalWidth: 1000,
-  fullscreenEnabled: true,
-  fullscreenButton: $('.fullscreen-btn'),
-  body: globalSettings.body,
-  resizeTimerDelay: 200,
-  dynamicFontSize: true,
-  navLocation: {
-    normal: '#ghost-', 
-    fullscreen: '#fullscreen_nav-'
-  },
-  timer: null,
-  uiSwitchSliders: false, //integer or array, depending on the index of slide that requires switching. false if not necessary
-  translateEnabled: false //if true, all default live copy will be translated
+	initial_slide: 0,
+	active_class: 'active-slide',
+	normal_width: 1000,
+	fullscreen_enabled: true,
+	fullscreen_button: $('.fullscreen-btn'),
+	body: global_settings.body,
+	resize_delay: 100,
+	nav_location: {
+		normal: '#ghost-', 
+		fullscreen: '#fullscreen_nav-'
+	},
+	ui_switch: false
 },
 pager_settings: {
-  enabled: true,
-  fullscreenStyle: 'overlay',             
-  hoverStyle: 'normal',                 
-  imageType: (Modernizr.backgroundsize) ? 'background' : 'inline', // inline|background
-  scrollable: false,                  
-  animationSpeed: globalSettings.animationSpeed,    
-  animationEase: 'ease',
-  animationDelay: 0,
-  imgPath: globalSettings.imgPath,
-  nameFormat: {prefix: 'slide', suffix: '-thumbnail.jpg'},
-  wrapper: $('#pager-wrapper'),           
-  container: $('#pager-container'),         
-  item: $('.bx-pager-item'),              
-  img: $('.thumb-img'),               
-  ui: {
-    toggleBtn: $('#pager-tab'),
-    textBased: false
-  }
+	enabled: true,
+	img_path: global_settings.img_path,
+	name_format: {prefix: 'slide', suffix: '-thumbnail.jpg'},
+	animation_speed: global_settings.animation_speed
 },
 productgrid_settings: {
-  enabled: true,
-  defaultHidden: true,
-  container: $('.grid-container'),
-  listContainer: $('#grid'),
-  codes: globalSettings.productCodes,
-  quickshopPath: globalSettings.quickshopPath,
-  animationSpeed: globalSettings.animationSpeed,
-  animationEasing: 'ease',  
-  animationDelay: 0, 
-  openClass: 'open', 
-  maxHeight: 210, 
-  market: globalSettings.market,
-  ui: {
-    completeLook: $('#complete-look'),
-    toggleBtn: $('#toggle-grid'),
-    showBtnClass: 'show-btn',
-    itemClass: 'page-nav',
-    textBased: true
-  }
+	enabled: true,				// Boolean
+	slider_class: '.bxslider',
+	codes: global_settings.product_codes, // Array or 'auto'
+	quickshop_path: global_settings.quickshop_path, // String
+	open_class: 'open',			// String
+	max_height: 210,				// Integer
+	market: market
 },
-quicklink_settings: {
-  updateBagAfterLoad: true,
-  updateBagBeforeClose: true
+shoppingbag_settings: {
+	enabled: true,
+	market: market
 },
 jpganimate_settings: {
-  enabled: false,
-  container: '.bg-container',
-  slidePrefix: '.slide',
-  imgPath: globalSettings.imgPath,
-  speed: 300, //in ms
-  repeat: -1,
-  paused: true,
-  yoyo: true,
-  repeatDelay: 0, //in ms
-  scene: [null, 8, 8, 10, 8, 10],
-  css3: Modernizr.backgroundsize,
-  ctl: null
+	enabled: false,
+	container: '.bg-container',
+	slide_prefix: '.slide',
+	img_path: global_settings.img_path,
+	speed: 300, //in ms
+	repeat: -1,
+	paused: true,
+	yoyo: true,
+	repeat_delay: 0, //in ms
+	scene: [2, null, null, null, null, null]
 },
 layers_settings: {
-  enabled: false,
-  layerClass: 'layer',
-  duration: 1,
-  delay: 0.4
-},
-ghosts_settings: {
-  enabled: true,
-  selector: $('.ghost')
+	enabled: false,
+	layer_class: 'layer',
+	duration: 1,
+	delay: 0.4
 }
  ``` 
 
