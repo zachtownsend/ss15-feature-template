@@ -68,6 +68,20 @@ function BodenCarousel(custom) {
 		global_settings.feature_wrapper.append(html);
 	}
 	
+	function layer_animation(layers, duration, attr, delay) {
+		var layers_group = layers;
+		var dly = 0;
+		
+		layers.each(function() {
+			var layer = $(this);
+			var end_pos = {top: layer.css('top'), right: layer.css('right'), bottom: layer.css('bottom'), left: layer.css('left')};
+			var start_pos = {top: end_pos.top, right: end_pos.right, bottom: end_pos.bottom, left: end_pos.left};
+			$.extend(start_pos, attr);
+			layer.css(start_pos).delay(dly).animate(end_pos, duration, 'easeInOutQuad');
+			dly += delay;
+		});
+	}
+	
 	// =============== //
 	// === MODULES === //
 	// =============== //
@@ -77,8 +91,8 @@ function BodenCarousel(custom) {
 		var settings = $.extend({
 			enabled: false,
 			layer_class: 'layer',
-			duration: 1,
-			delay: 0.4
+			duration: 1000,
+			delay: 200
 		}, custom.layers_settings);
 		
 		var public_props = {
@@ -92,8 +106,8 @@ function BodenCarousel(custom) {
 			var layers = parent.find('.' + settings.layer_class);
 			var forward = (oldIndex - newIndex) ? true : false;
 			var startPoint = vpWidth;
-			var attr = (forward) ? {left: startPoint, right: 'auto'} : {right: startPoint, left: 'auto'};
-			TweenMax.staggerFrom(layers, settings.duration, attr, settings.delay);
+			var attr = {left: startPoint}
+			layer_animation(layers, settings.duration, attr, settings.delay);
 		}
 		
 		return public_props;
@@ -109,9 +123,9 @@ function BodenCarousel(custom) {
 			speed: 300, //in ms
 			repeat: -1,
 			paused: true,
-			yoyo: true,
-			repeat_delay: 0, //in ms
-			scene: [2, null, null, null, null, null]
+			yoyo: false,
+			repeat_delay: 1,
+			scene: [3, 3, 3, null, 3, null]
 		}, custom.jpganimate_settings);
 		
 		var public_props = {
@@ -124,6 +138,7 @@ function BodenCarousel(custom) {
 		
 		var css3 = Modernizr.backgroundsize;
 		var ctl = null;
+		var animation;
 		
 		var add_frames = function(target, frames, index) {
 			var target = $(target);
@@ -139,16 +154,42 @@ function BodenCarousel(custom) {
 			}
 			container.append(imgVar);
 		};
-		
-		var control = function(target, frames) {
+			
+		function control(target, frames) {
+			var animation;
 			var framesArray = $(target).find(settings.container).children();
-			var duration = settings.speed / 1000;
-			var animate = 
-				new TimelineMax({repeat: settings.repeat, paused: settings.paused, yoyo: settings.yoyo, repeat_delay: (settings.repeat_delay / 1000)})
-					.staggerFromTo(framesArray, duration, {zIndex: 0}, {zIndex: 1}, (settings.speed / 1000));
-			return animate;
-		};
-		
+			var animation_length = framesArray.length + settings.repeat_delay;
+			var pos = 0;
+			var up = true;
+			
+			var play = function() {
+				clearInterval(animation);
+				animation = setInterval(function() {
+					up ? pos++ : pos--;
+					var z = up ? 1 : 0;
+					framesArray.eq(pos).css({ 'z-index' : z });
+					if(settings.yoyo) {
+						if( pos === animation_length ) up = false;
+						if( pos === 0 ) up = true;
+					} else {
+						if( pos === animation_length ) { 
+							framesArray.removeAttr('style');
+							pos = 0;
+						}
+					}
+				}, settings.speed);
+			}
+			
+			var pause = function() {
+				clearInterval(animation);
+			}
+			
+			return {
+				play : play,
+				pause : pause
+			}
+		}
+				
 		public_props.playFrames = function(newIndex, oldIndex) {
 			if(ctl === null) return false;
 			var newScene = ctl[newIndex];
@@ -392,6 +433,7 @@ function BodenCarousel(custom) {
 			var hide_copy = translation(['Hide', 'Verbergen', 'Cacher' ]);
 			var html = 
 				['<div id="grid-container">',
+					
 					'<div id="grid-ui" style="display: none">',
 						'<a href="#" class="quicklink" id="complete-look">' + buylook_copy + '</a>',
 						'<a href="#" id="toggle-grid">',
@@ -491,6 +533,7 @@ function BodenCarousel(custom) {
 			fullscreen_button: $('.fullscreen-btn'),
 			body: global_settings.body,
 			resize_delay: 100,
+			border: 10,
 			nav_location: {
 				normal: '#ghost-', 
 				fullscreen: '#fullscreen_nav-'
@@ -549,11 +592,7 @@ function BodenCarousel(custom) {
 			}
 		}
 	};
-	
-	if( settings.ui_switch.constructor === Array ) {
 		
-	}
-	
 	var ui_switch = function(newIndex, slideNumber) {
 		if(!settings.ui_switch) return false;
 		var switchClass = 'ui-switch';
@@ -630,7 +669,7 @@ function BodenCarousel(custom) {
 	
 	var log_warnings = function() {
 		if(global_settings.cm_tag === 'SS15-TEMPLATE') warnings.push('You have not changed the coremetrics tag');
-		
+		if(global_settings.img_path === '/images/magazine/features/SS15-carousel/') warnings.push('You haven\'t changed the default image path');
 		for(i in warnings) {
 			console.log('WARNING: ' + warnings[i]);
 		}

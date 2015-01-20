@@ -117,10 +117,6 @@ body.fullscreen {overflow: hidden;}
 	display: none;
 }
 
-#border-bottom {
-  display:none;
-}
-
 /* === Grid (NORMAL) === */
 #grid {
   width: 960px;
@@ -330,7 +326,7 @@ li.mix > .quicklink {
   box-sizing: border-box;
   height: 100%;
   left: 0;
-  padding: 10px;
+  padding: 0px;
   position: fixed;
   top: 0;
   width: 100%;
@@ -354,10 +350,12 @@ li.mix > .quicklink {
 }
 
 .fullscreen .bxslider > li {
-	width: 100%;
-	height: 100%;
-	background-size: cover;
-	background-position: center top;
+  background-position: center top;
+  background-size: cover;
+  box-sizing: border-box;
+  height: 100%;
+  padding: 10px;
+  width: 100%;
 }
 
 .fullscreen .bx-wrapper {
@@ -395,16 +393,6 @@ li.mix > .quicklink {
 	bottom:25%;
 	right: 10%;
 	background-color: green;
-}
-
-.fullscreen #border-bottom {
-  background-color: #fff;
-  bottom: 0;
-  display: block;
-  height: 10px;
-  left: 0;
-  position: fixed;
-  width: 100%;
 }
 
 /* = Shopping bag (fullscreen) = */
@@ -460,13 +448,12 @@ li.mix > .quicklink {
 
 /* === Grid (FULLSCREEN) === */
 .fullscreen #grid-container {
-  background-image: url('/images/magazine/features/ss15-carousel/white75percent-bg.png');
-  bottom: 10px;
+  background-image: url("/images/magazine/features/ss15-carousel/white75percent-bg.png");
+  bottom: 0;
+  left: 0;
   max-height: 0;
-  left: 10px;
   position: absolute;
   width: 100%;
-  width: calc(100% - 20px);
 }
 
 .fullscreen #grid-container.open {
@@ -490,22 +477,38 @@ li.mix > .quicklink {
 }
 .fullscreen #grid-container {
 	transition-property: max-height;
+	-webkit-transition-property: max-height;
+	-moz-transition-property: max-height;
+	-ms-transition-property: max-height;
+	-o-transition-property: max-height;
 }
 
 .fullscreen #toggle-grid {
-	transition-property: top;
+	transition-property: top, background-color;
+	-webkit-transition-property: top, background-color;
+	-moz-transition-property: top, background-color;
+	-ms-transition-property: top, background-color;
+	-o-transition-property: top, background-color;
 }
 
 .fullscreen #pager-wrapper {
 	transition-property: left;
+	-webkit-transition-property: left;
+	-moz-transition-property: left;
+	-ms-transition-property: left;
+	-o-transition-property: left;
 }
 
 .fullscreen #pager-tab {
 	transition-property: right;
+	-webkit-transition-property: right;
+	-moz-transition-property: right;
+	-ms-transition-property: right;
+	-o-transition-property: right;
 }
 
 .fullscreen #grid {
-  margin: auto;
+  margin: 0 auto 10px;
   width: 100%;
 }
 
@@ -522,7 +525,7 @@ li.mix > .quicklink {
   display: block;
   padding: 5px 6px;
   position: absolute;
-  right: 10px;
+  right: 20px;
   top: 10px;
 }
 
@@ -555,9 +558,9 @@ li.mix > .quicklink {
   height: 12px;
   padding: 5px 6px;
   position: absolute;
-  right: 10px;
+  right: 20px;
   text-align: center;
-  top: -32px;
+  top: -42px;
 }
 
 .fullscreen #toggle-grid .showHide-btn {
@@ -743,6 +746,7 @@ li.mix > .quicklink {
   top: 0;
   width: 100%;
   z-index: 1;
+  overflow: hidden;
 }
 
 .animation-frame {
@@ -1017,10 +1021,11 @@ and (orientation : portrait) {
 			<li id="slide1" class="slide1">
 				<div class="slide-container bg-top">
 					<div class="content-container">
+						<div class="bg-container"></div>
 						<div class="copy">
-							<h2 class="layer">Lorem Ipsum</h2>
-							<p class="layer">Lorem Ipsum</p>
-							<a href="~/products/outfitting.aspx?qr=WH793LAV|WU003PPK|AR660NUD|AV090YEL" class="layer retrieve quicklink">Lorem Ipsum <span class="r-arw"></span></a>
+							<h2>Lorem Ipsum</h2>
+							<p>Lorem Ipsum</p>
+							<a href="~/products/outfitting.aspx?qr=WH793LAV|WU003PPK|AR660NUD|AV090YEL" class="retrieve quicklink">Lorem Ipsum <span class="r-arw"></span></a>
 						</div>
 					</div>
 				</div>
@@ -1029,6 +1034,7 @@ and (orientation : portrait) {
 			<li id="slide2" class="slide2">
 				<div class="slide-container bg-bottom">
 					<div class="content-container">
+						<div class="bg-container"></div>
 						<div class="copy">
 							<h2>Lorem Ipsum</h2>
 							<p>Lorem Ipsum</p>
@@ -1053,6 +1059,7 @@ and (orientation : portrait) {
 			<li id="slide4" class="slide4">
 				<div class="slide-container bg-right">
 					<div class="content-container">
+						<div class="bg-container"></div>
 						<div class="copy">
 							<h2>Lorem Ipsum</h2>
 							<p>Lorem Ipsum</p>
@@ -1081,19 +1088,16 @@ and (orientation : portrait) {
 	<div id="ghost-right" class="ghost"></div>
 		
 </div>
-<span id="border-bottom"></span>
 <script type="text/javascript" src="/content/scripts/jquery.bxslider.min.js"></script>
-<script type="text/javascript" src="/content/scripts/TweenMax.min.js"></script>
-<script src="/content/scripts/jquery.mixitup-v2.js"></script>
+<script src="/content/scripts/jquery.mixitup-v2.min.js"></script>
 <script src="/content/scripts/ss15-boden-carousel.min.js"></script>
 
 <script>
 var custom_settings = {
 	global_settings: {
 		cm_tag: 'SS15-TEMPLATE',
-		imgPath: '/images/magazine/features/SS15-carousel/',
-		animationSpeed: 400, //in ms
-		productCodes: //'auto'
+		img_path: '/images/magazine/features/SS15-carousel/',
+		product_codes: 
 			[
 				null,
 				'WH793LAV|WU003PPK|AR660NUD|AV090YEL',
@@ -1102,19 +1106,6 @@ var custom_settings = {
 				'WC114OAT|WV020GRY|WE479OYS|AR662BLK',
 				'WE465NAV|WH787PPK|AR654BLK|AM224YEL'
 			]
-	},
-	slider_settings: {
-		//fullscreenEnabled: false
-	},
-	pager_settings: {
-		//enabled: false
-	},
-	productgrid_settings: {
-		//enabled: false
-		//codes: 'auto'
-	},
-	jpganimate_settings: {
-		//enabled: true
 	}
 }
 $(document).ready(function(){
