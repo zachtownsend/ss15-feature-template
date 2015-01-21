@@ -474,6 +474,8 @@ function BodenCarousel(custom) {
 			market: market
 		}, user_settings.shoppingbag_settings);
 		
+		var $fs_qty, $fs_val, $nm_qty, $nm_val;
+		
 		var public_props = {
 			after_load: function() { return false },
 			before_close: function() { return false },
@@ -491,21 +493,42 @@ function BodenCarousel(custom) {
 					Shopping_bag.update();					
 				}
 			});
+		};
+		
+		/*var sb_update = function() {
+			item_count = $('#ShoppingBag1_lblCount');
+			item_value = $('#ShoppingBag1_lblTotal');
+			$sb_qty.text(item_count.text());
+			$sb_value.text(item_value.text());
+		}*/
+		
+		var get_text = function(id) {
+			return $(id).text();
+		}
+		
+		var update_values = function() {
+			var new_qty = get_text('#ShoppingBag1_lblCount');
+			var new_val = get_text('#ShoppingBag1_lblTotal');
+			$fs_qty.text(new_qty);
+			$fs_val.text(new_val);
 		}
 		
 		public_props.update = function() {
-			var items = $('#ShoppingBag1_lblCount');
-			var value = items.text();
+			
+			var current_qty = $('#sb-qty').text();
 			var cap = 25;
 			var timer = setInterval(function() {
-				var new_val = items.text();
-				if(new_val != value) {
-					items.text(new_val);
+				var new_qty = $('#ShoppingBag1_lblCount').text();
+				console.log(current_qty + ':' + new_qty);
+				if(new_qty != current_qty) {
+					update_values();
 					clearInterval(timer);
+					
 				}
 				if(cap === 0) clearInterval(timer);
 				cap--;
 			}, 200);
+			
 		}
 		
 		public_props.before_close = function() {
@@ -514,16 +537,20 @@ function BodenCarousel(custom) {
 		
 		public_props.initialise = function() {
 			var bag = translation(['Bag', 'Warenkorb', 'Panier' ]);
+			var value = $('#ShoppingBag1_lblTotal').text();
 			var html = [
 				'<a title="Bag" href="~/checkout/shopping-bag.html#nav" id="shopping-bag">',
 					'<h2 id="bag-copy">' + bag + '</h2>',
 					'<span class="bagCounter" id="sb-qty">0</span><span class="sbItemText">items</span>',
 					'<span class="sbTotalPriceText">Total</span>',
-					'<span id="sb-value">&pound;0.00</span>',
+					'<span id="sb-value">' + value + '</span>',
 				'</a>'
 			].join('\n');
 			
 			$('.fullscreen-info').prepend(html);
+			$fs_qty = $('#sb-qty');
+			$fs_val = $('#sb-value');
+			update_values();
 		}
 		
 		return public_props;
