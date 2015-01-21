@@ -71,12 +71,19 @@ function BodenCarousel(custom) {
 	function layer_animation(layers, duration, attr, delay) {
 		var layers_group = layers;
 		var dly = 0;
+		var get_props = function(layer, attr) {
+			var props = {};
+			for(key in attr) {
+				props[key] = layer.css(key);
+				if(props[key] === 'auto') props[key] = 0;
+			}
+			return props;
+		}
 		
 		layers.each(function() {
 			var layer = $(this);
-			var end_pos = {top: layer.css('top'), right: layer.css('right'), bottom: layer.css('bottom'), left: layer.css('left')};
-			var start_pos = {top: end_pos.top, right: end_pos.right, bottom: end_pos.bottom, left: end_pos.left};
-			$.extend(start_pos, attr);
+			var end_pos = get_props(layer, attr);
+			var start_pos = attr;
 			layer.css(start_pos).delay(dly).animate(end_pos, duration, 'easeInOutQuad');
 			dly += delay;
 		});
@@ -144,13 +151,13 @@ function BodenCarousel(custom) {
 			var target = $(target);
 			var container = target.find(settings.container);
 			var imgVar = '';
-			var css3 = true;
 			for(i = 1; i <= frames; i++) {
 				var first = (i === 1) ? ' first' : '';
-				var div = (settings.css3) ? 
+				var div = (css3) ? 
 					'<div class="animation-frame' + first + '" style="background-image: url(' + settings.img_path + 'slide' + index + '/slide' + i + '.jpg);"></div>' :
 					'<div class="animation-frame' + first + '"><img class="ie-bg" src="' + settings.img_path + 'slide' + index + '/slide' + i + '.jpg" /></div>';
 				imgVar += div;
+				
 			}
 			container.append(imgVar);
 		};
@@ -173,7 +180,7 @@ function BodenCarousel(custom) {
 						if( pos === 0 ) up = true;
 					} else {
 						if( pos === animation_length ) { 
-							framesArray.removeAttr('style');
+							framesArray.css({'z-index' : 0});
 							pos = 0;
 						}
 					}
