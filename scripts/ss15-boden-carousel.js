@@ -494,14 +494,7 @@ function BodenCarousel(custom) {
 				}
 			});
 		};
-		
-		/*var sb_update = function() {
-			item_count = $('#ShoppingBag1_lblCount');
-			item_value = $('#ShoppingBag1_lblTotal');
-			$sb_qty.text(item_count.text());
-			$sb_value.text(item_value.text());
-		}*/
-		
+				
 		var get_text = function(id) {
 			return $(id).text();
 		}
@@ -701,6 +694,15 @@ function BodenCarousel(custom) {
 		}
 	}
 	
+	var bindUIelements = function() {
+		if(settings.fullscreen_enabled) settings.fullscreen_button.click(function() { toggle_fullscreen() });
+		$(window).resize(function() { window_resize() });
+		$('.next').click(function(e) {
+			e.preventDefault();
+			slider.goToNextSlide();
+		});
+	};
+	
 	var log_warnings = function() {
 		if(global_settings.cm_tag === 'SS15-TEMPLATE') warnings.push('You have not changed the coremetrics tag');
 		if(global_settings.img_path === '/images/magazine/features/SS15-carousel/') warnings.push('You haven\'t changed the default image path');
@@ -721,12 +723,10 @@ function BodenCarousel(custom) {
 		slider = $('.bxslider').bxSlider(fullscreen.mode());
 		fullscreen.apply_ui();
 		apply_quicklinks();
+		bindUIelements();
 	};
 	
-	var bindUIelements = function() {
-		if(settings.fullscreen_enabled) settings.fullscreen_button.click(function() { toggle_fullscreen() });
-		$(window).resize(function() { window_resize() });
-	}();
+	
 	
 	
 	return {

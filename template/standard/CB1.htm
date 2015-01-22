@@ -1,0 +1,1117 @@
+<style>
+body{background-color:#FFF; overflow-y: scroll;}
+.mainContainerBg {overflow: hidden;}
+.mainContainer, .mainContent, .mainContentLayout2, div.magFeatureArea, #magazineFeature, .mainListGroup{width:100%;}
+.fullscreen .topBarContainer, .fullscreen .footerContainer {display: none;}
+.topBarContainer{width:100%;height:118px;}
+.footerContainer {background: none repeat scroll 0 0 #f1f1f1; border-top: 1px solid #ccc;}
+.footerContent {border:0px !important; margin: 0 auto; width: 1000px;}
+.fancybox-lock .fancybox-overlay {overflow: auto;}
+a {outline: none;}
+body.fullscreen {overflow: hidden;}
+.fullscreen .ie-fullscreen {min-height: 100%; min-width: 100%; position: absolute; }
+.ie-fullscreen {width: 100%; position: absolute; top:0;	left:0;}
+.bx-prev:hover, .bx-next:hover, .fullscreen-btn:hover {opacity: 0.8;}
+
+/* === Loading overlay === */
+#CB1 {
+	position: relative;
+	height:100%;
+}
+#loading-overlay {
+  background-color: #fff;
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: 10;
+}
+
+#loading-overlay .table {
+  display: table;
+  height: 100%;
+  width: 100%;
+}
+
+#loading-overlay .table-cell {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+/* ===================== */
+/* === Normal Styles === */
+/* ===================== */
+
+/* == General == */
+.bxslider > li, .bx-pager.bx-custom-pager {
+	width: 1000px;
+}
+
+.bxslider > li, .ghost {
+	height: 544px;
+}
+
+/* === Slider (NORMAL) === */
+.feature-wrapper {
+  position: relative;
+  font-size: 16px;
+}
+
+.feature-wrapper .bx-viewport {
+  margin: auto;
+  overflow: visible !important;
+  width: 1000px !important;
+}
+
+#viewport-container {
+	position: relative;
+}
+
+.bx-wrapper {
+  max-width: 100% !important;
+  padding-left: 0;
+  padding-right: 0;
+  padding-top: 0;
+  position: relative;
+}
+
+.bxslider > li {
+	overflow: hidden;
+}
+
+.slide-container {
+	width:100%;
+	height:100%;
+	display:table;
+	background-size: cover;
+	background-position: center;
+	position: relative;
+}
+
+.fullscreen-btn {
+  background-image: url("/images/magazine/features/ss15-carousel/spritesheet.png");
+  height: 30px;
+  left: -50px;
+  position: absolute;
+  top: 10px;
+  width: 39px;
+  z-index: 1;
+}
+
+.fullscreen-btn {
+  background-position: -154px 0;
+}
+
+.fullscreen-btn > a {
+  display: block;
+  height: 100%;
+  text-indent: -9999px !important;
+}
+
+#close-products {
+	display: none;
+}
+
+.fullscreen-info {
+	display: none;
+}
+
+/* === Grid (NORMAL) === */
+#grid {
+  width: 960px;
+  margin: auto;
+}
+
+#grid > li {
+  display: none;
+  width: 20%;
+}
+
+#grid .quicklink > img {
+  width: 100%;
+}
+
+li.mix > .quicklink {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  display: block;
+  line-height: 0 !important;
+  margin: auto;
+  overflow: hidden;
+  padding: 10px;
+  width: 80%;
+}
+
+#grid-container a {
+	font-family: BrandonGrotesque-Regular, Helvetica, Arial, sans serif;
+}
+
+#complete-look {
+  background: none repeat scroll 0 0 rgba(0, 0, 0, 0);
+  color: #000;
+  display: inline-block;
+  font: 14px/20px BrandonGrotesque-Medium !important;
+  height: 20px;
+  letter-spacing: 1.9px;
+  margin: 1px 0 15px;
+  padding: 1px 11px 0 13px;
+  text-transform: uppercase;
+}
+
+#toggle-grid {
+  display: none;
+  color: #000;
+}
+
+/* === Navigation (NORMAL) === */
+.bx-controls {
+  bottom: 10px;
+  position: absolute;
+  width: 100%;
+}
+
+.ghost > a, .fullscreen-nav > a {
+  background-image: url("/images/magazine/features/SS15-carousel/spritesheet.png");
+  display: block;
+  height: 37px;
+  position: relative;
+  text-indent: -9999px;
+  width: 38px;
+  z-index: 1;
+}
+
+.ghost > a {
+	top: 250px;
+}
+
+.ghost {
+	position: absolute;
+	top:0;
+	background-image: url('/images/magazine/features/ss15-carousel/white75percent-bg.png');
+	z-index: 1;
+}
+
+#ghost-left {
+	left:0;
+}
+
+#ghost-right {
+	right: 0;
+}
+
+.bx-prev {
+  float: right;
+  right: 10px;
+  background-position: 0 0px;
+}
+
+.bx-next {
+  float: left;
+  left: 10px;
+  background-position: -38px 0px;
+}
+
+.bx-pager.bx-custom-pager {
+  margin: auto;
+  position: relative;
+  overflow:hidden;
+  white-space: nowrap;
+}
+
+.bx-pager-link.active, .fullpage .bx-pager-link:hover {
+  border: 3px solid #d95167;
+}
+
+/* === Pagination (NORMAL) === */
+#pager-container {
+	width: 100%;
+}
+
+#tab-container, #pager-loadbar {
+	display: none;
+}
+
+.fullscreen-nav {
+  position: absolute;
+  bottom: 0;
+}
+
+#fullscreen_nav-left {
+  left: 5px;
+}
+
+#fullscreen_nav-right {
+  right: 5px;
+}
+
+#pager-tab {
+	display:none;
+}
+
+/* == Standard Mode == */
+.bx-pager-item {
+	box-sizing: border-box;
+	display: inline-block;
+	height: 128px;
+	padding: 10px 0;
+	position: relative;
+	width: 166.667px;
+}
+
+.bx-pager-link {
+  border: 5px solid transparent;
+  box-sizing: border-box;
+  display: inline-block;
+  height: 100%;
+  line-height: 0 !important;
+  width: 100%;
+  opacity: 1;
+  transition: opacity 400ms ease 0s;
+}
+
+.bx-pager-link:hover {
+  opacity: 0.75;
+  transition: opacity 400ms ease 0s;
+}
+
+.bx-pager-link > img {
+    width: 100%;
+}
+
+#thumb-left, #thumb-right {
+  background-color: rgba(80, 80, 80, 0.8);
+  cursor: pointer;
+  display: block;
+  height: 100%;
+  position: absolute;
+  width: 20px;
+  z-index: 1;
+  top: 0;
+}
+
+.thumb-inner {
+  height: 100%;
+}
+
+#thumb-left {
+	left: 0;
+}
+
+#thumb-right {
+	right: 0;
+}
+
+.thumb-img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+}
+
+/* ========================== */
+/* === Full screen styles === */
+/* ========================== */
+
+/* === Slider (FULLSCREEN) === */
+.fullscreen #viewport-container {
+  height: 100%;
+  margin: 0 auto;
+  overflow: hidden;
+  width: 100%;
+}
+
+.fullscreen .feature-wrapper {
+  background-color: #fff;
+  box-sizing: border-box;
+  height: 100%;
+  left: 0;
+  padding: 0px;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
+.fullscreen .feature-wrapper .bx-viewport {
+  margin: auto;
+  overflow: unset !important;
+  width: 100% !important;
+  height:100% !important;
+}
+
+.fullscreen .feature-wrapper .bxslider > li {
+	height: 100%;
+}
+
+.fullscreen .feature-wrapper .bxslider > li > img {
+	min-width: 100%;
+	min-height: 100%;
+}
+
+.fullscreen .bxslider > li {
+  background-position: center top;
+  background-size: cover;
+  box-sizing: border-box;
+  height: 100%;
+  padding: 10px;
+  width: 100%;
+}
+
+.fullscreen .bx-wrapper {
+	height:100%;
+}
+
+.fullscreen .bxslider {
+	height:100%;
+}
+
+.fullscreen .fullscreen-btn {
+  color: #fff;
+  display: inline-block;
+  left: initial;
+  margin-left: 1em;
+  position: static;
+  text-indent: -9999px;
+}
+
+.fullscreen .fullscreen-btn {
+  background-position: -193px 0;
+}
+
+
+.fullscreen .fullscreen-info {
+  display: block;
+  position: fixed;
+  right: 20px;
+  top: 18px;
+}
+
+.fullscreen #close-products {
+	display: block;
+	position: fixed;
+	bottom:25%;
+	right: 10%;
+	background-color: green;
+}
+
+/* = Shopping bag (fullscreen) = */
+.fullscreen .bagCounter {
+  background: url("/images/site/bagbg.png") no-repeat scroll center top rgba(0, 0, 0, 0);
+  color: #fff;
+  display: inline-block;
+  height: 22px;
+  padding: 5px 0 0;
+  text-align: center;
+  width: 20px;
+  
+}
+
+.fullscreen #shopping-bag {
+  background-color: #fff;
+  border-radius: 2px;
+  color: #000;
+  font: 12.8px Arial,Helvetica,sans-serif;
+  padding: 4px 10px;
+  position: relative;
+  top: 1px;
+  transition: background-color 1s linear 2s;
+  text-decoration: none;
+}
+
+.fullscreen #shopping-bag:hover h2, .fullscreen #shopping-bag:hover #sb-value {
+	text-decoration: underline;
+}
+
+.fullscreen #shopping-bag > h2 {
+  color: #000;
+  display: inline;
+  font: 14px/19px BrandonGrotesque-Regular,Verdana,Arial,sans-serif;
+}
+
+.fullscreen .sbItemText {
+  display: none;
+}
+
+.fullscreen .sbTotalPriceText {
+  display: none;
+}
+
+.fullscreen .fullscreen-btn > a {
+	text-align: right;
+}
+
+.fullscreen #shopping-bag.changed {
+	background-color: rgba(0, 128, 0, 0.8) !important;
+	transition: background-color 0.1s;
+}
+
+/* === Grid (FULLSCREEN) === */
+.fullscreen #grid-container {
+  background-image: url("/images/magazine/features/ss15-carousel/white75percent-bg.png");
+  bottom: 0;
+  left: 0;
+  max-height: 0;
+  position: absolute;
+  width: 100%;
+}
+
+.fullscreen #grid-container.open {
+  max-height: 210px;
+}
+
+.fullscreen #grid-container,
+.fullscreen #toggle-grid,
+.fullscreen #pager-wrapper,
+.fullscreen #pager-tab {
+	transition-duration: 0.4s;
+	-webkit-transition-duration: 0.4s;
+	-moz-transition-duration: 0.4s;
+	-ms-transition-duration: 0.4s;
+	-o-transition-duration: 0.4s;
+	transition-timing-function: ease-in-out;
+	-webkit-transition-timing-function: ease-in-out;
+	-moz-transition-timing-function: ease-in-out;
+	-ms-transition-timing-function: ease-in-out;
+	-o-transition-timing-function: ease-in-out;
+}
+.fullscreen #grid-container {
+	transition-property: max-height;
+	-webkit-transition-property: max-height;
+	-moz-transition-property: max-height;
+	-ms-transition-property: max-height;
+	-o-transition-property: max-height;
+}
+
+.fullscreen #toggle-grid {
+	transition-property: top, background-color;
+	-webkit-transition-property: top, background-color;
+	-moz-transition-property: top, background-color;
+	-ms-transition-property: top, background-color;
+	-o-transition-property: top, background-color;
+}
+
+.fullscreen #pager-wrapper {
+	transition-property: left;
+	-webkit-transition-property: left;
+	-moz-transition-property: left;
+	-ms-transition-property: left;
+	-o-transition-property: left;
+}
+
+.fullscreen #pager-tab {
+	transition-property: right;
+	-webkit-transition-property: right;
+	-moz-transition-property: right;
+	-ms-transition-property: right;
+	-o-transition-property: right;
+}
+
+.fullscreen #grid {
+  margin: 0 auto 10px;
+  width: 100%;
+}
+
+.fullscreen #grid > li {
+  display: none;
+  max-width: 120px;
+  margin: 10px;
+}
+
+.fullscreen .open #toggle-grid {
+  background-color: transparent;
+  background-image: none;
+  border-radius: 0;
+  display: block;
+  padding: 5px 6px;
+  position: absolute;
+  right: 20px;
+  top: 10px;
+}
+
+.fullscreen #toggle-grid .show-hide {
+  background-image: url("/images/magazine/features/ss15-carousel/showhide-sprite.png");
+  background-repeat: no-repeat;
+  padding-left: 25px;
+}
+
+.fullscreen #show-copy {
+	background-position: 0 -5px;
+}
+
+.fullscreen #hide-copy {
+  background-position: 0 -24px;
+}
+
+.fullscreen .open #show-copy, .fullscreen #hide-copy {
+	display: none;
+}
+
+.fullscreen .open #hide-copy, .fullscreen #show-copy {
+	display: inline-block;
+}
+
+.fullscreen #toggle-grid {
+  background-color: #fff;
+  border-radius: 2px;
+  display: block;
+  height: 12px;
+  padding: 5px 6px;
+  position: absolute;
+  right: 20px;
+  text-align: center;
+  top: -42px;
+}
+
+.fullscreen #toggle-grid .showHide-btn {
+  background-image: url("/images/magazine/features/five-of-the-best-floral/spritesheet.png");
+  background-position: -232px 0;
+  display: block;
+  height: 12px;
+  text-align: center;
+  text-indent: -9999px;
+  width: 27px;
+}
+
+.fullscreen #toggle-grid span {
+  float: left;
+  line-height: 12px;
+  text-transform: uppercase;
+  font-family: BrandonGrotesque-Medium;
+}
+
+.fullscreen #toggle-grid span.hide {
+	display: none;
+}
+
+.fullscreen #complete-look {
+  position: relative;
+  top: 10px;
+}
+/* === Pagination (FULLSCREEN) === */
+.fullscreen #pager-wrapper {
+  background-color: #fff;
+  height: 100%;
+  left: -100%;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 2;
+}
+
+.fullscreen #pager-wrapper.open {
+	left: 0;
+}
+
+.fullscreen #pager-container {
+  display: block;
+  height: 100%;
+  position: relative;
+  width: 100%;
+}
+
+.fullscreen .bx-pager.bx-custom-pager {
+  display: block;
+  height: 70%;
+  margin: 0 auto;
+  position: relative;
+  top: auto;
+  white-space: normal;
+  width: 80%;
+  padding-top: 7%;
+}
+
+.fullscreen .bx-pager-item {
+  box-sizing: border-box;
+  display: inline-block;
+  float:left;
+  height: 50%;
+  padding: 1%;
+  width: 33.3333%;
+}
+
+.fullscreen .bx-pager-link, .fullscreen .bx-pager-link:active {
+  box-sizing: border-box;
+  display: inline-block;
+  height: 100%;
+  line-height: 0;
+  max-width: 100%;
+  overflow: hidden;
+  width: 100%;
+}
+
+.fullscreen .box.bx-pager-link .thumb-inner, .fullscreen .box.bx-pager-link.active .thumb-inner {
+  border: medium none;
+  border-radius: initial;
+  box-sizing: border-box;
+  display: block;
+  height: 100% !important;
+  margin: auto;
+  overflow: hidden;
+  position: relative;
+  transition: width 0.4s ease 0s, height 0.4s ease 0s, border-radius 0.4s ease 0s, border 0.4s ease 0s;
+  width: 100%;
+}
+
+.fullscreen .box.bx-pager-item .thumb-inner > .thumb-img {
+  background-position: center top;
+  background-size: cover;
+  border: 3px solid #fff;
+  box-sizing: border-box;
+  display: block;
+  height: 100%;
+  position: static;
+  width: 100%;
+}
+
+.fullscreen .box.bx-pager-item .bx-pager-link:hover .thumb-inner > .thumb-img, .fullscreen .box.bx-pager-item .bx-pager-link.active .thumb-inner > .thumb-img {
+  box-shadow: none;
+  box-sizing: border-box;
+  display: block;
+  height: 100%;
+  left: initial;
+  margin: 0;
+  top: initial;
+  width: 100%;
+}
+
+.fullscreen .box.bx-pager-item:hover .thumb-inner > .thumb-img {
+  border: 3px solid #fff;
+  display: block;
+  height: 100%;
+  left: initial;
+  margin: 0;
+  top: initial;
+  width: 100%;
+}
+
+.fullscreen #pager-tab {
+  background-color: transparent;
+  background-image: url("/images/magazine/features/ss15-carousel/spritesheet.png");
+  background-position: -115px 0;
+  border-radius: 3px;
+  box-shadow: none;
+  cursor: pointer;
+  display: block;
+  height: 37px;
+  left: auto;
+  position: absolute;
+  right: -60px;
+  top: 13px;
+  width: 39px;
+  z-index: 10;
+}
+
+.fullscreen .open #pager-tab {
+  background-position: -76px center;
+  height: 37px;
+  right: 10px;
+}
+
+/* === Navigation (FULLSCREEN) === */
+.fullscreen .bx-controls {
+  background-color: #fff;
+  height: 15%;
+  position: fixed;
+  top: -15%;
+  width: 100%;
+  z-index: 1;
+}
+
+.fullscreen .feature-wrapper > #fullscreen_nav-container {
+  height: 15px;
+  left: 0;
+  position: absolute;
+  top: 50%;
+  width: 100%;
+}
+
+.fullscreen-nav > a {
+	left: 0;
+}
+
+.fullscreen .ghost {
+	display: none;
+}
+
+/* ========================== */
+/* ===== Special Styles ===== */
+/* ========================== */
+
+/* == Animated Jpeg functionality == */
+.bg-container {
+  display: block;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.animation-frame {
+  height: 100%;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  background-size: cover;
+  overflow: hidden;
+}
+
+.animation-frame.first {
+  z-index: 1 !important;
+}
+
+.copy {
+  z-index: 1;
+  position: relative;
+}
+
+.ie-bg {
+	min-width: 100%;
+	min-height: 100%;
+}
+
+/* == UI Switch == */
+.ui-switch .fullscreen-btn {
+  background-position: -154px -37px;
+}
+
+/* == Parallax Layers == */
+.layer {
+	position: relative;
+}
+
+
+/* ===================== Background position classes ===================== */
+/* Add these to .slide-container tags to position the bg image accordingly */
+/*               No class will keep the background centered                */
+/* ======================================================================= */
+.bg-top {background-position: center top !important;}
+.bg-top-left {background-position: left top !important;}
+.bg-top-right {background-position: right top !important;}
+
+.bg-bottom {background-position: center bottom !important;}
+.bg-bottom-left {background-position: center bottom !important;}
+.bg-bottom-right {background-position: center bottom !important;}
+
+.bg-left {background-position: left center !important;}
+
+.bg-right {background-position: right center !important;}
+
+/* ========================== */
+/* = Custom Feature Styles == */
+/* ========================== */
+/* == Font styles == */
+.feature-wrapper {
+	font-size: 16px;
+}
+.feature-wrapper h1, .feature-wrapper h2, .feature-wrapper h3, .feature-wrapper h4, .feature-wrapper h5, .feature-wrapper h6 {
+	font-family: BrandonGrotesque-Medium, Helvetica, Arial, sans serif;
+	color: #D95167;
+	text-transform: uppercase;
+}
+
+.feature-wrapper p, .feature-wrapper a, .feature-wrapper a:hover {
+  color: #fff;
+  font: 0.9em/1.8em BrandonGrotesque-Regular,Helvetica,Arial,sans serif;
+  letter-spacing: 0.05em;
+}
+
+.feature-wrapper a.quicklink {
+	text-transform: uppercase;
+}
+
+/* == Grid == */
+.bx-pager-link.active {
+  border: 3px solid #d95167;
+}
+
+/* == Common containers == */
+
+.content-container {
+  display: table-cell;
+  vertical-align: middle;
+  position: relative;
+}
+
+.slide-container .copy {
+	display: block;
+}
+
+.copy h2 > img {
+	width: 100%;
+}
+
+.r-arw {
+  border-bottom: 0.4em solid transparent;
+  border-left: 0.4em solid #fff;
+  border-top: 0.4em solid transparent;
+  display: inline-block;
+  height: 0;
+  margin-left: 0.4em;
+}
+
+/* == Slide styles == */
+/* = Intro = */
+#intro .slide-container {
+	background-image: url('/images/magazine/features/SS15-carousel/slide0-bg.jpg');
+}
+
+#intro .copy {
+  margin-left: 49.70997679814385%;
+  width: 28.5963%;
+}
+
+#intro .copy h2 {
+	width: 100%;
+}
+
+#intro .copy p {
+	margin-top: 2em;
+}
+
+.copy a.next {
+
+}
+
+
+/* = Slide 1 = */
+#slide1 .slide-container {
+	background-image: url('/images/magazine/features/SS15-carousel/slide1-bg.jpg');
+}
+
+#slide1 .copy {
+
+}
+
+#slide1 .copy > p {
+
+}
+
+#slide1 a.quicklink, #slide1 a.quicklink:hover {
+
+}
+
+/* = Slide 2 = */
+#slide2 .slide-container {
+	background-image: url('/images/magazine/features/SS15-carousel/slide2-bg.jpg');
+}
+
+#slide2 .copy {
+
+}
+
+#slide2 a.quicklink, #slide2 a.quicklink:hover {
+
+}
+
+
+/* = Slide 3 = */
+#slide3 .slide-container {
+	background-image: url('/images/magazine/features/SS15-carousel/slide3-bg.jpg');
+}
+
+#slide3 .copy {
+
+}
+
+#slide3 .copy p {
+
+}
+
+#slide3 .copy h2 {
+
+}
+
+#slide3 .copy a.quicklink {
+
+}
+
+
+/* = Slide 4 = */
+#slide4 .slide-container {
+	background-image: url('/images/magazine/features/SS15-carousel/slide4-bg.jpg');
+}
+
+#slide4 .copy {
+
+}
+
+#slide4 .copy p {
+
+  }
+
+#slide4 .copy a.quicklink {
+
+}
+
+#slide4 .copy a.quicklink .r-arw {
+
+}
+
+
+/* = Slide 5 = */
+#slide5 .slide-container {
+	background-image: url('/images/magazine/features/SS15-carousel/slide5-bg.jpg');
+}
+
+#slide5 .copy {
+
+}
+
+#slide5 .copy h2 {
+
+}
+
+#slide5 .copy p {
+
+}
+
+#slide5 .copy a.quicklink {
+
+}
+
+/* === Media Queries === */
+@media (max-width: 1200px) {
+	.bx-next {
+	  float: left;
+	  left: -60px;
+	}
+	
+	.bx-prev {
+	  float: right;
+	  right: -60px;
+	}	
+}
+
+@media only screen 
+and (orientation : portrait) { 
+	.fullscreen .bx-pager-item {
+	  width: 50%;
+	  height:33.333%;
+	}
+}
+</style>
+
+<div id="loading-overlay">
+	<div class="table">
+		<div class="table-cell">
+			<img alt="loading..." src="/images/site/ajax-loader.gif" />
+		</div>
+	</div>
+</div>
+<div class="feature-wrapper">
+    <div id="viewport-container">
+		<ul class="bxslider">
+			<li id="intro" class="active-slide slide0">
+				<div class="slide-container bg-top-left">
+					
+					<div class="content-container">
+						<div class="copy">
+							<h2>Lorem Ipsum</h2>
+							<p>Lorem Ipsum</p>
+							<a href="#" class="next">Lorem Ipsum <span class="r-arw"></span></a>
+						</div>
+					</div>
+					
+				</div>
+			</li>
+			
+			<li id="slide1" class="slide1">
+				<div class="slide-container bg-top">
+					<div class="content-container">
+						<div class="copy">
+							<h2>Lorem Ipsum</h2>
+							<p>Lorem Ipsum</p>
+							<a href="~/products/outfitting.aspx?qr=WH793LAV|WU003PPK|AR660NUD|AV090YEL" class="retrieve quicklink">Lorem Ipsum <span class="r-arw"></span></a>
+						</div>
+					</div>
+				</div>
+			</li>
+			
+			<li id="slide2" class="slide2">
+				<div class="slide-container bg-bottom">
+					<div class="content-container">
+						<div class="copy">
+							<h2>Lorem Ipsum</h2>
+							<p>Lorem Ipsum</p>
+							<a href="~/products/outfitting.aspx?qr=WH793LAV|WU003PPK|AR660NUD|AV090YEL" class="retrieve quicklink">Lorem Ipsum <span class="r-arw"></span></a>
+						</div>
+					</div>
+				</div>
+			</li>
+
+			<li id="slide3" class="slide3">
+				<div class="slide-container bg-top">
+					<div class="content-container">
+						<div class="copy">
+							<h2>Lorem Ipsum</h2>
+							<p>Lorem Ipsum</p>
+							<a href="~/products/outfitting.aspx?qr=WH793LAV|WU993PPK|AR660NUD|AV090YEL" class="retrieve quicklink">Lorem Ipsum <span class="r-arw"></span></a>
+						</div>
+					</div>
+				</div>
+			</li>
+			
+			<li id="slide4" class="slide4">
+				<div class="slide-container bg-right">
+					<div class="content-container">
+						<div class="copy">
+							<h2>Lorem Ipsum</h2>
+							<p>Lorem Ipsum</p>
+							<a href="~/products/outfitting.aspx?qr=WH793LAV|WU003PPK|AR660NUD|AV090YEL" class="retrieve quicklink">Lorem Ipsum <span class="r-arw"></span></a>
+						</div>
+					</div>
+				</div>
+			</li>
+			
+			<li id="slide5" class="slide5">
+				<div class="slide-container bg-top">
+					<div class="content-container">
+						<div class="copy">
+							<h2>Lorem Ipsum</h2>
+							<p>Lorem Ipsum</p>
+							<a href="~/products/outfitting.aspx?qr=WH793LAV|WU003PPK|AR660NUD|AV090YEL" class="retrieve quicklink">Lorem Ipsum <span class="r-arw"></span></a>
+						</div>
+					</div>
+				</div>
+			</li>
+									
+		</ul>		
+	</div>
+	
+	<div id="ghost-left" class="ghost"></div>
+	<div id="ghost-right" class="ghost"></div>
+		
+</div>
+<script type="text/javascript" src="/content/scripts/jquery.bxslider.min.js"></script>
+<script src="/content/scripts/jquery.mixitup-v2.min.js"></script>
+<script src="/content/scripts/ss15-boden-carousel.min.js"></script>
+
+<script>
+var custom_settings = {
+	global_settings: {
+		cm_tag: 'SS15-TEMPLATE',
+		img_path: '/images/magazine/features/SS15-carousel/',
+		product_codes: 
+			[
+				null,
+				'WH793LAV|WU003PPK|AR660NUD|AV090YEL',
+				'WK959SPK|WH779BLU|AR654PPK',
+				'WG590RED|AR662BLK',
+				'WC114OAT|WV020GRY|WE479OYS|AR662BLK',
+				'WE465NAV|WH787PPK|AR654BLK|AM224YEL'
+			]
+	}
+}
+$(document).ready(function(){
+	var Slider = new BodenCarousel(custom_settings);
+	Slider.init();
+});
+
+$(window).load(function() {
+	$('#loading-overlay').fadeOut();
+});
+</script>
