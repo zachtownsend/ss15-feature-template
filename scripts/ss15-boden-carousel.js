@@ -552,8 +552,20 @@ function BodenCarousel(custom) {
 	// ==================== //
 	// === Core Feature === //
 	// ==================== //
+	var initial_slide = (function() {
+		function getParameterByName(name) {
+			name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+			var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+				results = regex.exec(location.search);
+			return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+		}
+		var slide = getParameterByName('slide');
+		slide = slide != '' ? slide : 0;
+		return slide;
+	})();
+	
 	var settings = $.extend({
-			initial_slide: 0,
+			initial_slide: initial_slide,
 			active_class: 'active-slide',
 			normal_width: 1000,
 			fullscreen_enabled: true,
