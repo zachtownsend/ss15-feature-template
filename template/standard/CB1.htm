@@ -327,11 +327,12 @@ li.mix > .quicklink {
   box-sizing: border-box;
   height: 100%;
   left: 0;
-  padding: 0px;
+  padding: 0;
   position: fixed;
   top: 0;
   width: 100%;
   z-index: 1000;
+  font-size: 1vw;
 }
 
 .fullscreen .feature-wrapper .bx-viewport {
@@ -355,7 +356,7 @@ li.mix > .quicklink {
   background-size: cover;
   box-sizing: border-box;
   height: 100%;
-  padding: 10px;
+  padding: 0px;
   width: 100%;
 }
 
@@ -386,6 +387,7 @@ li.mix > .quicklink {
   position: fixed;
   right: 20px;
   top: 18px;
+  font-size: 16px;
 }
 
 .fullscreen #close-products {
@@ -455,6 +457,7 @@ li.mix > .quicklink {
   max-height: 0;
   position: absolute;
   width: 100%;
+  font-size:16px;
 }
 
 .fullscreen #grid-container.open {
@@ -814,8 +817,8 @@ li.mix > .quicklink {
 }
 
 .feature-wrapper p, .feature-wrapper a, .feature-wrapper a:hover {
-  color: #fff;
-  font: 0.9em/1.8em BrandonGrotesque-Regular,Helvetica,Arial,sans serif;
+  color: #000;
+  font: 1em/1.8em BrandonGrotesque-Regular,Helvetica,Arial,sans serif;
   letter-spacing: 0.05em;
 }
 
@@ -846,7 +849,7 @@ li.mix > .quicklink {
 
 .r-arw {
   border-bottom: 0.4em solid transparent;
-  border-left: 0.4em solid #fff;
+  border-left: 0.4em solid #000;
   border-top: 0.4em solid transparent;
   display: inline-block;
   height: 0;
@@ -869,7 +872,7 @@ li.mix > .quicklink {
 }
 
 #intro .copy p {
-	margin-top: 2em;
+	
 }
 
 .copy a.next {
@@ -1088,7 +1091,7 @@ and (orientation : portrait) {
 </div>
 <script type="text/javascript" src="/content/scripts/jquery.bxslider.min.js"></script>
 <script src="/content/scripts/jquery.mixitup-v2.min.js"></script>
-<script src="/content/scripts/ss15-boden-carousel.min.js"></script>
+<script src="/content/scripts/ss15-boden-carousel.js"></script>
 
 <script>
 var custom_settings = {
