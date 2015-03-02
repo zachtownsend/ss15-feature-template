@@ -3,9 +3,15 @@
  */
 ;window.Modernizr=function(a,b,c){function w(a){i.cssText=a}function x(a,b){return w(prefixes.join(a+";")+(b||""))}function y(a,b){return typeof a===b}function z(a,b){return!!~(""+a).indexOf(b)}function A(a,b){for(var d in a){var e=a[d];if(!z(e,"-")&&i[e]!==c)return b=="pfx"?e:!0}return!1}function B(a,b,d){for(var e in a){var f=b[a[e]];if(f!==c)return d===!1?a[e]:y(f,"function")?f.bind(d||b):f}return!1}function C(a,b,c){var d=a.charAt(0).toUpperCase()+a.slice(1),e=(a+" "+m.join(d+" ")+d).split(" ");return y(b,"string")||y(b,"undefined")?A(e,b):(e=(a+" "+n.join(d+" ")+d).split(" "),B(e,b,c))}var d="2.8.3",e={},f=b.documentElement,g="modernizr",h=b.createElement(g),i=h.style,j,k={}.toString,l="Webkit Moz O ms",m=l.split(" "),n=l.toLowerCase().split(" "),o={},p={},q={},r=[],s=r.slice,t,u={}.hasOwnProperty,v;!y(u,"undefined")&&!y(u.call,"undefined")?v=function(a,b){return u.call(a,b)}:v=function(a,b){return b in a&&y(a.constructor.prototype[b],"undefined")},Function.prototype.bind||(Function.prototype.bind=function(b){var c=this;if(typeof c!="function")throw new TypeError;var d=s.call(arguments,1),e=function(){if(this instanceof e){var a=function(){};a.prototype=c.prototype;var f=new a,g=c.apply(f,d.concat(s.call(arguments)));return Object(g)===g?g:f}return c.apply(b,d.concat(s.call(arguments)))};return e}),o.backgroundsize=function(){return C("backgroundSize")},o.csstransforms=function(){return!!C("transform")},o.csstransitions=function(){return C("transition")};for(var D in o)v(o,D)&&(t=D.toLowerCase(),e[t]=o[D](),r.push((e[t]?"":"no-")+t));return e.addTest=function(a,b){if(typeof a=="object")for(var d in a)v(a,d)&&e.addTest(d,a[d]);else{a=a.toLowerCase();if(e[a]!==c)return e;b=typeof b=="function"?b():b,typeof enableClasses!="undefined"&&enableClasses&&(f.className+=" "+(b?"":"no-")+a),e[a]=b}return e},w(""),h=j=null,e._version=d,e._domPrefixes=n,e._cssomPrefixes=m,e.testProp=function(a){return A([a])},e.testAllProps=C,e}(this,this.document);
 
+// ====== BODEN CAROUSEL TEMPLATE ====== //
 function BodenCarousel(custom) {
+	
+	// This checks if an argument has been passed into the function, and
+	// if it doesn't, it creates an empty object.
 	var user_settings = custom || {};
 	
+	// This is the default global settings for the feature, which can be 
+	// overridden when declaring the plugin.
 	var global_settings = $.extend({
 		cm_tag: 'SS15-TEMPLATE',
 		img_path: '/images/magazine/features/SS15-carousel/',
@@ -25,14 +31,14 @@ function BodenCarousel(custom) {
 		}, user_settings.global_settings);
 	
 	// Private variables
-	var warnings = [];
-	var market = $('html').attr('lang');
+	var warnings = []; // This array holds all the feature warning to 
+	var market = $('html').attr('lang'); // This gets the market 
 	
 	// ====================== //
 	// == HELPER FUNCTIONS == //
 	// ====================== //
 	
-	// Apply quicklinks
+	// Applies quicklinks
 	function apply_quicklinks() {
 		$('.quicklink').each(function(){
 			$(this).fancybox({				
@@ -56,38 +62,22 @@ function BodenCarousel(custom) {
 		});
 	};
 	
-	// Get appropriate copy for market
+	// Determines appropriate language to use
 	function translation(copy) {
 		var mkt = market.slice(0,2);
 		var lang = (mkt === 'en') ? 0 : (mkt === 'de') ? 1 : (mkt === 'fr') ? 2 : 0;
 		return copy[lang];
 	}
 	
-	// Append html to the feature 
+	// Appends html to the feature
 	function feature_append(html) {
 		global_settings.feature_wrapper.append(html);
 	}
 	
-	function layer_animation(layers, duration, attr, delay) {
-		var layers_group = layers;
-		var dly = 0;
-		var get_props = function(layer, attr) {
-			var props = {};
-			for(key in attr) {
-				props[key] = layer.css(key);
-				if(props[key] === 'auto') props[key] = 0;
-			}
-			return props;
-		}
-		
-		layers.each(function() {
-			var layer = $(this);
-			var end_pos = get_props(layer, attr);
-			var start_pos = attr;
-			layer.css(start_pos).delay(dly).animate(end_pos, duration, 'easeInOutQuad');
-			dly += delay;
-		});
-	}
+	function bindUI(element, event, callback) {
+		var el = element instanceof jQuery ? element : $(element);
+		el.on(event, callback);
+	};
 	
 	// =============== //
 	// === MODULES === //
@@ -97,10 +87,10 @@ function BodenCarousel(custom) {
 	var Layers = function() {
 		var settings = $.extend({
 			enabled: false,
-			layer_class: 'layer',
-			duration: 1000,
-			delay: 200
-		}, custom.layers_settings);
+			layer_class: 'layer', // The class that you are going to stagger
+			duration: 1000, // The duration of each element's animation
+			delay: 200 // The delay between the beginning of each animation
+		}, user_settings.layers_settings);
 		
 		var public_props = {
 			enabled : settings.enabled,
@@ -109,6 +99,32 @@ function BodenCarousel(custom) {
 		
 		if(!settings.enabled) return public_props;
 		
+		// Applies the staggered layer animations
+		var layer_animation = function(layers, duration, attr, delay) {
+			var layers_group = layers;
+			var dly = 0;
+			
+			// This determines the current state of the element's CSS position
+			var get_props = function(layer, attr) {
+				var props = {};
+				for(key in attr) {
+					props[key] = layer.css(key);
+					if(props[key] === 'auto') props[key] = 0;
+				}
+				return props;
+			};
+			
+			// This animates each element and adds the delay offset for each one
+			layers.each(function() {
+				var layer = $(this);
+				var end_pos = get_props(layer, attr);
+				var start_pos = attr;
+				layer.css(start_pos).delay(dly).animate(end_pos, duration, 'easeInOutQuad');
+				dly += delay;
+			});
+		}
+		
+		// This is the public method that triggers the animation
 		public_props.slide = function(parent, vpWidth, oldIndex, newIndex) {
 			var layers = parent.find('.' + settings.layer_class);
 			var forward = (oldIndex - newIndex) ? true : false;
@@ -124,16 +140,16 @@ function BodenCarousel(custom) {
 	var Jpeg_animate = function() {
 		var settings = $.extend({
 			enabled: false,
-			container: '.bg-container',
+			container: '.bg-container', // This is the class that contains the animated jpeg
 			slide_prefix: '.slide',
 			img_path: global_settings.img_path,
 			speed: 300, //in ms
-			repeat: -1,
-			paused: true,
-			yoyo: false,
-			repeat_delay: 1,
-			scene: [3, 3, 3, null, 3, null]
-		}, custom.jpganimate_settings);
+			repeat: -1, // How many times the animation repeats, -1 for infinite
+			paused: true, // This declares whether the animation is paused by default
+			yoyo: false, // If true, the animation will increment up the frames until it reaches the last one, where it will go into reverse
+			repeat_delay: 1, // Delay between repeats
+			scene: [3, 3, 3, null, 3, null] // This is the number of frames in each slide (each array cell is the slide number, in order)
+		}, user_settings.jpganimate_settings);
 		
 		var public_props = {
 			enabled : settings.enabled,
@@ -143,10 +159,11 @@ function BodenCarousel(custom) {
 		
 		if(!settings.enabled) return public_props;
 		
-		var css3 = Modernizr.backgroundsize;
+		var css3 = Modernizr.backgroundsize; // Check whether background-size: cover is supported by the browser
 		var ctl = null;
 		var animation;
 		
+		// This adds the frames into the container
 		var add_frames = function(target, frames, index) {
 			var target = $(target);
 			var container = target.find(settings.container);
@@ -161,16 +178,20 @@ function BodenCarousel(custom) {
 			}
 			container.append(imgVar);
 		};
-			
+		
+		// This sets up how the animation runs
 		function control(target, frames) {
 			var animation;
-			var framesArray = $(target).find(settings.container).children();
-			var animation_length = framesArray.length + settings.repeat_delay;
-			var pos = 0;
-			var up = true;
+			var framesArray = $(target).find(settings.container).children(); // Array of frames
+			var animation_length = framesArray.length + settings.repeat_delay; // Total animation length
+			var pos = 0; // Starting frame position
+			var up = true; // Direction of animation (true = forward, false = reverse)
 			
 			var play = function() {
+				// Clear any existing animation ...
 				clearInterval(animation);
+				
+				// Begin new animation ...
 				animation = setInterval(function() {
 					up ? pos++ : pos--;
 					var z = up ? 1 : 0;
@@ -187,6 +208,7 @@ function BodenCarousel(custom) {
 				}, settings.speed);
 			}
 			
+			// Pause animation
 			var pause = function() {
 				clearInterval(animation);
 			}
@@ -196,7 +218,8 @@ function BodenCarousel(custom) {
 				pause : pause
 			}
 		}
-				
+		
+		// This handles how the animation is handled within the slider
 		public_props.playFrames = function(newIndex, oldIndex) {
 			if(ctl === null) return false;
 			var newScene = ctl[newIndex];
@@ -205,6 +228,7 @@ function BodenCarousel(custom) {
 			if(oldScene != undefined) oldScene.pause();
 		};
 		
+		// This initialises the animation
 		public_props.initialise = function() {
 			var scenes = Array();
 			
@@ -228,7 +252,7 @@ function BodenCarousel(custom) {
 		var settings = $.extend({
 			enabled: true,
 			img_path: global_settings.img_path,
-			name_format: {prefix: 'slide', suffix: '-thumbnail.jpg'},
+			name_format: {prefix: 'slide', suffix: '-thumbnail.jpg'}, // This determines what the name of the thumbnail should be
 			animation_speed: global_settings.animation_speed
 		}, user_settings.pager_settings);
 		
@@ -246,6 +270,7 @@ function BodenCarousel(custom) {
 		var $pager_wrapper, $toggle_btn;
 		var open_class = 'open';
 		
+		// Generate the thumbnail
 		public_props.generate_thumbnail =  function(slideIndex) {
 			var thumb;
 			var image = settings.img_path + settings.name_format.prefix + slideIndex + settings.name_format.suffix;
@@ -253,8 +278,10 @@ function BodenCarousel(custom) {
 			return thumb;
 		}
 		
+		// Determines whether the thumbnails are open
 		var is_open = function() { return $pager_wrapper.hasClass(open_class) };
 		
+		// Open/close pager toggle
 		public_props.toggle_pager = function(override_close) {
 			var override = override_close || false;
 			if(override && is_open) {
@@ -265,12 +292,7 @@ function BodenCarousel(custom) {
 			toggle_class();
 		};
 				
-		var bindUI = function() {
-			$toggle_btn.click(function(){
-				public_props.toggle_pager();
-			});
-		}
-		
+		// Initialises the module
 		public_props.initialise = function() {
 			var html = [
 				'<div id="pager-wrapper">',
@@ -280,11 +302,15 @@ function BodenCarousel(custom) {
 				'</div>'
 			].join('\n');
 			
-			feature_append(html);
-			public_props.container = $('#pager-container');
-			$pager_wrapper = $('#pager-wrapper');
-			$toggle_btn = $('#pager-tab');
-			bindUI();
+			feature_append(html); // Inserts the HTML
+			public_props.container = $('#pager-container'); // Caches container selector
+			$pager_wrapper = $('#pager-wrapper'); // Caches pager wrapper
+			$toggle_btn = $('#pager-tab'); // Caches toggle button
+			
+			// Binds the toggle function to an element
+			bindUI($toggle_btn, 'click', function() {
+				public_props.toggle_pager();
+			});
 		}
 		
 		return public_props;
@@ -293,14 +319,14 @@ function BodenCarousel(custom) {
 	// == Product Grid functionality
 	var ProductGrid = function() {
 		var settings = $.extend({
-			enabled: true,				// Boolean
+			enabled: true,
 			slider_class: '.bxslider',
 			codes: global_settings.product_codes, // Array or 'auto'
-			quickshop_path: global_settings.quickshop_path, // String
-			open_class: 'open',			// String
-			max_height: 210,				// Integer
+			quickshop_path: global_settings.quickshop_path,
+			open_class: 'open', // Declares the 'open' class
+			max_height: 210, // Maximum height of the product thumbnail
 			market: market
-		}, custom.productgrid_settings);
+		}, user_settings.productgrid_settings);
 		
 		var public_props = {
 			enabled : settings.enabled,
@@ -323,24 +349,39 @@ function BodenCarousel(custom) {
 		var generate = function(callback) {
 			var html = '';
 			var codes = settings.codes;
+			
+			// Gets all product codes and merges them into one long string, delimited with "|"
 			var merged_codes = function() {
 				return settings.codes.toString().replace(/,/g , '|');
 			};
+			
+			// Creates the quickshop path
 			var path = settings.quickshop_path + merged_codes();
+			
 			var product_codes = settings.codes;
 			
+			// AJAX function to get the data of the products
 			$.get(path, function(data) {
 				var $data = $(data);
-				var img = $data.find('.ProductMain');
+				var img = $data.find('.ProductMain'); // Parent element of the products
 				var imgEq = 0;
+				
+				// For every product code ...
 				for(i = 0; i < product_codes.length; i++) {
 					
+					// If the slide has product codes ...
 					if(product_codes[i] != null) {
 						var current = product_codes[i];
-						var array = product_codes[i].split('|');
+						var array = product_codes[i].split('|'); // Split all product codes on this slide into an array
+						
+						// For every product in the slide ...
 						for(x = 0; x < array.length; x++) {
 							var baseCode = array[x].slice(0,5);
+							
+							// If the product code exists ...
 							if($('[data-productcode=' + baseCode + ']', $data).data('productcode') != null) {
+								
+								// Add the html to the html variable
 								var tag = '<li class="mix slide' + i + '"><a class="quicklink" href="/products/outfitting.aspx?qr=' + array[x] + '"><img src="' + img.eq(imgEq).attr('src') + '" /></a></li>';
 								imgEq++;
 								html += tag;
@@ -351,7 +392,7 @@ function BodenCarousel(custom) {
 					}
 				}
 				
-				$grid.prepend(html);
+				$grid.prepend(html); // Append the generated list items to the grid
 				callback();
 			});
 		};
@@ -407,7 +448,7 @@ function BodenCarousel(custom) {
 			return array;
 		}
 		
-		
+		// Toggle the product grid (opened/closed)
 		var toggle_grid = function() {
 			var gridIsOpen = ($grid.hasClass($grid.open_class));			
 			if(!Modernizr.csstransitions) { 
@@ -426,14 +467,9 @@ function BodenCarousel(custom) {
 				
 			}
 			$grid_container.toggleClass('open');
-		}
+		}		
 		
-		var bindUI = function() {
-			$toggle_btn.click(function() {
-				toggle_grid();
-			});
-		}
-		
+		// Initialise the product grid
 		public_props.initialise = function(callback) {
 			var buylook_copy = translation(['Buy complete look', 'Den kompletten Look shoppen', 'Acheter la tenue compl\u00e8te']);
 			var show_copy = translation(['Show','Anzeigen', 'Montrer' ]);
@@ -460,7 +496,9 @@ function BodenCarousel(custom) {
 			$toggle_btn = $('#toggle-grid');
 			public_props.update(0);
 			generate(callback);
-			bindUI();
+			bindUI($toggle_btn, 'click', function(){
+				toggle_grid();
+			});
 		};
 		public_props.ui = settings.ui;
 		return public_props;
@@ -474,7 +512,7 @@ function BodenCarousel(custom) {
 			market: market
 		}, user_settings.shoppingbag_settings);
 		
-		var $fs_qty, $fs_val, $nm_qty, $nm_val;
+		
 		
 		var public_props = {
 			after_load: function() { return false },
@@ -485,6 +523,9 @@ function BodenCarousel(custom) {
 		
 		if(!settings.enabled) return public_props;
 		
+		var $fs_qty, $fs_val, $nm_qty, $nm_val;
+		
+		// To do after quicklink load
 		public_props.after_load = function() {
 			var btn = $('.fancybox-iframe').contents().find('#addToBagBtn');
 			btn.click(function(){
@@ -494,11 +535,14 @@ function BodenCarousel(custom) {
 				}
 			});
 		};
-				
+		
+		// Get the text of a specific element
 		var get_text = function(id) {
-			return $(id).text();
+			var id = $(id).text();
+			return id;
 		}
 		
+		// Updates the values in the fullscreen shopping bag
 		var update_values = function() {
 			var new_qty = get_text('#ShoppingBag1_lblCount');
 			var new_val = get_text('#ShoppingBag1_lblTotal');
@@ -506,13 +550,13 @@ function BodenCarousel(custom) {
 			$fs_val.text(new_val);
 		}
 		
+		// Checks whether the new and old values are different then updates the fullscreen shopping bag values
 		public_props.update = function() {
 			
 			var current_qty = $('#sb-qty').text();
 			var cap = 25;
 			var timer = setInterval(function() {
 				var new_qty = $('#ShoppingBag1_lblCount').text();
-				console.log(current_qty + ':' + new_qty);
 				if(new_qty != current_qty) {
 					update_values();
 					clearInterval(timer);
@@ -524,17 +568,19 @@ function BodenCarousel(custom) {
 			
 		}
 		
+		// Do this after fancybox close
 		public_props.before_close = function() {
 			$('#shopping-bag').removeClass('changed');
 		};
 		
+		// Initialises the shopping bag
 		public_props.initialise = function() {
 			var bag = translation(['Bag', 'Warenkorb', 'Panier' ]);
 			var value = $('#ShoppingBag1_lblTotal').text();
 			var html = [
 				'<a title="Bag" href="~/checkout/shopping-bag.html#nav" id="shopping-bag">',
 					'<h2 id="bag-copy">' + bag + '</h2>',
-					'<span class="bagCounter" id="sb-qty">0</span><span class="sbItemText">items</span>',
+					'<span class="bagCounter" id="sb-qty"></span><span class="sbItemText">items</span>',
 					'<span class="sbTotalPriceText">Total</span>',
 					'<span id="sb-value">' + value + '</span>',
 				'</a>'
@@ -543,15 +589,17 @@ function BodenCarousel(custom) {
 			$('.fullscreen-info').prepend(html);
 			$fs_qty = $('#sb-qty');
 			$fs_val = $('#sb-value');
-			update_values();
+			public_props.update();
 		}
 		
 		return public_props;
 	}();
 	
 	// ==================== //
-	// === Core Feature === //
+	// = Core Processing == //
 	// ==================== //
+	
+	// This sets the initial slide
 	var initial_slide = (function() {
 		function getParameterByName(name) {
 			name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
@@ -582,14 +630,17 @@ function BodenCarousel(custom) {
 	
 	var slider, timer;
 	
+	// Fullscreen object
 	var fullscreen = {
 		is_active: function() { return false },
 		mode: function() { return get_attrs( settings.normal_width, settings.initial_slide, settings.nav_location.normal ) },
 		apply_ui: function() { return false }
 	}
 	
+	// Determine viewport width
 	var viewport_width = function() { return fullscreen.is_active() ? $(window).width() : settings.normal_width};
 	
+	// If fullscreen is enabled ...
 	if(settings.fullscreen_enabled) {
 		var html = [];
 		html[0] = [
@@ -606,23 +657,27 @@ function BodenCarousel(custom) {
 				'<a href="#">Full screen</a>',
 			'</div>'
 		].join('\n');
+		
+		// ... apply methods and properties ...
 		fullscreen = {
+			// Checks if fullscreen is active
 			is_active: function() { return settings.body.hasClass('fullscreen') },
+			
+			// Gets fullscreen mode status, and returns appropriate attributes for slider
 			mode: function() {
 				return this.is_active() ?
 					get_attrs( $(window).width(), settings.initial_slide, settings.nav_location.fullscreen ) :
 					get_attrs( settings.normal_width, settings.initial_slide, settings.nav_location.normal );
 			},
+			
+			// Creates UI and binds appropriate events
 			apply_ui: function() { 
 				feature_append(html[0]);
 				$('#ghost-right').append(html[1]);
-				this.bind_ui();
+				bindUI('.fullscreen-btn', 'click', function() { fullscreen.toggle(); });
 			},
-			bind_ui: function() {
-				$('.fullscreen-btn').click(function() {
-					fullscreen.toggle();
-				});
-			},
+			
+			// Toggles the fullscreen/fixed width modes
 			toggle: function() {
 				settings.body.toggleClass('fullscreen');
 				slider.reloadSlider(fullscreen.mode());
@@ -631,7 +686,8 @@ function BodenCarousel(custom) {
 			}
 		}
 	};
-		
+	
+	// This function switches to a different UI style (e.g. if the UI on a particular slide doesn't contrast well with the background
 	var ui_switch = function(newIndex, slideNumber) {
 		if(!settings.ui_switch) return false;
 		var switchClass = 'ui-switch';
@@ -648,7 +704,8 @@ function BodenCarousel(custom) {
 			}
 		});
 	}
-		
+	
+	// This sets the ghosts for the fullscreen mode
 	var set_ghosts = function() {
 		var offset = $('.bx-viewport').offset().left + $('.bx-viewport').width();
 		$('.ghost').each(function(){
@@ -658,15 +715,17 @@ function BodenCarousel(custom) {
 			$this.css(css);
 		});
 	};
-		
+	
+	// This returns the the attributes for the slider
 	var get_attrs = function( width, current_index, nav_location ) {
 		return {
 				slideWidth: width
 				,startSlide: current_index
-				,pager: Pager.enabled // ####
-				,pagerSelector: Pager.container // ####
+				,pager: Pager.enabled
+				,pagerSelector: Pager.container
+				,oneToOneTouch: false
 				,buildPager: function(slideIndex){
-					return Pager.generate_thumbnail(slideIndex); // ####
+					return Pager.generate_thumbnail(slideIndex);
 				}
 				,onSliderLoad: function(current_index) {
 					
@@ -674,10 +733,9 @@ function BodenCarousel(custom) {
 					settings.initial_slide = current_index;
 					set_ghosts();
 					Jpeg_animate.playFrames(current_index);
-					//JpgAnimate.playFrames(current_index);
+					ProductGrid.update(current_index);
 				}
 				,onSlideBefore: function($slideElement, oldIndex, newIndex){	
-					//Slider.updateActive(newIndex);
 					Pager.toggle_pager(true);
 					settings.initial_slide = newIndex;
 					Layers.slide($slideElement, viewport_width(), oldIndex, newIndex);
@@ -692,7 +750,8 @@ function BodenCarousel(custom) {
 				,nextSelector: nav_location + 'right'
 			}
 	};
-		
+	
+	// This is what to do when the user resizes the window
 	var window_resize = function() {
 		set_ghosts();
 		if(fullscreen.is_active()) {
@@ -706,23 +765,31 @@ function BodenCarousel(custom) {
 		}
 	}
 	
+	// This binds the main UI elements
 	var bindUIelements = function() {
-		if(settings.fullscreen_enabled) settings.fullscreen_button.click(function() { toggle_fullscreen() });
-		$(window).resize(function() { window_resize() });
-		$('.next').click(function(e) {
+		
+		bindUI(window, 'resize', function() { window_resize() });
+		bindUI('.next', 'click', function(e) {
 			e.preventDefault();
 			slider.goToNextSlide();
 		});
+		if(!settings.fullscreen_enabled) return false;
+		bindUI(settings.fullscreen_button, 'click', function() { toggle_fullscreen() });
 	};
 	
+	
+	// This logs warnings
 	var log_warnings = function() {
-		if(global_settings.cm_tag === 'SS15-TEMPLATE') warnings.push('You have not changed the coremetrics tag');
-		if(global_settings.img_path === '/images/magazine/features/SS15-carousel/') warnings.push('You haven\'t changed the default image path');
-		for(i in warnings) {
-			console.log('WARNING: ' + warnings[i]);
+		try {
+			if(global_settings.cm_tag === 'SS15-TEMPLATE') throw 'You have not changed the coremetrics tag';
+			if(global_settings.img_path === '/images/magazine/features/SS15-carousel/') throw 'You haven\'t changed the default image path';
+		} 
+		catch(err) {
+			console.error(err);
 		}
 	};
-
+	
+	// This initialises the feature carousel
 	var initialise = function() {
 		$('[name=viewport]', '#Head1').attr('content', 'width=1000');
 		Pager.initialise();
@@ -730,16 +797,13 @@ function BodenCarousel(custom) {
 		ProductGrid.initialise(function(){
 			apply_quicklinks();
 			log_warnings();
-			Shopping_bag.initialise();
 		});
 		slider = $('.bxslider').bxSlider(fullscreen.mode());
 		fullscreen.apply_ui();
 		apply_quicklinks();
 		bindUIelements();
+		Shopping_bag.initialise();
 	};
-	
-	
-	
 	
 	return {
 		init: initialise
