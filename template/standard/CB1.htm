@@ -39,6 +39,11 @@ body.fullscreen {overflow: hidden;}
   vertical-align: middle;
 }
 
+#grid-loading {
+  display: block;
+  margin: auto;
+}
+
 /* ===================== */
 /* === Normal Styles === */
 /* ===================== */
@@ -233,8 +238,8 @@ li.mix > .quicklink {
 }
 
 .fullscreen-nav {
+  bottom: 15px;
   position: absolute;
-  bottom: 0;
 }
 
 #fullscreen_nav-left {
@@ -552,7 +557,9 @@ li.mix > .quicklink {
 }
 
 .fullscreen .open #hide-copy, .fullscreen #show-copy {
-	display: inline-block;
+  display: inline-block;
+  font-size: 14px;
+  letter-spacing: 2px;
 }
 
 .fullscreen #toggle-grid {
@@ -723,7 +730,7 @@ li.mix > .quicklink {
 }
 
 .fullscreen .feature-wrapper > #fullscreen_nav-container {
-  height: 15px;
+  height: 0;
   left: 0;
   position: absolute;
   top: 50%;

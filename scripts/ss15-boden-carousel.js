@@ -386,13 +386,19 @@ function BodenCarousel(custom) {
 								imgEq++;
 								html += tag;
 							} else {
-								warnings.push('The product code does not exist: ' + array[x]);
+								console.error('The product code does not exist: ' + array[x]);
 							}
 						}
 					}
 				}
+
+				// Append the generated list items to the grid
+				$grid.prepend(html);
+				$('#grid-loading').fadeOut(function(){
+					var currentSlide = $('.active-slide').index() - 1;
+					$grid.mixItUp('filter', '.slide' + currentSlide);
+				});
 				
-				$grid.prepend(html); // Append the generated list items to the grid
 				callback();
 			});
 		};
@@ -483,6 +489,7 @@ function BodenCarousel(custom) {
 							'<span class="show-hide" id="show-copy">' + show_copy + '</span>',
 							'<span class="show-hide" id="hide-copy">' + hide_copy + '</span>',
 						'</a>',
+						'<br /><img id="grid-loading" src="' + global_settings.img_path +'bx_loader.gif" />',
 					'</div>',
 					'<ul id="grid">',
 						'<!-- Products are dynamically created here -->',
@@ -736,6 +743,8 @@ function BodenCarousel(custom) {
 					ProductGrid.update(current_index);
 				}
 				,onSlideBefore: function($slideElement, oldIndex, newIndex){	
+					$('.' + settings.active_class).removeClass(settings.active_class);
+					$slideElement.addClass(settings.active_class);
 					Pager.toggle_pager(true);
 					settings.initial_slide = newIndex;
 					Layers.slide($slideElement, viewport_width(), oldIndex, newIndex);
