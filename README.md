@@ -220,3 +220,5 @@ If true, the animation will go through all the frames and then reverse back thro
 
  ``` repeat_delay ``` 
 This is the delay between each repeat in ms.
+
+CHANGE
